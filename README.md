@@ -2,7 +2,7 @@
 
 复用 ECC Capabilities 的卡片、搜索和详情布局，用中文学习说明理解技能，再阅读完整原文。
 
-每张卡片展示 **技能调用名、技能中文名、技能概括、技能使用场景**。支持 ECC／Cyto 分组、分类、关键词与多标签交集筛选、真实调用名复制、完整 Markdown 和包内关联文档。正文默认 20px，适配窄屏与键盘操作。
+每张卡片展示 **技能调用名、技能中文名、技能概括、技能使用场景**。当前只维护 348 项 ECC 技能，支持模块与分类、关键词与多标签交集筛选、真实调用名复制、完整 Markdown 和包内关联文档。正文默认 20px，适配窄屏与键盘操作。
 
 ## 启动
 
@@ -35,8 +35,7 @@ SKILL_READER_PORT=3458 npm start
 
 1. 将 `config/sources.example.json` 复制为 `.local/sources.json`。
 2. 填写本机已安装包的绝对 `root` 和对应 `version`，包内须有匹配的 `.codex-plugin/plugin.json`。
-3. ECC 原生入口为 `skills`，迁移技能入口为 `.codex-plugin/migrated-command-skills`；Cyto 使用其包声明的 `skills` 入口。
-4. 如需保留私有学习说明，单独安全迁移 `.local/learning-notes/cyto.json`。
+3. ECC 原生入口为 `skills`，迁移技能入口为 `.codex-plugin/migrated-command-skills`。当前配置仅包含 ECC，不需要迁移其他来源的学习资料。
 
 配置文件也可通过 `SKILL_READER_CONFIG` 指定。公开代码不含个人路径，运行时不扫描整个主目录，也不依赖原 ECC 预览服务或其端口。
 
@@ -45,7 +44,6 @@ SKILL_READER_PORT=3458 npm start
 ## 中文学习笔记
 
 - `data/learning-notes/ecc.json`：348 项公开 ECC 学习说明，原生 311、迁移入口 37。
-- `.local/learning-notes/cyto.json`：7 项本地 Cyto 说明，默认不进入 Git。
 - 技能原文始终从技能包只读读取，不随本项目公开。
 
 笔记包含稳定 `id`、真实 `callName`、`nameZh`、`summaryZh`、`scenariosZh`、`tags`、`category`，以及已核对的 `version` 和完整源文件字节 SHA-256 `sourceHash`。它们是学习概括，不是官方全文翻译。

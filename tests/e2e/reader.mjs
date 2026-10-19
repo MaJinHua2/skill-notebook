@@ -120,6 +120,32 @@ try {
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   assert.equal(await page.locator('.markdown').evaluate(n=>getComputedStyle(n).fontSize),'20px');
  });
+ await check('移除来源后仅保留ECC导航并恢复旧筛选',async()=>{
+  sources.splice(1);
+  await writeFile(noteFile,JSON.stringify(notes.filter(n=>n.id.startsWith('ecc/'))));
+  await page.evaluate(()=>localStorage.setItem('skill-reader.preferences.v1',JSON.stringify({filters:{provider:'cyto',category:'开发',query:'架构',tags:['审查','安全']},expanded:{cyto:true,ecc:true}})));
+  await page.goto(base);await page.locator('.card').first().waitFor();
+  assert.deepEqual(await page.locator('#provider option').evaluateAll(nodes=>nodes.map(n=>n.value)),['','ecc']);
+  assert.equal(await page.locator('#provider').inputValue(),'');
+  assert.equal(await page.locator('#search').inputValue(),'架构');
+  assert.equal(await page.locator('.card').count(),1);
+  assert.equal(await page.getByRole('button',{name:'ECC 模块 · 3',exact:true}).count(),1);
+  assert.doesNotMatch(await page.locator('#navigation').innerText(),/Cyto/);
+  assert.deepEqual(await page.evaluate(()=>Object.keys(JSON.parse(localStorage.getItem('skill-reader.preferences.v1')).expanded)),['ecc']);
+  await page.getByRole('button',{name:'清除全部筛选',exact:true}).first().click();
+  assert.equal(await page.locator('.card').count(),3);
+  await page.getByRole('button',{name:'ECC 模块 · 3',exact:true}).click();
+  assert.equal(await page.locator('.card').count(),3);
+ });
+ await check('已移除来源的旧详情返回不可用提示并可回到列表',async()=>{
+  await page.goto(base+'/#/skills/'+encodeURIComponent('cyto/native/alpha'));
+  await page.getByRole('alert').waitFor();
+  assert.match(await page.getByRole('alert').innerText(),/未找到技能/);
+  assert.equal(await page.locator('.markdown').count(),0);
+  await page.getByRole('button',{name:'返回技能列表',exact:true}).click();
+  await page.locator('.card').first().waitFor();
+  assert.equal(await page.locator('.card').count(),3);
+ });
  await check('来源文件内容不变且页面无运行错误',async()=>{
   for(const [file,raw] of sourceFiles)assert.equal(await readFile(file,'utf8'),raw);
   assert.deepEqual(errors,[]);

@@ -23,7 +23,7 @@
 callName 由 `${source.id}:${frontmatter.name}` 得到，name 必须与技能目录相同，否则诊断拒绝。
 
 学习笔记是 JSON 数组。每项含 `id, callName, nameZh, summaryZh, scenariosZh: string[], tags: string[], category, version, sourceHash`。
-sourceHash 是完整 SKILL.md UTF-8 文件字节的 SHA-256。public ECC 笔记文件是 `data/learning-notes/ecc.json`，Cyto 是 `.local/learning-notes/cyto.json`，配置目录由启动器确定，不随请求指定。
+sourceHash 是完整 SKILL.md UTF-8 文件字节的 SHA-256。当前仅维护 ECC，笔记文件是 `data/learning-notes/ecc.json`，共 348 项；配置目录由启动器确定，不随请求指定。本机与后续 Sites 数据范围均只包含 ECC。
 
 GET `/api/skills` 响应：
 

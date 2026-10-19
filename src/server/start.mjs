@@ -9,7 +9,7 @@ const port=Number(process.env.SKILL_READER_PORT || 3457);
 try {
   if(!Number.isInteger(port) || port<1 || port>65535) throw new Error('INVALID_PORT');
   const config=JSON.parse(await readFile(configFile,'utf8'));
-  const server=await createApp({config,notesFiles:[path.join(projectRoot,'data/learning-notes/ecc.json'),path.join(projectRoot,'.local/learning-notes/cyto.json')],webRoot:path.join(projectRoot,'dist')});
+  const server=await createApp({config,notesFiles:[path.join(projectRoot,'data/learning-notes/ecc.json')],webRoot:path.join(projectRoot,'dist')});
   server.on('error',error=> {
     console.error(error.code==='EADDRINUSE'?'阅读器端口已被占用，请选择独立端口。':'阅读器无法启动，请检查本地配置。'); process.exitCode=1;
   });

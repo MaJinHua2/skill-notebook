@@ -29,6 +29,14 @@ test('tags toggle and all clear',()=>{
  assert.deepEqual(toggleTag({tags:['设计','接口']},'设计').tags,['接口']);
  assert.deepEqual(clearState(),{provider:'',category:'',query:'',tags:[]});
 });
+test('ECC-only inventory drops removed provider/category while keeping valid search and tags',()=>{
+ const ecc=skills.filter(s=>s.provider==='ecc');
+ assert.deepEqual(inventory(ecc).map(s=>[s.provider,s.count]),[['ecc',2]]);
+ const restored=normalizeState({provider:'cyto',category:'开发',query:'架构',tags:['设计','removed']},ecc);
+ assert.deepEqual(restored,{provider:'',category:'',query:'架构',tags:['设计']});
+ assert.deepEqual(filterSkills(ecc,restored).map(s=>s.id),['ecc/native/a']);
+ assert.equal(filterSkills(ecc,clearState()).length,2);
+});
 test('route IDs use one encoded segment and malformed routes rejected',()=>{
  const id='ecc/native/a 中文'; assert.deepEqual(parseRoute(routeFor('skills',id)),{type:'skills',id});
  assert.deepEqual(parseRoute('#/references/opaque%2Fid'),{type:'references',id:'opaque/id'});

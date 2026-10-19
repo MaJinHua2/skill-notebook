@@ -1,7 +1,6 @@
 {
   "schema": 1,
   "sources": [
-    {"id":"ecc","label":"ECC","root":"<absolute-ecc-package-root>","version":"2.2.3","entries":[{"kind":"native","directory":"skills"},{"kind":"migrated","directory":".codex-plugin/migrated-command-skills"}]},
-    {"id":"cyto","label":"Cyto","root":"<absolute-cyto-package-root>","version":"0.1.1","entries":[{"kind":"native","directory":"skills"}]}
+    {"id":"ecc","label":"ECC","root":"<absolute-ecc-package-root>","version":"2.2.3","entries":[{"kind":"native","directory":"skills"},{"kind":"migrated","directory":".codex-plugin/migrated-command-skills"}]}
   ]
 }
