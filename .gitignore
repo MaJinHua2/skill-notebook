@@ -1,15 +1,8 @@
-# Local provenance and runtime state must never be published.
+node_modules/
+dist/
 .local/
-backups/
-.catalog.lock
-__pycache__/
-*.py[cod]
-.coverage
-htmlcov/
-.venv/
-.env
-.env.*
+test-results/
+playwright-report/
+coverage/
 *.log
-screenshots/
-*.tmp
 .DS_Store

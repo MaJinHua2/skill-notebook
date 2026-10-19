@@ -1,6 +1,0 @@
-interface:
-  display_name: "技能拾记收录"
-  short_description: "主动整理指定对话介绍的技能，按调用名、中文名、概括与场景收录到本地导航站"
-  default_prompt: "使用 $collect-skill-notes，收录这次对话介绍的新技能，按调用名、中文名、概括和使用场景整理。"
-policy:
-  allow_implicit_invocation: false

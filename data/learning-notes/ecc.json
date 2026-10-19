@@ -1,0 +1,6124 @@
+[
+  {
+    "id": "ecc/migrated/source-command-auto-update",
+    "callName": "ecc:source-command-auto-update",
+    "nameZh": "ECC 更新入口",
+    "summaryZh": "拉取 ECC 最新代码并重新安装已由工具管理的目标，沿用当前安装范围。",
+    "scenariosZh": [
+      "明确准备升级 ECC 安装时",
+      "同步上游改动并更新已管理的运行目标"
+    ],
+    "tags": [
+      "技能管理",
+      "发布部署"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "0b97eb31dab55b4630c6675c3cba09575182f6fe9d25ca6e07a0d8dcca2a9753"
+  },
+  {
+    "id": "ecc/migrated/source-command-build-fix",
+    "callName": "ecc:source-command-build-fix",
+    "nameZh": "构建错误逐项修复",
+    "summaryZh": "识别项目构建系统，以最小修改逐步修复构建与类型错误，并在每步后重新验证。",
+    "scenariosZh": [
+      "项目构建或类型检查失败",
+      "需要定位并逐个消除编译错误"
+    ],
+    "tags": [
+      "开发实现",
+      "测试"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "dd4403ddae9ff01a466fce241c2b89db6751b2ac54100e17c428fa31b2b00de8"
+  },
+  {
+    "id": "ecc/migrated/source-command-cpp-review",
+    "callName": "ecc:source-command-cpp-review",
+    "nameZh": "C++ 专项审查入口",
+    "summaryZh": "调用 C++ 审查代理，检查内存安全、现代写法、并发和安全问题。",
+    "scenariosZh": [
+      "审查 C++ 功能变更",
+      "检查指针生命周期和线程安全风险"
+    ],
+    "tags": [
+      "语言技术",
+      "审查",
+      "安全"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "fb17b7164b80bbcf72367c04fef0ea71b7de60653bb85241c033f94f5b680236"
+  },
+  {
+    "id": "ecc/migrated/source-command-ecc-guide",
+    "callName": "ecc:source-command-ecc-guide",
+    "nameZh": "ECC 能力导航入口",
+    "summaryZh": "根据当前仓库查找 ECC 代理、技能、命令、Hook、安装配置和文档，提供导航入口。",
+    "scenariosZh": [
+      "不清楚某项 ECC 能力在哪里",
+      "需要核对当前安装与文档中的工作流入口"
+    ],
+    "tags": [
+      "技能管理",
+      "研究检索"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "6efb7c949b8f6a3aa6810411324e6d2aeddd70fa0c11fb6a4f7746fd81771416"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-claim",
+    "callName": "ecc:source-command-epic-claim",
+    "nameZh": "认领 Epic 工作项",
+    "summaryZh": "认领 Epic 事项并更新协调状态与本地归属，明确当前执行责任。",
+    "scenariosZh": [
+      "准备接手一个 Epic 事项",
+      "需要同步远端认领状态与本地任务所有权"
+    ],
+    "tags": [
+      "协作",
+      "需求分析"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "2fa300f2d57495084f696102ee20f6ba1e8fe00840ede40d4846ffb1df678936"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-decompose",
+    "callName": "ecc:source-command-epic-decompose",
+    "nameZh": "Epic 任务拆分入口",
+    "summaryZh": "将 Epic 拆成子任务，保持任务分解与创建开发分支分开进行。",
+    "scenariosZh": [
+      "把大型需求细化成可分配的子任务",
+      "在进入具体开发前明确工作拆分"
+    ],
+    "tags": [
+      "需求分析",
+      "协作"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "f4049ba4d83bbc9f3b345c7cdd899da79e257ecec9bc4f3703475c60c523e65f"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-publish",
+    "callName": "ecc:source-command-epic-publish",
+    "nameZh": "Epic 进展发布入口",
+    "summaryZh": "在验证后将 Epic 更新写回事项和本地缓存，使协作记录与实际进展一致。",
+    "scenariosZh": [
+      "准备同步已核实的 Epic 进展",
+      "更新事项正文及本地协调快照"
+    ],
+    "tags": [
+      "协作",
+      "文档"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "4940e04ae3b2fe0c127a9195a783ecc427d8611a27abf5b2490a1cd89bccdbf0"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-review",
+    "callName": "ecc:source-command-epic-review",
+    "nameZh": "Epic 评审状态管理",
+    "summaryZh": "标记 Epic 已请求评审、评审通过或需要修改，记录明确的评审状态。",
+    "scenariosZh": [
+      "提交 Epic 结果给评审者",
+      "记录通过或要求修改的评审结论"
+    ],
+    "tags": [
+      "协作",
+      "审查"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "9155cb9beb03b5432cdd503f5e40579eeacaefa9ec120f3f9ee2c4562e73f667"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-sync",
+    "callName": "ecc:source-command-epic-sync",
+    "nameZh": "Epic 协作状态同步",
+    "summaryZh": "从 GitHub 同步 Epic 正文、标签与本地协调快照，获取当前事项状态。",
+    "scenariosZh": [
+      "继续执行前刷新远端 Epic 信息",
+      "核对事项标签和本地协调记录是否一致"
+    ],
+    "tags": [
+      "协作",
+      "版本管理"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "61547f3cbd63fdac6d1c7481a6a0d1455a94cf606348a19715b3231de3051a6d"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-unblock",
+    "callName": "ecc:source-command-epic-unblock",
+    "nameZh": "Epic 依赖解阻",
+    "summaryZh": "检查阻塞的 Epic 事项，对依赖已经关闭的事项重新开放推进。",
+    "scenariosZh": [
+      "依赖任务完成后检查哪些事项可以继续",
+      "定期梳理 Epic 中的阻塞关系"
+    ],
+    "tags": [
+      "协作",
+      "自动化"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "6ebd81e33ce973bea1a258a62016774996045cade79c0ffd6f9edc819ffd3ae5"
+  },
+  {
+    "id": "ecc/migrated/source-command-epic-validate",
+    "callName": "ecc:source-command-epic-validate",
+    "nameZh": "Epic 就绪检查",
+    "summaryZh": "验证 Epic 的准备情况、依赖关系和协作策略，判断是否满足推进条件。",
+    "scenariosZh": [
+      "开始 Epic 实施前检查就绪条件",
+      "核对任务依赖与协调规则"
+    ],
+    "tags": [
+      "需求分析",
+      "审查"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "c9ae8bb27bb32139a69169d93c7e52fecc9b13bd713406f0022b8c1c260f7faa"
+  },
+  {
+    "id": "ecc/migrated/source-command-fastapi-review",
+    "callName": "ecc:source-command-fastapi-review",
+    "nameZh": "FastAPI 专项审查入口",
+    "summaryZh": "检查 FastAPI 架构、异步行为、依赖注入、Pydantic 模型、安全、性能与可测试性。",
+    "scenariosZh": [
+      "审查 FastAPI API 变更",
+      "排查异步或请求模型设计风险"
+    ],
+    "tags": [
+      "后端",
+      "审查",
+      "安全"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "35589836c63c4664d06634de966081ea130e4058da6551fbdae7d4244f464e11"
+  },
+  {
+    "id": "ecc/migrated/source-command-feature-dev",
+    "callName": "ecc:source-command-feature-dev",
+    "nameZh": "引导式功能开发入口",
+    "summaryZh": "先理解代码库和架构，再引导新功能设计与实施。",
+    "scenariosZh": [
+      "在陌生项目中开发一个新功能",
+      "需要明确架构切入口后逐步实现"
+    ],
+    "tags": [
+      "需求分析",
+      "架构设计",
+      "开发实现"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "02b1c23b2b2e6ce0793e021a789c9c59e950e653289e58bb638dc29f7921ede3"
+  },
+  {
+    "id": "ecc/migrated/source-command-go-build",
+    "callName": "ecc:source-command-go-build",
+    "nameZh": "Go 构建问题修复入口",
+    "summaryZh": "调用 Go 构建修复代理，逐项处理构建、go vet 和代码检查问题，保持修改集中。",
+    "scenariosZh": [
+      "Go 项目编译失败",
+      "准备修复 go vet 或 linter 报告"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现",
+      "测试"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "282fc293d49f76222ed227001a7f3138592888bdf3193893cb489185becd60b5"
+  },
+  {
+    "id": "ecc/migrated/source-command-go-review",
+    "callName": "ecc:source-command-go-review",
+    "nameZh": "Go 专项审查入口",
+    "summaryZh": "调用 Go 审查代理，检查惯用写法、并发安全、错误处理和安全问题。",
+    "scenariosZh": [
+      "审查 Go 代码差异",
+      "核查 goroutine 协作及错误处理"
+    ],
+    "tags": [
+      "语言技术",
+      "审查",
+      "安全"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "3dd195fbad76a131da20dec966b9e8b35aa84c925f1a15efdd57d26720cda617"
+  },
+  {
+    "id": "ecc/migrated/source-command-gradle-build",
+    "callName": "ecc:source-command-gradle-build",
+    "nameZh": "Gradle 构建修复入口",
+    "summaryZh": "针对 Android 和 Kotlin 多平台项目定位并修复 Gradle 构建错误。",
+    "scenariosZh": [
+      "Android 项目 Gradle 构建失败",
+      "排查 KMP 构建配置或依赖错误"
+    ],
+    "tags": [
+      "移动开发",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "46c0a8176e821e313bf8cf0bb4db549ae8fc4a4047706c9ac6e4bf189c103ccf"
+  },
+  {
+    "id": "ecc/migrated/source-command-hookify",
+    "callName": "ecc:source-command-hookify",
+    "nameZh": "Hook 规则生成入口",
+    "summaryZh": "从对话中的问题或明确行为要求生成 Hook 规则文件，用于预防不希望发生的操作。",
+    "scenariosZh": [
+      "将反复出现的错误行为转为防护规则",
+      "根据用户明确要求生成新的 Hook 规则"
+    ],
+    "tags": [
+      "自动化",
+      "安全",
+      "AI代理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "c1cb34b824029a8a3c693b48ee887e8e0e86f7ed0340c2a5f46d372c1ffd4cb5"
+  },
+  {
+    "id": "ecc/migrated/source-command-hookify-configure",
+    "callName": "ecc:source-command-hookify-configure",
+    "nameZh": "Hook 规则启停入口",
+    "summaryZh": "交互式选择并启用或禁用已有 Hookify 规则。",
+    "scenariosZh": [
+      "临时停用一条不适用的防护规则",
+      "检查并调整当前规则的启用状态"
+    ],
+    "tags": [
+      "自动化",
+      "技能管理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "e51fb1b8239045ea72891d58728bc61fc500c2a4e1c89c74c6742d4607e1b802"
+  },
+  {
+    "id": "ecc/migrated/source-command-hookify-help",
+    "callName": "ecc:source-command-hookify-help",
+    "nameZh": "Hookify 使用帮助入口",
+    "summaryZh": "提供 Hookify 系统的使用帮助，便于理解规则与命令的工作方式。",
+    "scenariosZh": [
+      "首次使用 Hookify 时查阅帮助",
+      "不清楚 Hookify 某项操作的用法"
+    ],
+    "tags": [
+      "技能管理",
+      "文档"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "6186c2af3e7523c7f485b5e2996548a9f858ee38dadcbd27e6b5f67a1438fe29"
+  },
+  {
+    "id": "ecc/migrated/source-command-hookify-list",
+    "callName": "ecc:source-command-hookify-list",
+    "nameZh": "Hook 规则清单入口",
+    "summaryZh": "列出已配置的 Hookify 规则，查看当前防护规则库存。",
+    "scenariosZh": [
+      "核对当前有哪些行为防护规则",
+      "排查某条规则是否已经配置"
+    ],
+    "tags": [
+      "技能管理",
+      "审查"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "9e9216d86786960140ea51e4881fa22b04140cf6959fc6f138caa439f9c08fdc"
+  },
+  {
+    "id": "ecc/migrated/source-command-instinct-export",
+    "callName": "ecc:source-command-instinct-export",
+    "nameZh": "经验规则导出入口",
+    "summaryZh": "将项目或全局范围中的经验规则导出到文件，供备份、审查或迁移。",
+    "scenariosZh": [
+      "备份当前项目的学习规则",
+      "准备向其他环境迁移经验条目"
+    ],
+    "tags": [
+      "上下文",
+      "文档"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "1cc64c7e16cd2e26dabf5dc5de43a53ecbe1fa78cb1ea670118094aed62d6fd1"
+  },
+  {
+    "id": "ecc/migrated/source-command-instinct-import",
+    "callName": "ecc:source-command-instinct-import",
+    "nameZh": "经验规则导入入口",
+    "summaryZh": "从文件或 URL 向项目或全局范围导入经验规则。",
+    "scenariosZh": [
+      "恢复已有的经验规则备份",
+      "将经过核对的规则集导入当前环境"
+    ],
+    "tags": [
+      "上下文",
+      "技能管理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "b8bb164fa3074871f892b76e4a0dd566a3614df011df154caa6a69fe25f1e8ab"
+  },
+  {
+    "id": "ecc/migrated/source-command-instinct-status",
+    "callName": "ecc:source-command-instinct-status",
+    "nameZh": "经验规则状态查看",
+    "summaryZh": "展示项目和全局经验规则及其置信度，检查学习结果的当前状态。",
+    "scenariosZh": [
+      "查看当前环境已经学到哪些规则",
+      "核对项目经验与全局经验的置信度"
+    ],
+    "tags": [
+      "上下文",
+      "审查"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "6d1e764e8bfc9b754beb2328503d2364e73a500d4709219e102288eee9dc51ff"
+  },
+  {
+    "id": "ecc/migrated/source-command-jira",
+    "callName": "ecc:source-command-jira",
+    "nameZh": "Jira 事项操作入口",
+    "summaryZh": "结合 jira-integration，通过 MCP 或 REST 获取事项、分析需求和更新状态或评论。",
+    "scenariosZh": [
+      "读取 Jira 事项并准备实施要求",
+      "在授权范围内更新事项状态或评论"
+    ],
+    "tags": [
+      "协作",
+      "需求分析"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "5d865e63bb0ef9226b3f0830a7d7f8f78c72c9478a662aa8d8be000eb0b84076"
+  },
+  {
+    "id": "ecc/migrated/source-command-learn",
+    "callName": "ecc:source-command-learn",
+    "nameZh": "会话经验提炼入口",
+    "summaryZh": "按需回顾当前会话，将可复用模式整理成候选技能或指导，并保存经确认的内容。",
+    "scenariosZh": [
+      "复杂任务结束后提炼可复用方法",
+      "把一次会话中的经验整理成候选技能"
+    ],
+    "tags": [
+      "技能管理",
+      "上下文",
+      "文档"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "215ac22ab88db74f1d5991f5e28f2387bb2955126e3026afb58c28cc41b4fdfc"
+  },
+  {
+    "id": "ecc/migrated/source-command-plan-canvas",
+    "callName": "ecc:source-command-plan-canvas",
+    "nameZh": "计划画布审阅入口",
+    "summaryZh": "在浏览器计划画布中打开计划或 HTML 资料，支持批注与确认审阅。",
+    "scenariosZh": [
+      "希望在画布中查看并批注计划",
+      "把 HTML 草稿交给用户直观审阅"
+    ],
+    "tags": [
+      "需求分析",
+      "文档",
+      "协作"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "73ec465776af26ac6b1042a174fac1ad80c99216a5d8a8341e48ceae9876c2a8"
+  },
+  {
+    "id": "ecc/migrated/source-command-projects",
+    "callName": "ecc:source-command-projects",
+    "nameZh": "学习项目清单入口",
+    "summaryZh": "列出已知项目及各项目的经验规则统计，了解学习信息分布。",
+    "scenariosZh": [
+      "查找记录过经验的项目",
+      "核对不同项目中的规则数量"
+    ],
+    "tags": [
+      "上下文",
+      "技能管理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "8d2a9a7f493e6a2167dea785e7e74639334306168c2b37e0bcfc97b787291173"
+  },
+  {
+    "id": "ecc/migrated/source-command-promote",
+    "callName": "ecc:source-command-promote",
+    "nameZh": "经验规则提升入口",
+    "summaryZh": "将只属于某个项目的经验规则提升到全局范围，供其他项目复用。",
+    "scenariosZh": [
+      "确认某条经验适用于多个项目",
+      "把项目级稳定规则推广为全局规则"
+    ],
+    "tags": [
+      "上下文",
+      "技能管理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "1d17cd246dce0dcd2e91f8036992b2cb4d25151322c9d163894e7b364b9da6fc"
+  },
+  {
+    "id": "ecc/migrated/source-command-prune",
+    "callName": "ecc:source-command-prune",
+    "nameZh": "过期候选规则清理入口",
+    "summaryZh": "调用经验规则清理工具，删除超过 30 天且从未提升的待处理候选规则。",
+    "scenariosZh": [
+      "清理长期未评审的候选经验",
+      "控制待处理规则积压数量"
+    ],
+    "tags": [
+      "上下文",
+      "自动化"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "8914246293bdbea5b65aa0abd7f1749d5ee3f46a36ea7124980a6231b3a5c550"
+  },
+  {
+    "id": "ecc/migrated/source-command-refactor-clean",
+    "callName": "ecc:source-command-refactor-clean",
+    "nameZh": "死代码清理入口",
+    "summaryZh": "识别并删除未使用代码，每次修改后验证，控制清理对现有功能的影响。",
+    "scenariosZh": [
+      "清除确认未使用的函数或模块",
+      "在重构中逐步去掉冗余代码"
+    ],
+    "tags": [
+      "开发实现",
+      "审查",
+      "测试"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "b6881077db899dfc0b98e3dada39821c89c4f25c24f7812179d42b025551cab5"
+  },
+  {
+    "id": "ecc/migrated/source-command-review-pr",
+    "callName": "ecc:source-command-review-pr",
+    "nameZh": "多专项 PR 审查入口",
+    "summaryZh": "组织代码、注释、测试、静默失败和类型等专项代理检查 PR，汇总可操作发现。",
+    "scenariosZh": [
+      "合并前进行多角度 PR 审查",
+      "需要同时核对测试、注释与错误处理"
+    ],
+    "tags": [
+      "审查",
+      "协作",
+      "测试"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "153a939fec24a0ed9422d1a2428fa59e59f2504eebfe7f902dcc580bb3dec9ea"
+  },
+  {
+    "id": "ecc/migrated/source-command-setup-pm",
+    "callName": "ecc:source-command-setup-pm",
+    "nameZh": "包管理器偏好配置",
+    "summaryZh": "配置项目使用 npm、pnpm、yarn 或 bun 等包管理器的偏好。",
+    "scenariosZh": [
+      "初始化项目的包管理约定",
+      "调整代理应使用的包管理工具"
+    ],
+    "tags": [
+      "开发实现",
+      "自动化"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "05df05fc83e0bb847007a9ccced1e2073e4db14bf7820b9d8b8965d971942ed4"
+  },
+  {
+    "id": "ecc/migrated/source-command-skill-host-compat",
+    "callName": "ecc:source-command-skill-host-compat",
+    "nameZh": "技能宿主兼容检查入口",
+    "summaryZh": "在技能 PR 前检查元数据与宿主特有写法，识别 Codex 或 Cursor 的兼容问题。",
+    "scenariosZh": [
+      "发布 ECC 技能前做兼容检查",
+      "迁移技能时查找 Claude 专属指令"
+    ],
+    "tags": [
+      "技能管理",
+      "审查"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "71b3f947907f5945eb4cfc3bc75423b494cc4409c1152b93f34e84f3af13112a"
+  },
+  {
+    "id": "ecc/migrated/source-command-test-coverage",
+    "callName": "ecc:source-command-test-coverage",
+    "nameZh": "测试覆盖分析入口",
+    "summaryZh": "分析测试覆盖率、识别缺口并补充有意义的缺失测试，向目标阈值推进。",
+    "scenariosZh": [
+      "为风险较大的未覆盖行为补测试",
+      "核对项目覆盖率与验收目标的差距"
+    ],
+    "tags": [
+      "测试",
+      "审查"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "19e79c2d982c6815f639860a3623fa891c3835610778b4d8ad62e25261753212"
+  },
+  {
+    "id": "ecc/migrated/source-command-token-card",
+    "callName": "ecc:source-command-token-card",
+    "nameZh": "用量统计卡片入口",
+    "summaryZh": "从本地代理会话日志生成 Token 用量统计卡片，并按技能流程保存到仓库。",
+    "scenariosZh": [
+      "为项目 README 准备用量展示卡片",
+      "生成当前编码代理活动的可分享统计图"
+    ],
+    "tags": [
+      "文档",
+      "上下文"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "3e7227e307981970305a80550ab89f1050871efa58cb438302f5373e31f7a654"
+  },
+  {
+    "id": "ecc/migrated/source-command-update-codemaps",
+    "callName": "ecc:source-command-update-codemaps",
+    "nameZh": "架构代码地图更新入口",
+    "summaryZh": "扫描项目结构，生成简洁的架构代码地图，帮助定位模块与依赖。",
+    "scenariosZh": [
+      "新成员需要快速了解仓库结构",
+      "重构后更新模块与架构索引"
+    ],
+    "tags": [
+      "文档",
+      "架构设计",
+      "上下文"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "44f0c645c0c751c00009fd599216df59b68c0ce2178cf6288924d2da69f22bb9"
+  },
+  {
+    "id": "ecc/migrated/source-command-update-docs",
+    "callName": "ecc:source-command-update-docs",
+    "nameZh": "权威来源文档同步入口",
+    "summaryZh": "根据脚本、数据结构、路由和导出等权威来源更新文档，减少描述与代码不一致。",
+    "scenariosZh": [
+      "接口或脚本变化后同步说明文档",
+      "核对文档是否跟随当前实现更新"
+    ],
+    "tags": [
+      "文档",
+      "审查"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "cf7fe7dd20dda0c651a2729b9887ebe3324d87afed2164e8ee543943034e5f5c"
+  },
+  {
+    "id": "ecc/native/accessibility",
+    "callName": "ecc:accessibility",
+    "nameZh": "无障碍界面设计",
+    "summaryZh": "依据 WCAG 2.2 AA 检查语义、焦点、对比度、触控目标和读屏支持，覆盖 Web、iOS 与 Android。",
+    "scenariosZh": [
+      "检查页面能否仅用键盘完成操作",
+      "为移动界面补充读屏标签与焦点顺序"
+    ],
+    "tags": [
+      "无障碍",
+      "前端",
+      "移动开发"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "2762f21d09d199009ed4f95b28c911436b367c30963dc5ddb48b8e1ad7fc1585"
+  },
+  {
+    "id": "ecc/native/agent-architecture-audit",
+    "callName": "ecc:agent-architecture-audit",
+    "nameZh": "代理架构诊断",
+    "summaryZh": "按代理应用的十二层结构排查记忆污染、工具纪律、隐蔽重试和渲染损坏，并按严重程度给出代码修复建议。",
+    "scenariosZh": [
+      "代理行为异常却无法确定故障层",
+      "发布 LLM 功能前检查端到端架构风险"
+    ],
+    "tags": [
+      "AI代理",
+      "审查"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "64f57e232c3533877403703bc95b3c75df9de23f657899a306f13c703009ff57"
+  },
+  {
+    "id": "ecc/native/agent-eval",
+    "callName": "ecc:agent-eval",
+    "nameZh": "编程代理对比评测",
+    "summaryZh": "在相同自定义任务上比较不同编程代理的成功率、成本、耗时与一致性，形成可复查的选择依据。",
+    "scenariosZh": [
+      "选择适合团队的编程代理",
+      "量化代理配置变更是否改善任务表现"
+    ],
+    "tags": [
+      "AI代理",
+      "测试",
+      "性能"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "57fa683e356b6f5612bc6d7dc101ae39c126e6edf9a48f4ec53afea3e80d7e5d"
+  },
+  {
+    "id": "ecc/native/agent-harness-construction",
+    "callName": "ecc:agent-harness-construction",
+    "nameZh": "代理工具与观察设计",
+    "summaryZh": "设计代理可采取的动作、工具定义和观察结果格式，提高代理理解环境并完成任务的能力。",
+    "scenariosZh": [
+      "为新代理设计工具接口",
+      "调整过于复杂或信息不足的工具返回值"
+    ],
+    "tags": [
+      "AI代理",
+      "架构设计"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "e7fb390a6663b46ea5d3c2876753a5ce32ba3bad1889686b21a42894caa1742d"
+  },
+  {
+    "id": "ecc/native/agent-introspection-debugging",
+    "callName": "ecc:agent-introspection-debugging",
+    "nameZh": "代理失败复盘调试",
+    "summaryZh": "通过现场记录、原因诊断、受控恢复和复盘报告处理代理运行失败，保留可重现的故障证据。",
+    "scenariosZh": [
+      "代理任务多次失败需要定位原因",
+      "恢复中断流程并明确哪些状态可以重用"
+    ],
+    "tags": [
+      "AI代理",
+      "审查",
+      "测试"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "0cdbfe3c822ff50d21df8cd0e20c72407a6f5658089edc0e96e79a03927cb956"
+  },
+  {
+    "id": "ecc/native/agent-payment-x402",
+    "callName": "ecc:agent-payment-x402",
+    "nameZh": "代理支付与预算控制",
+    "summaryZh": "为代理接入 x402 支付流程、非托管钱包与按任务预算，按具体网络和支付适配器设置支出限制。",
+    "scenariosZh": [
+      "代理需要支付外部服务费用",
+      "限制单个代理任务的最高支出"
+    ],
+    "tags": [
+      "AI代理",
+      "安全",
+      "开发实现"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "07e9231d4bf62a3fbdead8937d707001ddb4e266328fc769950aecae82c3f1a3"
+  },
+  {
+    "id": "ecc/native/agent-runtime-gateway-smoke-test",
+    "callName": "ecc:agent-runtime-gateway-smoke-test",
+    "nameZh": "代理网关链路冒烟检查",
+    "summaryZh": "用不调用工具的隔离任务验证本地 API、临时网关与远端沙箱回调，并在结束后恢复原连接。",
+    "scenariosZh": [
+      "远端任务派发后停滞需检查回调链路",
+      "临时切换测试 API 后验证原应用连接已恢复"
+    ],
+    "tags": [
+      "AI代理",
+      "测试",
+      "网络运维"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "69c3a3825244aed5b5d3b2de517185f9cf0adfc3db83b128049440a626f2ddbf"
+  },
+  {
+    "id": "ecc/native/agent-security-hardening",
+    "callName": "ecc:agent-security-hardening",
+    "nameZh": "代理运行环境安全加固",
+    "summaryZh": "围绕不可信输入、工具调用、工作区写入、凭据和多租户隔离审查代理运行环境的安全边界。",
+    "scenariosZh": [
+      "审查具有文件写入权限的自主代理",
+      "加固多租户工具网关或代理记忆服务"
+    ],
+    "tags": [
+      "AI代理",
+      "安全",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "0e0895ada90aa8fa085e4257961ebe15f2dff43b843785b1533d4c731186ad81"
+  },
+  {
+    "id": "ecc/native/agent-self-evaluation",
+    "callName": "ecc:agent-self-evaluation",
+    "nameZh": "代理交付自评",
+    "summaryZh": "从准确性、完整性、清晰度、可执行性和简洁性五个维度，用具体证据为任务输出评分并提出改进。",
+    "scenariosZh": [
+      "复杂任务完成后检查遗漏",
+      "比较当前交付与明确的质量标准"
+    ],
+    "tags": [
+      "AI代理",
+      "审查"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "96bb21eb37760f596789f84ec0a5dad4ef92fc2255e35cd7b88dc4234062b8c1"
+  },
+  {
+    "id": "ecc/native/agent-sort",
+    "callName": "ecc:agent-sort",
+    "nameZh": "项目技能安装分层",
+    "summaryZh": "依据真实仓库证据，将 ECC 技能、命令、规则与 Hook 划分为日常加载和按需查阅两层，形成安装方案。",
+    "scenariosZh": [
+      "完整安装的 ECC 对当前项目过于繁杂",
+      "为特定语言栈选择日常使用的技能集合"
+    ],
+    "tags": [
+      "技能管理",
+      "上下文",
+      "审查"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "5847fc20cf0fd0d00c0c2dbacca03472c5a43af429978cf874dd41ecc144dc53"
+  },
+  {
+    "id": "ecc/native/agentic-engineering",
+    "callName": "ecc:agentic-engineering",
+    "nameZh": "代理工程执行方法",
+    "summaryZh": "以先定义评估标准、分解任务和按成本分配模型为基础，组织由代理贯穿实施的工程工作。",
+    "scenariosZh": [
+      "规划由代理端到端执行的开发任务",
+      "为复杂工程安排质量门与模型分工"
+    ],
+    "tags": [
+      "AI代理",
+      "架构设计",
+      "协作"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "41c32c20ec97469341f5d83d8beb15f03d1b6f1c40fb1bdf534c50cd9a38cb6f"
+  },
+  {
+    "id": "ecc/native/agentic-os",
+    "callName": "ecc:agentic-os",
+    "nameZh": "持久多代理系统设计",
+    "summaryZh": "在 Claude Code 中规划具有专职代理、文件记忆、命令、调度和状态管理的持久系统。",
+    "scenariosZh": [
+      "构建跨会话保留状态的代理工作系统",
+      "设计不依赖外部数据库的代理记忆与调度"
+    ],
+    "tags": [
+      "AI代理",
+      "架构设计",
+      "自动化"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "e1d1207353652456ac84a821e5522def1d108677318630af4fd7ac16735b5c04"
+  },
+  {
+    "id": "ecc/native/ai-first-engineering",
+    "callName": "ecc:ai-first-engineering",
+    "nameZh": "AI 主导开发团队流程",
+    "summaryZh": "为大量代码由 AI 生成的团队建立责任分工、审查规则与质量门，明确人员对交付的所有权。",
+    "scenariosZh": [
+      "团队开始大规模使用编程代理",
+      "制定 AI 生成代码的审查和责任规则"
+    ],
+    "tags": [
+      "AI代理",
+      "协作",
+      "审查"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "114913bdcb6127392df56d96f7f1312f36c74d69c278dece6d377b9bd92123a5"
+  },
+  {
+    "id": "ecc/native/ai-regression-testing",
+    "callName": "ecc:ai-regression-testing",
+    "nameZh": "AI 开发回归测试",
+    "summaryZh": "用隔离接口测试和独立回归检查覆盖 AI 辅助开发的盲点，特别关注同一模型编写与审查代码的遗漏。",
+    "scenariosZh": [
+      "为 AI 生成的修改补充回归证据",
+      "避免编写者与审查者共享同一错误假设"
+    ],
+    "tags": [
+      "测试",
+      "AI代理"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "83f2f5c4083af5762dd658f742d4a390eb3a6f969d835f69e8f47efba296c127"
+  },
+  {
+    "id": "ecc/native/android-clean-architecture",
+    "callName": "ecc:android-clean-architecture",
+    "nameZh": "Android 分层架构",
+    "summaryZh": "为 Android 与 Kotlin Multiplatform 项目设计模块、依赖方向、用例、仓储和数据层边界。",
+    "scenariosZh": [
+      "拆分 Android 应用的业务与平台代码",
+      "审查 KMP 项目的模块依赖方向"
+    ],
+    "tags": [
+      "移动开发",
+      "架构设计"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "20cbb9d7778462c549ccd32c830c0004fc7b92cfa009db99900d773373115f12"
+  },
+  {
+    "id": "ecc/native/angular-developer",
+    "callName": "ecc:angular-developer",
+    "nameZh": "Angular 开发指导",
+    "summaryZh": "围绕 Angular 的组件、服务、响应式状态、表单、路由、服务端渲染和测试提供实现与架构建议。",
+    "scenariosZh": [
+      "创建 Angular 组件或服务",
+      "调整 Signals 状态、表单验证与依赖注入"
+    ],
+    "tags": [
+      "前端",
+      "开发实现",
+      "架构设计"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "28ee37a8cf63add48fffc7c8676c6368aee35f3042525e79769b5a3d4e01aed1"
+  },
+  {
+    "id": "ecc/native/api-connector-builder",
+    "callName": "ecc:api-connector-builder",
+    "nameZh": "API 连接器构建",
+    "summaryZh": "沿用目标仓库已有的集成模式增加 API 连接器或提供方，保持鉴权、配置与调用结构一致。",
+    "scenariosZh": [
+      "项目需要新增一个外部 API 提供商",
+      "已有连接器体系中增加同类集成"
+    ],
+    "tags": [
+      "后端",
+      "开发实现",
+      "架构设计"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "00a0d01e234f213d343f0040bbebd56e042978768ce5bb7117776a75bd9547e8"
+  },
+  {
+    "id": "ecc/native/api-design",
+    "callName": "ecc:api-design",
+    "nameZh": "REST 接口设计",
+    "summaryZh": "整理 REST 资源命名、状态码、分页、筛选、错误响应、版本与限流规则，帮助接口保持一致。",
+    "scenariosZh": [
+      "设计新的业务 REST 接口",
+      "审查分页、错误格式和版本兼容策略"
+    ],
+    "tags": [
+      "后端",
+      "架构设计",
+      "审查"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "250e464413a13c0eb93cc73447b423df1f9aa8e4f80e5e68c41f895b2c33e352"
+  },
+  {
+    "id": "ecc/native/architecture-decision-records",
+    "callName": "ecc:architecture-decision-records",
+    "nameZh": "架构决策记录",
+    "summaryZh": "把重要架构取舍整理为带编号的 ADR，记录背景、备选方案、后果，并维护决策索引。",
+    "scenariosZh": [
+      "记录框架或数据库选型结果",
+      "解释代码结构背后的历史决策"
+    ],
+    "tags": [
+      "架构设计",
+      "文档"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "263b20e81801aa5fa7e75eaec6c38345c0ac028ca0edbd67b1b9071c5fcbe11f"
+  },
+  {
+    "id": "ecc/native/article-writing",
+    "callName": "ecc:article-writing",
+    "nameZh": "长文与教程写作",
+    "summaryZh": "依据样文或品牌要求组织文章、教程和通讯，兼顾个人语气、结构与事实可信度。",
+    "scenariosZh": [
+      "撰写具有固定风格的技术教程",
+      "把素材整理成完整博客或通讯文章"
+    ],
+    "tags": [
+      "文档",
+      "研究检索"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "4aa61709450a2148ef4036896d870da748e93ad68528bb7679b74f3597ffb021"
+  },
+  {
+    "id": "ecc/native/automation-audit-ops",
+    "callName": "ecc:automation-audit-ops",
+    "nameZh": "自动化现状与重叠审计",
+    "summaryZh": "先盘点实际运行的任务、Hook、连接器、MCP 服务和包装层，区分有效、损坏、冗余与缺失项。",
+    "scenariosZh": [
+      "修复自动化前确认哪些流程真实运行",
+      "检查多个任务或 Hook 是否重复触发"
+    ],
+    "tags": [
+      "自动化",
+      "审查",
+      "技能管理"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "71aa878fd06ef02f0c8ca50eaaee0ec45995981d769d8701806b9b83ca8a2f2c"
+  },
+  {
+    "id": "ecc/native/autonomous-agent-harness",
+    "callName": "ecc:autonomous-agent-harness",
+    "nameZh": "自主代理运行框架",
+    "summaryZh": "利用 Claude Code 的原生命令、调度、MCP 与记忆机制组织持续运行、排队任务和自主处理流程。",
+    "scenariosZh": [
+      "设计持续处理任务的代理环境",
+      "规划带记忆与定时操作的自主工作流"
+    ],
+    "tags": [
+      "AI代理",
+      "自动化",
+      "架构设计"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "74afde3fa6e8423bdbf43f53b24c7b4a8b441648a1ad8f23953dc6eba3378409"
+  },
+  {
+    "id": "ecc/native/autonomous-loops",
+    "callName": "ecc:autonomous-loops",
+    "nameZh": "自主循环旧版参考",
+    "summaryZh": "保留早期顺序管线与多代理依赖图模式供兼容参考；新的自主循环设计应转向 continuous-agent-loop。",
+    "scenariosZh": [
+      "阅读旧项目引用的自主循环模式",
+      "识别旧指引并选择当前推荐的循环技能"
+    ],
+    "tags": [
+      "AI代理",
+      "技能管理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "c2db797295500b9c2b31d9dd2451ef28727346c739b5d1d3366f0f9ea2e823dc"
+  },
+  {
+    "id": "ecc/native/backend-patterns",
+    "callName": "ecc:backend-patterns",
+    "nameZh": "Node 后端实现模式",
+    "summaryZh": "提供 Node.js、Express 和 Next.js API 路由的分层、数据访问、接口设计与数据库优化模式。",
+    "scenariosZh": [
+      "实现 Express 业务接口",
+      "审查 Next.js API 路由的数据访问结构"
+    ],
+    "tags": [
+      "后端",
+      "数据库",
+      "开发实现"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "9b983d0297a983110fdfda8dce55d19b750ca3e53ef155d75a3eff740d3874b8"
+  },
+  {
+    "id": "ecc/native/benchmark",
+    "callName": "ecc:benchmark",
+    "nameZh": "性能基线测量",
+    "summaryZh": "测量网页核心体验、接口延迟分位数和构建测试耗时，保存可比较的性能基线以发现退化。",
+    "scenariosZh": [
+      "页面变慢需要建立前后对照",
+      "检查接口延迟或构建时间是否回退"
+    ],
+    "tags": [
+      "性能",
+      "测试",
+      "前端"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "58e34c3ccf60ee5155e3db74357b73770015a7aad3594649b6758ba8375ab6ff"
+  },
+  {
+    "id": "ecc/native/benchmark-methodology",
+    "callName": "ecc:benchmark-methodology",
+    "nameZh": "竞品量化评分方法",
+    "summaryZh": "对已选定的竞品按九个加权维度进行带证据的评分，形成可比较卡片与市场张力图。",
+    "scenariosZh": [
+      "对竞品定位与服务包装进行统一评分",
+      "在竞品范围确定后建立比较矩阵"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "f24585262b9c3e106dc27d45f75c4b965501680a16ff6dc5a9995a53322549df"
+  },
+  {
+    "id": "ecc/native/benchmark-optimization-loop",
+    "callName": "ecc:benchmark-optimization-loop",
+    "nameZh": "测量驱动优化循环",
+    "summaryZh": "先建立基线，再逐个验证优化假设，在正确性门通过的前提下比较变体并选择最快的方案。",
+    "scenariosZh": [
+      "降低接口延迟或提高数据吞吐",
+      "比较多个实现并保留可重现的优化证据"
+    ],
+    "tags": [
+      "性能",
+      "测试",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "f11208b6a86bc311cfbd9e20688a189238fda6c1e03b6f8000ef9e55487f6f95"
+  },
+  {
+    "id": "ecc/native/bengali-nlp",
+    "callName": "ecc:bengali-nlp",
+    "nameZh": "孟加拉语文本处理",
+    "summaryZh": "处理孟加拉语 Unicode 规范化、字形组合、分词、数字与检索，避免字符切分破坏语言含义。",
+    "scenariosZh": [
+      "为孟加拉语用户实现搜索或输入",
+      "处理孟加拉语与英语混合文本数据"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "7080235437516fbc227f759aac138219e85c95e8ce271187c3c978e51b094bde"
+  },
+  {
+    "id": "ecc/native/blender-motion-state-inspection",
+    "callName": "ecc:blender-motion-state-inspection",
+    "nameZh": "Blender 动作状态检查",
+    "summaryZh": "结合骨骼、姿态、接地与朝向等结构化数据检查角色动作，补充仅靠截图无法判断的模型对齐证据。",
+    "scenariosZh": [
+      "排查重定向动画中的滑步或身体扭曲",
+      "确认角色朝向和根骨运动方向一致"
+    ],
+    "tags": [
+      "多媒体",
+      "审查"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "97b8aee8822a8603e2fc930f66b4bd18507c11ca756accd1419a2a3526196f5c"
+  },
+  {
+    "id": "ecc/native/blueprint",
+    "callName": "ecc:blueprint",
+    "nameZh": "跨阶段工程蓝图",
+    "summaryZh": "把工程目标拆成独立可执行的小步骤，为每步写上下文、依赖、验证、回滚与审查门，适合跨会话项目。",
+    "scenariosZh": [
+      "规划涉及多个提交请求的大型功能",
+      "给后续接手代理准备可独立执行的任务说明"
+    ],
+    "tags": [
+      "需求分析",
+      "架构设计",
+      "协作"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "878eae8ed0ea4d46d21c8f88d471f6ffce7b0815202a43501060a163e7f446f3"
+  },
+  {
+    "id": "ecc/native/brand-discovery",
+    "callName": "ecc:brand-discovery",
+    "nameZh": "品牌定位访谈",
+    "summaryZh": "通过分模块、可继续的品牌访谈厘清使命、受众、个性、语气与叙事，汇总为品牌手册。",
+    "scenariosZh": [
+      "创建或重新定位品牌",
+      "把创始人的隐含认识整理给设计与写作团队"
+    ],
+    "tags": [
+      "业务运营",
+      "需求分析",
+      "文档"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "e6b9999ef722a42e0a01cd663072608609f69acc6bfd558fa3d4a14fcc3650b9"
+  },
+  {
+    "id": "ecc/native/brand-voice",
+    "callName": "ecc:brand-voice",
+    "nameZh": "品牌写作语气提炼",
+    "summaryZh": "从真实文章、帖子与产品文案中提炼写作风格，再用于内容、外联和社交渠道的一致表达。",
+    "scenariosZh": [
+      "整理已有品牌文章的共同语气",
+      "让不同渠道文案保持相同表达风格"
+    ],
+    "tags": [
+      "文档",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "57c7f8440b7bd4c91c0d325640b5c6fb7a3dc7fc05595946c7bc705761a987a7"
+  },
+  {
+    "id": "ecc/native/brownfield-retrospective",
+    "callName": "ecc:brownfield-retrospective",
+    "nameZh": "既有项目工程回顾",
+    "summaryZh": "审计现有项目切片、重建历史决策，从思考、编码、遗漏功能和选型四方面登记差距并安排后续修复。",
+    "scenariosZh": [
+      "中途引入 ECC 工程流程",
+      "接手旧代码库后梳理早期遗漏与改进顺序"
+    ],
+    "tags": [
+      "审查",
+      "需求分析",
+      "架构设计"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "805439bc795d40dff6bceb34da6a2ab2115badfea6c9f4729e7fe0ccda62c382"
+  },
+  {
+    "id": "ecc/native/browser-qa",
+    "callName": "ecc:browser-qa",
+    "nameZh": "部署后浏览器验收",
+    "summaryZh": "针对已部署预览页检查交互、控制台、性能、响应式截图与无障碍问题，形成可发布或需阻断的结论。",
+    "scenariosZh": [
+      "前端预览发布后执行浏览器检查",
+      "交付前验证表单、登录流程和多尺寸布局"
+    ],
+    "tags": [
+      "测试",
+      "前端",
+      "无障碍"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "6eb78a2460adcde116e6b44fcdff7ae37aeec6208241a24417cb2db4b3b254cd"
+  },
+  {
+    "id": "ecc/native/bun-runtime",
+    "callName": "ecc:bun-runtime",
+    "nameZh": "Bun 工具链使用",
+    "summaryZh": "说明 Bun 的运行时、包管理、打包和测试能力，以及相对 Node 的选择条件和迁移注意点。",
+    "scenariosZh": [
+      "判断项目是否适合使用 Bun",
+      "把现有 Node 工具链迁移到 Bun 前核对差异"
+    ],
+    "tags": [
+      "开发实现",
+      "发布部署"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "fc0ff230f098d3537c5a6c6fa0466a4d3cc20c3a903cee40c774713fb52aa61f"
+  },
+  {
+    "id": "ecc/native/canary-watch",
+    "callName": "ecc:canary-watch",
+    "nameZh": "发布后金丝雀验证",
+    "summaryZh": "在发布、合并或依赖升级后检查 HTTP、事件流、静态资源、控制台与性能，发现上线后的异常。",
+    "scenariosZh": [
+      "上线后验证关键入口仍能访问",
+      "依赖升级后检查资源加载与性能退化"
+    ],
+    "tags": [
+      "测试",
+      "发布部署",
+      "性能"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "d2cb536f8ccb201266e094542cb20af8a4d6474feb5b16116cfb4497c2b8149f"
+  },
+  {
+    "id": "ecc/native/carrier-relationship-management",
+    "callName": "ecc:carrier-relationship-management",
+    "nameZh": "承运商关系与运力管理",
+    "summaryZh": "整理整车、零担和联运承运商的筛选、运价谈判、招标、绩效与续约流程。",
+    "scenariosZh": [
+      "组织运输服务招标与运价协商",
+      "根据承运商绩效调整运量分配"
+    ],
+    "tags": [
+      "业务运营",
+      "研究检索"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "e325d73fd0078a101e826a84178c87aeeb80700d037faf45cda8e9ba9e53b27e"
+  },
+  {
+    "id": "ecc/native/change-impact",
+    "callName": "ecc:change-impact",
+    "nameZh": "变更影响分析",
+    "summaryZh": "在变更前追踪调用、数据、接口、测试、文档与部署影响，实施后对照实际差异核实影响范围。",
+    "scenariosZh": [
+      "修改公共接口或跨模块数据结构前评估风险",
+      "实施后检查实际差异是否偏离计划"
+    ],
+    "tags": [
+      "需求分析",
+      "审查",
+      "架构设计"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "b8d8a11417af8b84e93983a8eb682e3b9a16d04f926778eb635c96e90019bf18"
+  },
+  {
+    "id": "ecc/native/cisco-ios-patterns",
+    "callName": "ecc:cisco-ios-patterns",
+    "nameZh": "Cisco 配置审查模式",
+    "summaryZh": "针对 IOS 与 IOS-XE 的配置层级、通配掩码、ACL、接口和检查命令提供审查与变更窗口验证方法。",
+    "scenariosZh": [
+      "检查交换机或路由器的 ACL 配置",
+      "安排 Cisco 网络设备变更窗口的验证步骤"
+    ],
+    "tags": [
+      "网络运维",
+      "审查"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "85b6a97574cc236d4a9336b1c74b42aaf4386338417e787cbed0c88677bf1179"
+  },
+  {
+    "id": "ecc/native/ck",
+    "callName": "ecc:ck",
+    "nameZh": "项目上下文持久保存",
+    "summaryZh": "通过 Context Keeper 命令保存、恢复和查询项目会话状态，用紧凑项目摘要衔接后续会话。",
+    "scenariosZh": [
+      "会话结束前保存决策与下一步",
+      "接续项目时恢复上一轮的工作上下文"
+    ],
+    "tags": [
+      "上下文",
+      "技能管理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "4759d9f4959fbec9afc7bc4b06c33d5644fb059e4d74a6c94200d29112b71bf5"
+  },
+  {
+    "id": "ecc/native/claude-devfleet",
+    "callName": "ecc:claude-devfleet",
+    "nameZh": "DevFleet 多代理调度",
+    "summaryZh": "通过 Claude DevFleet 规划项目、在独立工作树中派发并行编码任务，并跟踪状态与结构化报告。",
+    "scenariosZh": [
+      "为多个独立功能安排隔离开发任务",
+      "统一查看并行代理的进度与交付报告"
+    ],
+    "tags": [
+      "AI代理",
+      "协作",
+      "版本管理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "5fe6efbb5663699ba8e348b2a77fbf7c396ed1903bb95fa0c05c1174f81fabfc"
+  },
+  {
+    "id": "ecc/native/click-path-audit",
+    "callName": "ecc:click-path-audit",
+    "nameZh": "交互状态链路审查",
+    "summaryZh": "沿按钮和用户触点追踪完整状态变化，定位单独功能正确却互相抵消或最终界面状态错误的问题。",
+    "scenariosZh": [
+      "按钮有响应但最终结果不符合预期",
+      "共享状态重构后排查交互互相覆盖"
+    ],
+    "tags": [
+      "前端",
+      "审查",
+      "测试"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "662fc5d02483bcd8ff799d6d3109a38da673182341cfc14445e9076fcd920162"
+  },
+  {
+    "id": "ecc/native/clickhouse-io",
+    "callName": "ecc:clickhouse-io",
+    "nameZh": "ClickHouse 分析查询模式",
+    "summaryZh": "为高性能分析场景设计 ClickHouse 表结构、查询与数据处理方案，关注分析查询的性能。",
+    "scenariosZh": [
+      "设计分析数据表与聚合查询",
+      "定位 ClickHouse 查询耗时过长的原因"
+    ],
+    "tags": [
+      "数据库",
+      "性能",
+      "后端"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "9f0f2b632f3feb1bd4ca7bae119fe05454668ab763b7d3c3d304f8740b8fd415"
+  },
+  {
+    "id": "ecc/native/code-tour",
+    "callName": "ecc:code-tour",
+    "nameZh": "代码导览制作",
+    "summaryZh": "制作带真实文件与行号锚点的 CodeTour 导览，按读者角色逐步解释架构、变更或故障根因。",
+    "scenariosZh": [
+      "为新成员编写可逐步浏览的代码导览",
+      "把复杂 PR 或故障根因整理为源码讲解"
+    ],
+    "tags": [
+      "文档",
+      "协作",
+      "上下文"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "416c7eb9229554a1ef113bbb873ff0b260a2ad9ae6e6075a75c375955d3fcf6f"
+  },
+  {
+    "id": "ecc/native/codebase-onboarding",
+    "callName": "ecc:codebase-onboarding",
+    "nameZh": "新仓库上手分析",
+    "summaryZh": "分析陌生代码库的架构、入口、约定和工具，生成结构化上手指南与初始项目说明。",
+    "scenariosZh": [
+      "加入新项目时快速建立代码地图",
+      "首次为仓库配置 Claude Code 的项目指导"
+    ],
+    "tags": [
+      "上下文",
+      "文档",
+      "架构设计"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "ef88873a4b0d0fe155c0a196ffecd5c7b5e28edd00fbbdb5c1fd2ca8fd0eb6f0"
+  },
+  {
+    "id": "ecc/native/codehealth-mcp",
+    "callName": "ecc:codehealth-mcp",
+    "nameZh": "CodeScene 结构健康检查",
+    "summaryZh": "通过 CodeScene MCP 在修改前后测量结构健康变化，为重构和提交提供代码质量证据。",
+    "scenariosZh": [
+      "检查 AI 修改是否降低文件可维护性",
+      "重构前后对比结构健康评分"
+    ],
+    "tags": [
+      "审查",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "c5943c4c353b02dcd87b751de15bb087caae2f11c36e84a74e181fe2eadee394"
+  },
+  {
+    "id": "ecc/native/coding-standards",
+    "callName": "ecc:coding-standards",
+    "nameZh": "通用编码规范",
+    "summaryZh": "用命名、可读性、不可变性和基础质量规则审查代码；具体框架的实现细节转交对应技能。",
+    "scenariosZh": [
+      "统一跨项目的命名和代码可读性要求",
+      "没有专用框架技能时进行基础质量审查"
+    ],
+    "tags": [
+      "开发实现",
+      "审查"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "e80544c3d1eac5b14f22022146bd91a6b0ecc30e099cf5181894853aeb81dee1"
+  },
+  {
+    "id": "ecc/native/competitive-platform-analysis",
+    "callName": "ecc:competitive-platform-analysis",
+    "nameZh": "竞品范围界定",
+    "summaryZh": "在评分前识别并分层竞品，筛选值得研究的对象和资料来源，为后续比较建立边界。",
+    "scenariosZh": [
+      "开始竞品调研时确定比较对象",
+      "把直接竞品与不同层级的参考产品区分开"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "9d868bf06258b7228dc9cd91fe8d0e5b3e2edfd0da5caba6366a188fc830826e"
+  },
+  {
+    "id": "ecc/native/competitive-report-structure",
+    "callName": "ecc:competitive-report-structure",
+    "nameZh": "竞品报告组织",
+    "summaryZh": "将已评分的竞品卡片整理为包含市场地图、比较矩阵、空白机会和战略建议的决策报告。",
+    "scenariosZh": [
+      "向团队或管理层展示竞品结论",
+      "汇总评分成果并提出可讨论的战略问题"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营",
+      "文档"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "316894ef4f7751ddb9defa6a9c71171e21489f4836047c1500e8102500cf6e9d"
+  },
+  {
+    "id": "ecc/native/compose-multiplatform-patterns",
+    "callName": "ecc:compose-multiplatform-patterns",
+    "nameZh": "Compose 跨平台界面模式",
+    "summaryZh": "整理 KMP 项目中 Compose 与 Jetpack Compose 的状态、导航、主题、性能和平台差异处理。",
+    "scenariosZh": [
+      "构建跨平台 Compose 页面",
+      "优化 Compose 状态管理与页面导航"
+    ],
+    "tags": [
+      "移动开发",
+      "前端",
+      "开发实现"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "37a50a5eb0a717eebac646360dbd8828f626236ec04d98d8c4a6b191a5efb0d0"
+  },
+  {
+    "id": "ecc/native/config-gc",
+    "callName": "ecc:config-gc",
+    "nameZh": "代理配置清理审计",
+    "summaryZh": "盘点 Claude Code 配置中的重复、过期和孤立技能、记忆、Hook 与缓存，逐项确认后进行清理。",
+    "scenariosZh": [
+      "技能和 Hook 积累过多需要梳理",
+      "检查配置中不再使用的 MCP 或缓存条目"
+    ],
+    "tags": [
+      "技能管理",
+      "审查"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "e8ade5c8d48728db6c1137e4392308b6d56290a19d4f78d365122d7ab05276a1"
+  },
+  {
+    "id": "ecc/native/configure-ecc",
+    "callName": "ecc:configure-ecc",
+    "nameZh": "ECC 安装配置向导",
+    "summaryZh": "按当前宿主盘点安装情况、收集作用域与 Hook 需求，预览配置再应用，并核实安装或修复结果。",
+    "scenariosZh": [
+      "首次安装或更新 ECC",
+      "调整 Hook 配置或修复技能发现问题"
+    ],
+    "tags": [
+      "技能管理",
+      "自动化"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "ad87612e3cd745332625cd707179f4e98dc78da99183640f985637022ec9d650"
+  },
+  {
+    "id": "ecc/native/connections-optimizer",
+    "callName": "ecc:connections-optimizer",
+    "nameZh": "社交关系网络整理",
+    "summaryZh": "先审查 X 与 LinkedIn 的关系网络，再提出精简、关注和符合本人语气的联系草稿。",
+    "scenariosZh": [
+      "清理与当前目标无关的关注列表",
+      "围绕新方向整理值得建立联系的人群"
+    ],
+    "tags": [
+      "业务运营",
+      "协作"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "499c7e7e361ec17afdad57b725b4d105efb21f707b5724115f71152fe1755c67"
+  },
+  {
+    "id": "ecc/native/content-engine",
+    "callName": "ecc:content-engine",
+    "nameZh": "多平台内容策划",
+    "summaryZh": "为不同社交平台组织内容、脚本与日历，将同一素材改编为符合各平台形式的表达。",
+    "scenariosZh": [
+      "从长文制作短视频脚本和社交帖子",
+      "为跨平台活动安排内容日历"
+    ],
+    "tags": [
+      "文档",
+      "多媒体",
+      "业务运营"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "a1ccc0ecfe30ae53db26a73159a80ecad8c63a6a96c461a297789d889bf9ad2c"
+  },
+  {
+    "id": "ecc/native/content-hash-cache-pattern",
+    "callName": "ecc:content-hash-cache-pattern",
+    "nameZh": "内容哈希缓存模式",
+    "summaryZh": "用 SHA-256 内容摘要缓存高成本文件处理结果，使缓存不依赖路径并随内容变化自动失效。",
+    "scenariosZh": [
+      "同一文件内容被重复解析导致耗时",
+      "文件移动后仍希望复用已有处理缓存"
+    ],
+    "tags": [
+      "性能",
+      "架构设计",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "c0242ee2fcb5c096d0625cb6957481fce2266e92985036795f5b5c13c329d802"
+  },
+  {
+    "id": "ecc/native/context-and-decisions",
+    "callName": "ecc:context-and-decisions",
+    "nameZh": "领域上下文与决策治理",
+    "summaryZh": "用范围明确的领域上下文文件统一术语和语义，将难以逆转的架构决策交给 ADR 记录流程。",
+    "scenariosZh": [
+      "同一业务术语在不同模块含义不一致",
+      "领域规则需要跨会话复用且不宜混入架构决策"
+    ],
+    "tags": [
+      "上下文",
+      "文档",
+      "架构设计"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "5158283621d6d15288dab50fc2e884cf114b8d91137e45e619bf3dff4740f3e0"
+  },
+  {
+    "id": "ecc/native/context-budget",
+    "callName": "ecc:context-budget",
+    "nameZh": "会话上下文容量检查",
+    "summaryZh": "优先读取 Codex 或 Claude Code 的原生上下文计量；只有明确要求时才进行有界的静态组件开销审计。",
+    "scenariosZh": [
+      "查看当前会话剩余上下文容量",
+      "明确评估已安装组件的上下文开销"
+    ],
+    "tags": [
+      "上下文",
+      "技能管理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "793d51ac6639a466213800c228189a48b102c88d7cfb5b0651baa3480a577206"
+  },
+  {
+    "id": "ecc/native/continuous-agent-loop",
+    "callName": "ecc:continuous-agent-loop",
+    "nameZh": "持续代理循环设计",
+    "summaryZh": "为持续运行的自主代理循环设置质量门、评估标准和故障恢复控制，减少无界执行。",
+    "scenariosZh": [
+      "设计需要自检的长期代理任务",
+      "给自主循环加入失败恢复和评估阻断"
+    ],
+    "tags": [
+      "AI代理",
+      "自动化",
+      "测试"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "f228cd383a9063b3a0116c5aea02565e859992f63fae5e799adf9c9e44e2454d"
+  },
+  {
+    "id": "ecc/native/continuous-learning",
+    "callName": "ecc:continuous-learning",
+    "nameZh": "持续学习旧版迁移提示",
+    "summaryZh": "标明旧版 Stop Hook 技能提取流程已弃用；新的会话学习与模式提取需求应使用 continuous-learning-v2。",
+    "scenariosZh": [
+      "阅读旧配置中引用的持续学习技能",
+      "把旧版学习入口迁移到项目隔离的新流程"
+    ],
+    "tags": [
+      "技能管理",
+      "上下文"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "d494867b456999cad53c51c89fa2cf8da101f76ea875286987f52e5d45f72221"
+  },
+  {
+    "id": "ecc/native/continuous-learning-v2",
+    "callName": "ecc:continuous-learning-v2",
+    "nameZh": "项目隔离的持续学习",
+    "summaryZh": "通过会话观察形成带置信度的原子经验，再逐步归并为技能、命令或代理，并隔离项目经验。",
+    "scenariosZh": [
+      "从开发会话中提取可复用经验",
+      "管理经验规则并提升为正式技能"
+    ],
+    "tags": [
+      "技能管理",
+      "上下文",
+      "自动化"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "ddad12451a0d582c6ef1b197b7be193bef613cbc74eba4117fcb74fc7a4ecd00"
+  },
+  {
+    "id": "ecc/native/contract-first",
+    "callName": "ecc:contract-first",
+    "nameZh": "契约先行协作",
+    "summaryZh": "以可机器校验的接口或事件契约协调提供方和消费方开发，通过类型生成与契约测试避免字段漂移。",
+    "scenariosZh": [
+      "前后端并行实现新接口",
+      "修改事件结构时防止 mock 与真实响应不一致"
+    ],
+    "tags": [
+      "架构设计",
+      "协作",
+      "测试"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "3eaacf16a9bbd92888659e9c1e15b0fa4eb96a41c257dd9e08f2e63b824f0cea"
+  },
+  {
+    "id": "ecc/native/conventional-commit-review",
+    "callName": "ecc:conventional-commit-review",
+    "nameZh": "规范提交信息审查",
+    "summaryZh": "检查暂存差异并拟写符合 Conventional Commits 的类型、范围与长度要求的提交信息。",
+    "scenariosZh": [
+      "提交前根据实际暂存内容拟写说明",
+      "修改类型或范围不准确的提交标题"
+    ],
+    "tags": [
+      "版本管理",
+      "审查",
+      "文档"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "c81397a4bfc2ec66986aae7a4dff5a02f78c519bc9774a80778fa9055e7fa2fe"
+  },
+  {
+    "id": "ecc/native/cost-aware-llm-pipeline",
+    "callName": "ecc:cost-aware-llm-pipeline",
+    "nameZh": "LLM 调用成本优化",
+    "summaryZh": "结合任务复杂度选择模型，并用预算跟踪、重试策略和提示缓存控制 LLM 接口成本。",
+    "scenariosZh": [
+      "模型接口费用增长需要定位节省空间",
+      "为复杂度不同的任务安排模型层级"
+    ],
+    "tags": [
+      "AI代理",
+      "性能",
+      "架构设计"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "2d6c19c2d21a473db8720c4f723f17d265eeec48f84614f0169be2df2fbe28ff"
+  },
+  {
+    "id": "ecc/native/cost-tracking",
+    "callName": "ecc:cost-tracking",
+    "nameZh": "Claude 用量与预算统计",
+    "summaryZh": "读取本地 ECC 成本跟踪日志，按模型、会话或日期汇总 Claude Code 的 Token、支出与预算。",
+    "scenariosZh": [
+      "查看模型调用的成本构成",
+      "比较不同会话或日期的 Token 用量"
+    ],
+    "tags": [
+      "AI代理",
+      "业务运营"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "f868207abd550308bc18902ecdfd2c51ad1ea85ba692dbe95cd9c3561da2a8bb"
+  },
+  {
+    "id": "ecc/native/council",
+    "callName": "ecc:council",
+    "nameZh": "多视角决策讨论",
+    "summaryZh": "以四种立场展开结构化争论，保留关键分歧并形成综合草案，帮助用户判断多个可行路径。",
+    "scenariosZh": [
+      "技术方案存在重要取舍",
+      "需要对高影响决策进行支持与反对论证"
+    ],
+    "tags": [
+      "需求分析",
+      "架构设计",
+      "协作"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "2104d002d301a061a16d21ea2e00292f80b66b20c9883a33525a7de404153502"
+  },
+  {
+    "id": "ecc/native/council-multi-model",
+    "callName": "ecc:council-multi-model",
+    "nameZh": "决策草案外部批评",
+    "summaryZh": "在已有 council 草案之后，经明确传输同意调用外部 Codex 批评结论，并准确标注提供方关系与缺席状态。",
+    "scenariosZh": [
+      "重要决策草案需要额外挑战性审阅",
+      "用户愿意发送脱敏草案以检查遗漏的失败模式"
+    ],
+    "tags": [
+      "AI代理",
+      "审查",
+      "协作"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "3c67816efdab97c89f8433b8a88d720ca736871467f7d6d1ff344fee59f18ce5"
+  },
+  {
+    "id": "ecc/native/counterparty-channel-discipline",
+    "callName": "ecc:counterparty-channel-discipline",
+    "nameZh": "共享频道发言边界",
+    "summaryZh": "为处于群聊、共享频道或私信中的代理设定被提及才发言、静默观察和高风险内容草拟审批规则。",
+    "scenariosZh": [
+      "代理加入外部成员可见的协作频道",
+      "防止自动回复泄露内部上下文"
+    ],
+    "tags": [
+      "AI代理",
+      "安全",
+      "协作"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "51f719cf28a6d3c43e511a2c75e903a41d566205f8e93a2eeb276e0c1eb92463"
+  },
+  {
+    "id": "ecc/native/cpp-coding-standards",
+    "callName": "ecc:cpp-coding-standards",
+    "nameZh": "现代 C++ 编码规范",
+    "summaryZh": "依据 C++ Core Guidelines 审查现代 C++ 的安全性、资源管理和惯用写法，指导实现与重构。",
+    "scenariosZh": [
+      "编写具有明确所有权的 C++ 代码",
+      "审查旧 C++ 实现的安全性与可维护性"
+    ],
+    "tags": [
+      "开发实现",
+      "审查",
+      "语言技术"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "f870b47d3493b0ad0b6e3808a679ac3c429b60f03193af6c9dc0e0d9e6981436"
+  },
+  {
+    "id": "ecc/native/cpp-testing",
+    "callName": "ecc:cpp-testing",
+    "nameZh": "C++ 测试与诊断",
+    "summaryZh": "围绕 GoogleTest、CTest、覆盖率与 Sanitizer 编写和修复 C++ 测试，定位失败或不稳定的测试。",
+    "scenariosZh": [
+      "给 C++ 模块增加 GoogleTest 覆盖",
+      "诊断 CTest 偶发失败或内存检查异常"
+    ],
+    "tags": [
+      "测试",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "a92fb5da9b7e3cd1b4dee185b3eb9d0a55352af6396bf996d2eef72d683784df"
+  },
+  {
+    "id": "ecc/native/crosspost",
+    "callName": "ecc:crosspost",
+    "nameZh": "社交平台差异化分发",
+    "summaryZh": "把内容改编后分发到 X、LinkedIn、Threads 与 Bluesky，遵循各平台表达习惯而不是逐字复制。",
+    "scenariosZh": [
+      "已有内容需要覆盖多个社交平台",
+      "为同一主题准备不同长度与语气的帖子"
+    ],
+    "tags": [
+      "文档",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "03bd2ef6e08191cd336e9b8e7a55c29040e7a3225defdaeab1b51d983565661f"
+  },
+  {
+    "id": "ecc/native/csharp-testing",
+    "callName": "ecc:csharp-testing",
+    "nameZh": "C# 与 .NET 测试",
+    "summaryZh": "使用 xUnit、FluentAssertions、模拟与集成测试组织 .NET 测试，提供断言和隔离依赖的模式。",
+    "scenariosZh": [
+      "为 C# 服务编写单元与集成测试",
+      "审查测试中的模拟对象与断言质量"
+    ],
+    "tags": [
+      "测试",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "ee93aae975fa9d44bebc33be010b24435d38177e77395c697048622d9be68ad1"
+  },
+  {
+    "id": "ecc/native/customer-billing-ops",
+    "callName": "ecc:customer-billing-ops",
+    "nameZh": "客户订阅与账单处理",
+    "summaryZh": "通过已连接的计费工具核对订阅、退款、流失原因、账单门户恢复和套餐，区分收入影响与客户问题。",
+    "scenariosZh": [
+      "处理客户订阅或退款请求",
+      "分析套餐状态及账单门户访问故障"
+    ],
+    "tags": [
+      "业务运营",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "4214d79be7d1bcb62587cf6364e96ed3b70b875ec41871ac632e827ef96b370e"
+  },
+  {
+    "id": "ecc/native/customs-trade-compliance",
+    "callName": "ecc:customs-trade-compliance",
+    "nameZh": "关务与贸易合规",
+    "summaryZh": "整理商品税则分类、报关资料、贸易术语、自贸协定和限制名单筛查，支持关税优化与审计准备。",
+    "scenariosZh": [
+      "为进出口商品确定税则分类与单证",
+      "准备海关审计或核对自贸协定优惠条件"
+    ],
+    "tags": [
+      "业务运营",
+      "安全",
+      "文档"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "f4d418c1407a0792e05e5bfea64635e752cdcfb97827851665c6c9902e7063d4"
+  },
+  {
+    "id": "ecc/native/dart-flutter-patterns",
+    "callName": "ecc:dart-flutter-patterns",
+    "nameZh": "Dart 与 Flutter 实现模式",
+    "summaryZh": "覆盖空安全、不可变状态、异步、组件、状态管理、导航、网络错误与测试，指导 Flutter 应用实现。",
+    "scenariosZh": [
+      "设计 Flutter 页面状态和路由守卫",
+      "审查 Dart 异步网络代码与错误处理"
+    ],
+    "tags": [
+      "移动开发",
+      "开发实现",
+      "语言技术"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "43b6e45cc3f15d8de113ed2aa9884528a9207f83f6bb1901f72a712698705706"
+  },
+  {
+    "id": "ecc/native/dashboard-builder",
+    "callName": "ecc:dashboard-builder",
+    "nameZh": "运维仪表盘构建",
+    "summaryZh": "围绕操作者真正需要回答的问题设计 Grafana、SigNoz 等监控面板，使指标支持故障判断与行动。",
+    "scenariosZh": [
+      "把服务指标组织成可用的运维看板",
+      "检查现有面板是否能支持实际排障"
+    ],
+    "tags": [
+      "网络运维",
+      "性能",
+      "前端"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "6823d9984c060597a312b867c317e0969e1cb0a2dec19730ce944fe789f41d38"
+  },
+  {
+    "id": "ecc/native/data-scraper-agent",
+    "callName": "ecc:data-scraper-agent",
+    "nameZh": "公开数据采集代理",
+    "summaryZh": "规划按时采集公开数据、用模型丰富字段、保存到外部表格或数据服务并接收反馈的自动化代理。",
+    "scenariosZh": [
+      "持续收集公开招聘或价格信息",
+      "设计从抓取到整理存储的定时数据流程"
+    ],
+    "tags": [
+      "自动化",
+      "AI代理",
+      "研究检索"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "662e884d58f4089bd8e090ef8d32042b85a5d9b4715906a89072002704451c0a"
+  },
+  {
+    "id": "ecc/native/data-throughput-accelerator",
+    "callName": "ecc:data-throughput-accelerator",
+    "nameZh": "数据吞吐瓶颈优化",
+    "summaryZh": "定位导入、回填、导出和同步的真实瓶颈，对比方案并核对行数与时间信息，兼顾速度和数据正确性。",
+    "scenariosZh": [
+      "大批量 ETL 或数据回填耗时过长",
+      "优化表同步后证明没有丢行或时间错位"
+    ],
+    "tags": [
+      "性能",
+      "数据库",
+      "测试"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "59e98c2c2871627ee42984a1509da0d2c3e92d80b10b04d4f93338e5e0c9b0d6"
+  },
+  {
+    "id": "ecc/native/database-migrations",
+    "callName": "ecc:database-migrations",
+    "nameZh": "可回滚数据库迁移",
+    "summaryZh": "为生产结构与数据迁移设计扩展收缩、并发索引和分批回填等步骤，明确迁移工具与恢复策略。",
+    "scenariosZh": [
+      "给大型表增加字段或索引",
+      "安排零停机字段重命名与迁移回退"
+    ],
+    "tags": [
+      "数据库",
+      "发布部署",
+      "架构设计"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "dad2f1964295eee14a96e06213ce3f60992bbcdc1f37a50c828bbc2e1abd79dd"
+  },
+  {
+    "id": "ecc/native/deep-research",
+    "callName": "ecc:deep-research",
+    "nameZh": "多来源深度研究",
+    "summaryZh": "拆解研究问题，通过网页搜索与深入阅读汇总带引用和置信度的报告，适用于技术、市场与公司调研。",
+    "scenariosZh": [
+      "评估一项技术或市场机会",
+      "对公司和竞争格局进行有来源的尽职调查"
+    ],
+    "tags": [
+      "研究检索",
+      "文档"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "ca02a97ff8cd794c55a1313ab423a6a165fdf2ce59059a73e08f7cfd957b5319"
+  },
+  {
+    "id": "ecc/native/deepseek-harness-setup",
+    "callName": "ecc:deepseek-harness-setup",
+    "nameZh": "DeepSeek 宿主 ECC 配置",
+    "summaryZh": "说明 ECC 在 DeepSeek Harness 中的技能目录、Hook 桥接、补丁挂载和更新方式，并核对功能支持限制。",
+    "scenariosZh": [
+      "将 ECC 配置到 DeepSeek Harness",
+      "排查 DSH 会话中技能或 Hook 未出现"
+    ],
+    "tags": [
+      "技能管理",
+      "自动化",
+      "AI代理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "63431ebd83dbcf712031cf22efccc55179ecff6352aca34213121bd7a5685180"
+  },
+  {
+    "id": "ecc/native/defi-amm-security",
+    "callName": "ecc:defi-amm-security",
+    "nameZh": "AMM 合约安全检查",
+    "summaryZh": "检查 Solidity 自动做市、流动性池与兑换流程中的重入、预言机、滑点、权限和整数计算风险。",
+    "scenariosZh": [
+      "审计流动性池合约的攻击面",
+      "编写交换逻辑时检查滑点和整数精度"
+    ],
+    "tags": [
+      "安全",
+      "审查",
+      "开发实现"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "06f662a81b1faebb9930118302d88d649dbc5bcbf7dfe87c3780ddc72f2d6516"
+  },
+  {
+    "id": "ecc/native/delivery-gate",
+    "callName": "ecc:delivery-gate",
+    "nameZh": "交付结束质量门",
+    "summaryZh": "通过 Stop Hook 检查学习记录时间和磁盘空间，并对疑似跳过质量步骤的文本发出提示，机械约束会话结束。",
+    "scenariosZh": [
+      "在 Claude Code 中设置结束前的确定性检查",
+      "为复杂任务加入学习记录与磁盘余量门槛"
+    ],
+    "tags": [
+      "自动化",
+      "AI代理",
+      "审查"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "1f20dd3c7f10aa459fa025f2070bd9cb2d93028a71c01e46d2c60906da000b5b"
+  },
+  {
+    "id": "ecc/native/deployment-patterns",
+    "callName": "ecc:deployment-patterns",
+    "nameZh": "应用部署与回滚模式",
+    "summaryZh": "整理 CI/CD、Docker、健康检查、回滚和生产就绪检查，为 Web 应用提供发布流程设计。",
+    "scenariosZh": [
+      "为应用建立持续集成与部署管线",
+      "发布前核对容器健康检查和回滚步骤"
+    ],
+    "tags": [
+      "发布部署",
+      "自动化",
+      "后端"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "b864abd1954570c4a469b7e1deb897e57858d25db2fd98d035ff7bca4a15b9b6"
+  },
+  {
+    "id": "ecc/native/design-system",
+    "callName": "ecc:design-system",
+    "nameZh": "设计系统提取与审计",
+    "summaryZh": "从已有界面提取颜色、字体、间距等设计令牌，生成说明和预览，并从多个维度审查视觉一致性。",
+    "scenariosZh": [
+      "基于现有产品建立设计系统",
+      "重新设计前审查页面样式的一致性"
+    ],
+    "tags": [
+      "前端",
+      "审查",
+      "文档"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "1969e4cb6cd13cdafff5f84353047d6e55cebc24e1a595ec48e6e2c666f3d8b1"
+  },
+  {
+    "id": "ecc/native/dev-team",
+    "callName": "ecc:dev-team",
+    "nameZh": "多角色开发讨论",
+    "summaryZh": "在同一会话中组织产品、架构、开发与测试等角色共同讨论问题，集中呈现多职责视角。",
+    "scenariosZh": [
+      "评审新功能的设计提案",
+      "新项目启动时梳理产品和工程关注点"
+    ],
+    "tags": [
+      "协作",
+      "需求分析",
+      "架构设计"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "727b093c8f8284923e54619b9193e5dee9e9ae0ea87b5fb65e1e01e0206fe621"
+  },
+  {
+    "id": "ecc/native/django-celery",
+    "callName": "ecc:django-celery",
+    "nameZh": "Django 异步任务模式",
+    "summaryZh": "为 Django 的 Celery 后台任务设计配置、调度、重试、任务组合、监控与测试。",
+    "scenariosZh": [
+      "把耗时业务移到后台处理",
+      "给 Django 增加定时任务和失败重试"
+    ],
+    "tags": [
+      "后端",
+      "自动化",
+      "测试"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "1f9189ece910eb90a5d2cd520a9a6238ccb89a3e48629ac1ad9b55ec3eb21f88"
+  },
+  {
+    "id": "ecc/native/django-patterns",
+    "callName": "ecc:django-patterns",
+    "nameZh": "Django 后端开发模式",
+    "summaryZh": "覆盖 Django 分层、DRF 接口、ORM、缓存、信号与中间件，指导生产级应用的实现和审查。",
+    "scenariosZh": [
+      "构建 Django REST 业务接口",
+      "审查 ORM 查询和缓存使用方式"
+    ],
+    "tags": [
+      "后端",
+      "数据库",
+      "开发实现"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "14abe2b635054dff872c07d4993057e614b48ac718c0431f1299931be7d69516"
+  },
+  {
+    "id": "ecc/native/django-security",
+    "callName": "ecc:django-security",
+    "nameZh": "Django 安全审查",
+    "summaryZh": "检查 Django 认证授权、CSRF、注入、XSS 与部署设置，识别请求处理与配置中的安全漏洞。",
+    "scenariosZh": [
+      "审查登录鉴权和权限控制",
+      "上线前核对 Django 安全配置与输入处理"
+    ],
+    "tags": [
+      "安全",
+      "后端",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "e043c9d300695aea5a9bb4c72a6f47e47ba1f2c7ddc1e82b8191acd0ad70c54a"
+  },
+  {
+    "id": "ecc/native/django-tdd",
+    "callName": "ecc:django-tdd",
+    "nameZh": "Django 测试驱动开发",
+    "summaryZh": "用 pytest-django、factory_boy、模拟和覆盖率组织 Django 与 DRF 测试，先用测试定义功能行为。",
+    "scenariosZh": [
+      "以测试驱动 Django 新功能",
+      "为 DRF 接口补充数据库与请求测试"
+    ],
+    "tags": [
+      "测试",
+      "后端"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "20bd5378fb9b76b396916daa8781dd45eef6336e5d4b3a46edb0c3e4eefaf074"
+  },
+  {
+    "id": "ecc/native/django-verification",
+    "callName": "ecc:django-verification",
+    "nameZh": "Django 发布验证",
+    "summaryZh": "分阶段核对环境、类型与格式、迁移、覆盖率、安全扫描、配置日志和差异，输出发布前验证报告。",
+    "scenariosZh": [
+      "准备 Django 合并请求的验证材料",
+      "上线前检查迁移安全和测试覆盖率"
+    ],
+    "tags": [
+      "测试",
+      "安全",
+      "发布部署"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "01d2d2a8382737fefff259fe7624e1928e373a7772e220535dbea128373e81a2"
+  },
+  {
+    "id": "ecc/native/dmux-workflows",
+    "callName": "ecc:dmux-workflows",
+    "nameZh": "dmux 并行代理工作流",
+    "summaryZh": "使用 dmux 管理终端窗格中的多个代理会话，组织 Claude Code、Codex 等宿主的并行开发协作。",
+    "scenariosZh": [
+      "同时运行多个独立代理会话",
+      "通过窗格管理器协调并行开发任务"
+    ],
+    "tags": [
+      "AI代理",
+      "协作",
+      "自动化"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "6e4028d61a556d58fa2cdc6162d6837c082974a7161b2d703967bec472308c56"
+  },
+  {
+    "id": "ecc/native/docker-patterns",
+    "callName": "ecc:docker-patterns",
+    "nameZh": "Docker 容器工程模式",
+    "summaryZh": "整理 Dockerfile、Compose、容器安全、网络和卷的配置，并支持跨发行版安装器测试与多服务协作。",
+    "scenariosZh": [
+      "建立本地多服务 Compose 环境",
+      "审查镜像安全与容器卷、网络配置"
+    ],
+    "tags": [
+      "发布部署",
+      "安全",
+      "网络运维"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "c0cedeb9b64d4468f5af3bb0a97659c654f0ceb916acbec867a29dc682dd633f"
+  },
+  {
+    "id": "ecc/native/docs-governance",
+    "callName": "ecc:docs-governance",
+    "nameZh": "文档治理与只读审计",
+    "summaryZh": "将宽泛的文档整理需求分流到已有技能，并按需只读检查文档职责、链接、ADR 索引和证据引用。",
+    "scenariosZh": [
+      "梳理项目知识文档的角色与组织方式",
+      "检查文档断链和决策记录索引完整性"
+    ],
+    "tags": [
+      "文档",
+      "审查",
+      "上下文"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "499ac59071e6e2b8fb60f085e337a3a1ec16e200adb8f5b8bc027afb338cf3eb"
+  },
+  {
+    "id": "ecc/native/documentation-lookup",
+    "callName": "ecc:documentation-lookup",
+    "nameZh": "最新技术文档检索",
+    "summaryZh": "通过 Context7 MCP 获取库与框架的当前文档，支持安装、接口查阅与代码示例，减少依赖过时记忆。",
+    "scenariosZh": [
+      "查询某个库的当前 API 用法",
+      "核对框架配置步骤和官方示例"
+    ],
+    "tags": [
+      "研究检索",
+      "文档",
+      "开发实现"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "81ad2b5b4acbe02259f4b6cbfd9111d81d5cfe51025051b6048959c45f6516c1"
+  },
+  {
+    "id": "ecc/native/dotnet-patterns",
+    "callName": "ecc:dotnet-patterns",
+    "nameZh": "C# 与 .NET 实现模式",
+    "summaryZh": "围绕 .NET 约定、依赖注入、异步等待与可维护结构提供惯用实现方式。",
+    "scenariosZh": [
+      "设计 .NET 服务的依赖注入",
+      "审查 C# 异步代码和通用工程约定"
+    ],
+    "tags": [
+      "后端",
+      "开发实现",
+      "语言技术"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "61bc21a6c6d6d1230d90f0bbebca55101b1b63de68ece8574152cbad152cef07"
+  },
+  {
+    "id": "ecc/native/dynamic-workflow-mode",
+    "callName": "ecc:dynamic-workflow-mode",
+    "nameZh": "动态代理工作流设计",
+    "summaryZh": "为具体任务设计代理执行框架、评估门和可复用技能提取方式，适配动态变化的执行流程。",
+    "scenariosZh": [
+      "为一次复杂任务建立专用代理流程",
+      "把临时工作方法整理为可复用技能"
+    ],
+    "tags": [
+      "AI代理",
+      "技能管理",
+      "架构设计"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "bdf7902e4e213c6f2e7bdc417757004d118e8e36267239b707670e2875ebf7bf"
+  },
+  {
+    "id": "ecc/native/e2e-testing",
+    "callName": "ecc:e2e-testing",
+    "nameZh": "Playwright 端到端测试",
+    "summaryZh": "整理 Playwright 配置、页面对象、CI 集成、测试产物和不稳定用例处理，验证真实浏览器流程。",
+    "scenariosZh": [
+      "编写用户关键路径的浏览器测试",
+      "排查 CI 中偶发失败的端到端用例"
+    ],
+    "tags": [
+      "测试",
+      "前端",
+      "自动化"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "b0e00e7e17cb259101139900816c5528aed18dd10bcf5f9cb42cfc35baf8a755"
+  },
+  {
+    "id": "ecc/native/ecc-guide",
+    "callName": "ecc:ecc-guide",
+    "nameZh": "ECC 实时使用指南",
+    "summaryZh": "读取当前 ECC 仓库中的代理、技能、命令、Hook、规则与文档，回答安装、重置和功能选择问题。",
+    "scenariosZh": [
+      "了解当前版本 ECC 包含哪些能力",
+      "查找适合任务的技能或安装入口"
+    ],
+    "tags": [
+      "技能管理",
+      "研究检索"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "472d72a270cbd7f4eaf7fc73a1313f40a4995575c5e2d2ff4f91c280f5ee5df9"
+  },
+  {
+    "id": "ecc/native/ecc-recipes",
+    "callName": "ecc:ecc-recipes",
+    "nameZh": "ECC 工作流命令配方",
+    "summaryZh": "根据任务推荐 ECC 命令组、运行顺序与停止条件，或列出当前命令目录中的流程配方；仅提供建议。",
+    "scenariosZh": [
+      "知道目标却不知道该按什么顺序调用命令",
+      "浏览可组合使用的 ECC 工作流"
+    ],
+    "tags": [
+      "技能管理",
+      "需求分析"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "0c3250fe8c8c1384f1dc4a8b8bd57e3a80037d4964c7c18848e449bf03866644"
+  },
+  {
+    "id": "ecc/native/ecc-tools-cost-audit",
+    "callName": "ecc:ecc-tools-cost-audit",
+    "nameZh": "ECC Tools 成本链路审计",
+    "summaryZh": "针对 ECC Tools 仓库追踪 Webhook、队列、额度和模型路由，排查重复 PR、配额绕过与高价模型泄漏。",
+    "scenariosZh": [
+      "ECC Tools 应用出现递归创建 PR",
+      "调查队列重复执行或额度异常带来的费用"
+    ],
+    "tags": [
+      "审查",
+      "AI代理",
+      "业务运营"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "efcc5b7c850d5a2f1b853c25a92b392fa0bf62451e5799b9a5efb905dbf45337"
+  },
+  {
+    "id": "ecc/native/email-ops",
+    "callName": "ecc:email-ops",
+    "nameZh": "邮件整理与发送核验",
+    "summaryZh": "依据真实邮箱状态整理邮件、草拟内容、核对发送结果，并以已发送记录为后续跟进依据。",
+    "scenariosZh": [
+      "整理收件箱并准备回复草稿",
+      "核实邮件是否实际进入已发送文件夹"
+    ],
+    "tags": [
+      "业务运营",
+      "协作",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "188b226ec0dfd4304d6c9b60498b5f0dc2b3c97b14e159e5bde5db323ad45721"
+  },
+  {
+    "id": "ecc/native/energy-procurement",
+    "callName": "ecc:energy-procurement",
+    "nameZh": "工商业能源采购",
+    "summaryZh": "整理电力与天然气采购、费率优化、需量管理、供应商招标、对冲和可再生能源合约评估。",
+    "scenariosZh": [
+      "制定工厂能源预算与采购策略",
+      "比较公用事业费率和可再生能源采购方案"
+    ],
+    "tags": [
+      "业务运营",
+      "研究检索"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "4b4cb5d87f571cf02c26631e647fa06df21601a4faed6baf97a8100e1f32cc50"
+  },
+  {
+    "id": "ecc/native/enterprise-agent-ops",
+    "callName": "ecc:enterprise-agent-ops",
+    "nameZh": "生产代理集群运维",
+    "summaryZh": "管理长期或云端代理的生命周期、日志指标、权限、停止开关与发布回滚，保留操作审计和成本证据。",
+    "scenariosZh": [
+      "运维由 systemd 或容器管理的代理集群",
+      "为生产代理部署设置监控和紧急停止机制"
+    ],
+    "tags": [
+      "AI代理",
+      "网络运维",
+      "发布部署",
+      "安全"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "468a10e507520d1fd2f15e5cf326499456206740697fd9462570321996ddfb35"
+  },
+  {
+    "id": "ecc/native/error-handling",
+    "callName": "ecc:error-handling",
+    "nameZh": "跨语言错误处理模式",
+    "summaryZh": "为 TypeScript、Python 与 Go 设计错误类型、边界、重试、熔断和用户提示，使失败行为可控。",
+    "scenariosZh": [
+      "设计服务失败后的重试与熔断策略",
+      "统一类型化错误和面向用户的失败消息"
+    ],
+    "tags": [
+      "开发实现",
+      "后端",
+      "语言技术"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "e8eec6756c950b570486493e64e3bf14c12baf6bf0858bf3928097fe2bfeaf79"
+  },
+  {
+    "id": "ecc/native/esign-field-placement",
+    "callName": "ecc:esign-field-placement",
+    "nameZh": "电子签署字段定位",
+    "summaryZh": "通过浏览器中的数值坐标面板确定签名、日期与文本字段位置，核对收件人归属并默认保存草稿。",
+    "scenariosZh": [
+      "为生成的合同布置电子签署字段",
+      "需要可重复坐标定位而不是拖拽放置"
+    ],
+    "tags": [
+      "自动化",
+      "文档",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "712e73679a640a521291db96ca7e8147f4d3252832c56ac91b8151cffb9aece5"
+  },
+  {
+    "id": "ecc/native/eval-harness",
+    "callName": "ecc:eval-harness",
+    "nameZh": "代理评估标准与回归框架",
+    "summaryZh": "先定义能力与回归评估，再选用代码、模型、规则或人工评分，跟踪代理任务成功率与多次可靠性。",
+    "scenariosZh": [
+      "为代理任务制定可判定的通过条件",
+      "比较提示或模型变更的能力回归"
+    ],
+    "tags": [
+      "AI代理",
+      "测试",
+      "审查"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "3a5339a5a80099a5c9d55da9b6c8e05a690f5befc6f78d779c75dd79d818ca07"
+  },
+  {
+    "id": "ecc/native/evm-token-decimals",
+    "callName": "ecc:evm-token-decimals",
+    "nameZh": "EVM 代币精度校验",
+    "summaryZh": "通过运行时精度查询、按链缓存和金额归一化防止跨链代币小数位不一致导致数量级错误。",
+    "scenariosZh": [
+      "处理跨链代币余额和转账金额",
+      "排查价格或余额出现十倍以上偏差"
+    ],
+    "tags": [
+      "开发实现",
+      "安全"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "4e3fd13794f55a2a424cabdfe90935effb35d37155fda3fcacd27cfe20102838"
+  },
+  {
+    "id": "ecc/native/exa-search",
+    "callName": "ecc:exa-search",
+    "nameZh": "Exa 神经搜索",
+    "summaryZh": "通过 Exa MCP 检索网页、代码、公司和人物资料，支持代码示例查找与深入研究。",
+    "scenariosZh": [
+      "搜集某项技术的代码示例",
+      "研究公司与人物的公开信息"
+    ],
+    "tags": [
+      "研究检索"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "ebc8e7ab299a6649f575e218f0c25f4d869017b8ad4b5f7725cedceaf82700e5"
+  },
+  {
+    "id": "ecc/native/fal-ai-media",
+    "callName": "ecc:fal-ai-media",
+    "nameZh": "fal.ai 多媒体生成",
+    "summaryZh": "通过 fal.ai MCP 统一组织图像、视频与音频生成，按任务选择文字转图、图转视频或语音等能力。",
+    "scenariosZh": [
+      "根据描述生成图片或视频素材",
+      "为素材制作语音或视频配套音频"
+    ],
+    "tags": [
+      "多媒体",
+      "AI代理"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "723ffbe93063a8927a07a9d2c6d5743045ffb15d292f90472dee89582ed7714f"
+  },
+  {
+    "id": "ecc/native/fastapi-patterns",
+    "callName": "ecc:fastapi-patterns",
+    "nameZh": "FastAPI 服务实现模式",
+    "summaryZh": "覆盖项目结构、Pydantic v2、依赖注入、异步处理、鉴权、事务服务层和接口测试。",
+    "scenariosZh": [
+      "构建带事务与权限控制的 FastAPI 服务",
+      "审查 Pydantic 数据模型和异步接口测试"
+    ],
+    "tags": [
+      "后端",
+      "开发实现",
+      "测试"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "f54c2bf5a61eeda47c939da265b1431d609c231611e71b688b0b734a064b18f3"
+  },
+  {
+    "id": "ecc/native/finance-billing-ops",
+    "callName": "ecc:finance-billing-ops",
+    "nameZh": "营收与计费核查",
+    "summaryZh": "结合销售证据、定价规则与代码，核对营收、退款、团队计费和重复收费问题。",
+    "scenariosZh": [
+      "整理当前销售与收入快照",
+      "排查重复扣款或核对实际计费规则"
+    ],
+    "tags": [
+      "业务运营",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "823a1b8f75495022227bb9af4537eb5c0b1c62793d68b74c6bd1af14eea79786"
+  },
+  {
+    "id": "ecc/native/flox-environments",
+    "callName": "ecc:flox-environments",
+    "nameZh": "可复现开发环境",
+    "summaryZh": "使用 Flox 的声明式环境固定工具链和系统依赖，减少不同机器之间的环境差异。",
+    "scenariosZh": [
+      "为团队固定编译器、数据库和依赖版本",
+      "在无 sudo 的项目环境中准备本地服务"
+    ],
+    "tags": [
+      "发布部署",
+      "自动化"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "aa6b276961f8e6bd627d64ed5c23c61a90954601b21a572eba3b1421d5ac4335"
+  },
+  {
+    "id": "ecc/native/flutter-dart-code-review",
+    "callName": "ecc:flutter-dart-code-review",
+    "nameZh": "Flutter 与 Dart 代码审查",
+    "summaryZh": "按通用清单检查 Flutter 组件、状态管理、Dart 写法、性能、无障碍和安全问题。",
+    "scenariosZh": [
+      "审查采用不同状态管理库的 Flutter 变更",
+      "检查组件结构、渲染开销和可访问性"
+    ],
+    "tags": [
+      "移动开发",
+      "审查",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "5ceac13c9b99c97340f9a47c081737aceee1f803ed9045b7fbc980243b01db03"
+  },
+  {
+    "id": "ecc/native/foundation-models-on-device",
+    "callName": "ecc:foundation-models-on-device",
+    "nameZh": "苹果端侧语言模型",
+    "summaryZh": "介绍 iOS 26 及以上 FoundationModels 的文本生成、结构化输出、工具调用与流式结果。",
+    "scenariosZh": [
+      "在苹果应用中加入本地语言模型能力",
+      "设计受约束的生成结果与工具调用"
+    ],
+    "tags": [
+      "移动开发",
+      "AI代理"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "4f239588e43f7ff0d6415cdcd2c85528a854cdd712986c00c690c6d3cb09491e"
+  },
+  {
+    "id": "ecc/native/frontend-a11y",
+    "callName": "ecc:frontend-a11y",
+    "nameZh": "前端无障碍交互",
+    "summaryZh": "为 React 与 Next.js 界面落实语义 HTML、表单标签、键盘导航和焦点管理。",
+    "scenariosZh": [
+      "实现可用键盘操作的弹窗、菜单和标签页",
+      "修复表单标签或读屏反馈缺失"
+    ],
+    "tags": [
+      "前端",
+      "无障碍"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "e00991a3f4d47fcf1529dd74a080afcf46137dc5061e70dc6e3da7b27f2ae3f3"
+  },
+  {
+    "id": "ecc/native/frontend-design-direction",
+    "callName": "ecc:frontend-design-direction",
+    "nameZh": "前端视觉方向",
+    "summaryZh": "根据产品用途确定界面视觉方向，指导页面、组件和应用的具体设计选择。",
+    "scenariosZh": [
+      "新建网站或仪表盘前确定视觉风格",
+      "改善缺乏产品辨识度的网页界面"
+    ],
+    "tags": [
+      "前端",
+      "架构设计"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "71a40f7bc4a28da01b54527fe5590f6055c93adc630e6ceee8c892b35c980893"
+  },
+  {
+    "id": "ecc/native/frontend-patterns",
+    "callName": "ecc:frontend-patterns",
+    "nameZh": "前端开发模式",
+    "summaryZh": "整理 React 与 Next.js 的组件、状态管理、性能和界面实践，帮助构建可维护的前端。",
+    "scenariosZh": [
+      "设计 React 组件与共享状态",
+      "审查 Next.js 页面渲染和前端性能"
+    ],
+    "tags": [
+      "前端",
+      "开发实现",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "a5b971eb9e74cd763c7e3308bfd888e0d9cf69f8b88477659889d77182479740"
+  },
+  {
+    "id": "ecc/native/frontend-slides",
+    "callName": "ecc:frontend-slides",
+    "nameZh": "网页演示文稿",
+    "summaryZh": "创建带动画的 HTML 演示文稿，或将 PowerPoint 转换为网页，通过视觉样例选择风格。",
+    "scenariosZh": [
+      "为演讲或产品介绍制作网页幻灯片",
+      "将 PPT 或 PPTX 转成可浏览的演示页面"
+    ],
+    "tags": [
+      "前端",
+      "文档",
+      "多媒体"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "9d58ad7d4555a9d6ea1944a5084fd0428ee44276ac13ee8df02c1c4e63925291"
+  },
+  {
+    "id": "ecc/native/fsharp-testing",
+    "callName": "ecc:fsharp-testing",
+    "nameZh": "F# 测试实践",
+    "summaryZh": "使用 xUnit、FsUnit、Unquote 和 FsCheck 组织 F# 单元、集成与属性测试。",
+    "scenariosZh": [
+      "为 F# 模块编写可读断言",
+      "用属性测试验证大量输入下的行为"
+    ],
+    "tags": [
+      "测试",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "d89f8cb5235f7896b014aae4aa94026bd1a38bc6add956d3fc7ccf2963f2adb7"
+  },
+  {
+    "id": "ecc/native/gan-style-harness",
+    "callName": "ecc:gan-style-harness",
+    "nameZh": "生成与评估迭代框架",
+    "summaryZh": "安排生成代理与评估代理循环协作，让应用实现依据反馈反复改进直到达到质量要求。",
+    "scenariosZh": [
+      "自动迭代一个具有明确质量门槛的功能",
+      "为代理生成结果建立评估与修复循环"
+    ],
+    "tags": [
+      "AI代理",
+      "测试",
+      "自动化"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "d91da8ca4a77a797d9ab78bb748aeb16567d75a1b109c894dc07d8815aa19dde"
+  },
+  {
+    "id": "ecc/native/gateguard",
+    "callName": "ecc:gateguard",
+    "nameZh": "首次修改事实门禁",
+    "summaryZh": "在代理首次编辑或执行修改前，要求提供调用方、数据结构和用户要求等具体事实。",
+    "scenariosZh": [
+      "配置 GateGuard Hook 与路径豁免",
+      "处理首次工具调用被门禁拒绝的情况"
+    ],
+    "tags": [
+      "AI代理",
+      "安全",
+      "审查"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "54083368cd78dea6ea178a8cf666557f41bbc70edaa3be32b8639df9de1c1795"
+  },
+  {
+    "id": "ecc/native/generating-python-installer",
+    "callName": "ecc:generating-python-installer",
+    "nameZh": "Python 商业安装包优化",
+    "summaryZh": "结合 Nuitka 编译、依赖与 DLL 瘦身、Inno Setup 打包，优化 Windows 安装包体积与启动速度。",
+    "scenariosZh": [
+      "为 Python 桌面产品制作 Windows 安装程序",
+      "分析发布目录和 DLL 占用以缩减体积"
+    ],
+    "tags": [
+      "发布部署",
+      "性能",
+      "语言技术"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "47e73ef601d900be3b5ccb5d1a1ba2371d3e46c67b5243c1810e51cd2d8f62f3"
+  },
+  {
+    "id": "ecc/native/git-workflow",
+    "callName": "ecc:git-workflow",
+    "nameZh": "Git 协作流程",
+    "summaryZh": "整理分支策略、提交约定、历史整理、合并与变基选择以及冲突处理方法。",
+    "scenariosZh": [
+      "为团队选择分支与提交规则",
+      "在发起合并前整理提交或解决冲突"
+    ],
+    "tags": [
+      "版本管理",
+      "协作"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "7094ab94802d7e839dc33c6ea230020327260518b1b1ce62b42d56d051c1d7c5"
+  },
+  {
+    "id": "ecc/native/github-ops",
+    "callName": "ecc:github-ops",
+    "nameZh": "GitHub 仓库运营",
+    "summaryZh": "通过 gh CLI 处理 Issue、PR、持续集成、发布与安全监测等仓库运营工作。",
+    "scenariosZh": [
+      "分诊 Issue 并跟踪 PR 和 CI 状态",
+      "整理发布或清理长期无人处理的事项"
+    ],
+    "tags": [
+      "版本管理",
+      "协作",
+      "发布部署"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "281e19fbf138c8d7ac7379864825721aa6f6efcf4008e976a6ea34b3c96e2b54"
+  },
+  {
+    "id": "ecc/native/golang-patterns",
+    "callName": "ecc:golang-patterns",
+    "nameZh": "Go 语言开发模式",
+    "summaryZh": "提供符合 Go 习惯的结构、约定与实现方式，帮助编写稳定且易维护的应用。",
+    "scenariosZh": [
+      "设计 Go 包与业务代码结构",
+      "审查 Go 写法是否符合语言惯例"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现",
+      "后端"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "d643e354683167727cfeb76934855db988468cd15b3ca01db9a32db43902edf7"
+  },
+  {
+    "id": "ecc/native/golang-testing",
+    "callName": "ecc:golang-testing",
+    "nameZh": "Go 测试与模糊验证",
+    "summaryZh": "采用表驱动用例、子测试、基准测试和模糊测试验证 Go 代码，并跟踪覆盖率。",
+    "scenariosZh": [
+      "为多个边界输入组织表驱动测试",
+      "为 Go 热点函数建立基准或模糊测试"
+    ],
+    "tags": [
+      "测试",
+      "性能",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "e3399562c58590dfcbd09bfcbf8f401120a2ded0418eb33bbfca6c697ac485ad"
+  },
+  {
+    "id": "ecc/native/google-workspace-ops",
+    "callName": "ecc:google-workspace-ops",
+    "nameZh": "Google 办公资产协作",
+    "summaryZh": "将 Drive、Docs、Sheets 和 Slides 作为统一工作流，查找、整理、编辑和迁移共享资料。",
+    "scenariosZh": [
+      "跨文档与表格整理项目计划和跟踪清单",
+      "查找、总结或清理共享办公文件"
+    ],
+    "tags": [
+      "文档",
+      "协作",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "93ab16b44764e3c00472c7dfb0b58cf59a3c7493ac99ab93fcabf280f164b6a1"
+  },
+  {
+    "id": "ecc/native/growth-log",
+    "callName": "ecc:growth-log",
+    "nameZh": "可复用经验记录",
+    "summaryZh": "从复杂任务和失败中提炼根因、可迁移规则与识别信号，并合并重复经验。",
+    "scenariosZh": [
+      "调试或回滚后记录可复用教训",
+      "回顾一段时间的成长并去除重复记录"
+    ],
+    "tags": [
+      "文档",
+      "上下文"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "1cfaf2a0bf341087bbeeb8db0dc7c5edd5bad241ce4d89df728d22f2c5c72809"
+  },
+  {
+    "id": "ecc/native/healthcare-cdss-patterns",
+    "callName": "ecc:healthcare-cdss-patterns",
+    "nameZh": "临床决策支持模式",
+    "summaryZh": "整理药物相互作用、剂量检查、临床评分、告警分级及其与病历工作流的集成方式。",
+    "scenariosZh": [
+      "开发处方剂量或药物相互作用检查",
+      "将临床评分与告警接入医疗应用"
+    ],
+    "tags": [
+      "后端",
+      "开发实现",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "439875d2fff3bbf14e0b46b7310b4c815c2596e54a6cafaafb4b2b93b4865626"
+  },
+  {
+    "id": "ecc/native/healthcare-emr-patterns",
+    "callName": "ecc:healthcare-emr-patterns",
+    "nameZh": "电子病历应用模式",
+    "summaryZh": "围绕就诊、处方、临床支持和易访问的数据录入界面组织 EMR 与 EHR 功能。",
+    "scenariosZh": [
+      "实现就诊和处方生成工作流",
+      "设计医疗数据录入及其临床安全边界"
+    ],
+    "tags": [
+      "开发实现",
+      "后端",
+      "无障碍"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "117e1861c5313f1874c82791c73798d28e9985cac8964a95d73bed915a8aff39"
+  },
+  {
+    "id": "ecc/native/healthcare-eval-harness",
+    "callName": "ecc:healthcare-eval-harness",
+    "nameZh": "医疗部署安全验收",
+    "summaryZh": "用临床支持准确性、健康隐私暴露和流程完整性测试，为医疗应用部署设置安全门槛。",
+    "scenariosZh": [
+      "部署医疗功能前运行患者安全测试",
+      "验证隐私泄漏和临床工作流集成风险"
+    ],
+    "tags": [
+      "测试",
+      "安全",
+      "发布部署"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "0c74bb0309d4fb7e3bf04b0f779909156520c73bd6162bd405f7232af19c0a68"
+  },
+  {
+    "id": "ecc/native/healthcare-phi-compliance",
+    "callName": "ecc:healthcare-phi-compliance",
+    "nameZh": "医疗隐私数据保护",
+    "summaryZh": "围绕 PHI 与个人信息设计分类、行级授权、审计和泄漏防护，关注日志、URL 与浏览器存储。",
+    "scenariosZh": [
+      "审查医疗系统中的患者或医护数据暴露",
+      "实现医疗隐私数据的访问控制和审计"
+    ],
+    "tags": [
+      "安全",
+      "审查",
+      "数据库"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "02f9091e652f278a722230d5b96948d6ceaf10f9f37bc4c7eb6ddaad7bc8a271"
+  },
+  {
+    "id": "ecc/native/hermes-imports",
+    "callName": "ecc:hermes-imports",
+    "nameZh": "Hermes 工作流脱敏迁移",
+    "summaryZh": "将本地 Hermes 操作流程整理为可复用的 ECC 技能和发布资料，并清除私有环境信息。",
+    "scenariosZh": [
+      "把本机工作流移植为公开技能",
+      "发布前排除凭据、私人状态与本地路径"
+    ],
+    "tags": [
+      "技能管理",
+      "安全",
+      "文档"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "4e425b32c9830c936f845b3f63352f6f199d869eb27eef484ce28ddc8ce4f3b4"
+  },
+  {
+    "id": "ecc/native/hexagonal-architecture",
+    "callName": "ecc:hexagonal-architecture",
+    "nameZh": "六边形架构设计",
+    "summaryZh": "通过端口与适配器隔离领域逻辑和输入输出，明确依赖方向并提高用例可测试性。",
+    "scenariosZh": [
+      "把混杂在数据库和网络代码中的业务逻辑拆开",
+      "为 TypeScript、Java、Kotlin 或 Go 服务设计领域边界"
+    ],
+    "tags": [
+      "架构设计",
+      "后端",
+      "测试"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "1579f70e4cd5a2dde39d29a2055d18b39f06b063a308d3b43a498900c99495b7"
+  },
+  {
+    "id": "ecc/native/hipaa-compliance",
+    "callName": "ecc:hipaa-compliance",
+    "nameZh": "HIPAA 隐私合规入口",
+    "summaryZh": "面向明确涉及 HIPAA 的医疗隐私与安全任务，梳理 PHI、业务伙伴协议和泄漏处置范围。",
+    "scenariosZh": [
+      "核查美国医疗隐私要求及责任边界",
+      "审查 PHI 处理或业务伙伴协议相关安排"
+    ],
+    "tags": [
+      "安全",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "4bc1f29a3be7986f89bdd7b5ec3894451e67c687a558b683cab62bd8d1fd2264"
+  },
+  {
+    "id": "ecc/native/homelab-network-readiness",
+    "callName": "ecc:homelab-network-readiness",
+    "nameZh": "家庭网络变更准备",
+    "summaryZh": "在修改路由、DHCP、DNS、VLAN 或 VPN 前，核对网络分区和远程访问方案的准备情况。",
+    "scenariosZh": [
+      "把物联网与可信设备分区前检查方案",
+      "变更本地 DNS 或 VPN 前梳理影响与回退"
+    ],
+    "tags": [
+      "网络运维",
+      "审查"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "22ca735343716f296daa024c57128ceb6d5c38d54b3edb3045f6a9ef376a61f8"
+  },
+  {
+    "id": "ecc/native/homelab-network-setup",
+    "callName": "ecc:homelab-network-setup",
+    "nameZh": "家庭与实验室组网",
+    "summaryZh": "规划网关、交换机、无线接入点、地址、DHCP、DNS 和布线，排查常见组网错误。",
+    "scenariosZh": [
+      "搭建家庭或小型实验室网络",
+      "检查无线覆盖、地址分配与 DNS 问题"
+    ],
+    "tags": [
+      "网络运维",
+      "架构设计"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "8104e87516857c7f773da9aba0dd13b61c3e490913adb4555d036614a9a937be"
+  },
+  {
+    "id": "ecc/native/homelab-pihole-dns",
+    "callName": "ecc:homelab-pihole-dns",
+    "nameZh": "Pi-hole DNS 配置",
+    "summaryZh": "处理 Pi-hole 安装、拦截列表、加密 DNS、DHCP 接入、本地记录和解析故障。",
+    "scenariosZh": [
+      "为家庭网络部署 Pi-hole 过滤",
+      "排查经过 Pi-hole 后无法解析的域名"
+    ],
+    "tags": [
+      "网络运维",
+      "安全"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "23a801545a4839c4fc04dc287e1122cc3913016a116b2cb5c7720e193edfa6c2"
+  },
+  {
+    "id": "ecc/native/homelab-vlan-segmentation",
+    "callName": "ecc:homelab-vlan-segmentation",
+    "nameZh": "家庭网络 VLAN 分区",
+    "summaryZh": "在 UniFi、pfSense、OPNsense 或 MikroTik 上划分设备网络，配置干道、防火墙和无线映射。",
+    "scenariosZh": [
+      "将访客、服务器和物联网设备隔离",
+      "核对交换机 trunk 与无线 SSID 的 VLAN 对应关系"
+    ],
+    "tags": [
+      "网络运维",
+      "安全"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "a6e5d6574566881d31e949cc0fad927e1e547d2ebe6f11d1f94f2890ed6ddd5e"
+  },
+  {
+    "id": "ecc/native/homelab-wireguard-vpn",
+    "callName": "ecc:homelab-wireguard-vpn",
+    "nameZh": "WireGuard 家庭远程访问",
+    "summaryZh": "整理 WireGuard 服务端、对端密钥和客户端配置，并比较分流与全流量隧道。",
+    "scenariosZh": [
+      "让手机或笔记本安全访问家庭网络",
+      "决定 VPN 只转发内网还是全部流量"
+    ],
+    "tags": [
+      "网络运维",
+      "安全"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "38df424e399549d3ba42d6f50c77554d9a88a46b3bac4dd1436158874535c13c"
+  },
+  {
+    "id": "ecc/native/hookify-rules",
+    "callName": "ecc:hookify-rules",
+    "nameZh": "Hookify 防护规则",
+    "summaryZh": "编写带 YAML 元数据的 Markdown 规则，匹配命令、文件或提示事件并给出警告或阻止操作。",
+    "scenariosZh": [
+      "为危险命令或敏感文件编辑添加规则",
+      "配置 Hookify 的正则条件和事件匹配"
+    ],
+    "tags": [
+      "自动化",
+      "安全",
+      "AI代理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "6d1fdfe8e594ad1465ee1e02ee2fb6fce51570ef9e4ee1231bdc43df937ed4c4"
+  },
+  {
+    "id": "ecc/native/i18n-sync",
+    "callName": "ecc:i18n-sync",
+    "nameZh": "应用多语言同步",
+    "summaryZh": "依据实际键使用和项目术语维护 JSON 语言文件，核查新增、缺失与过期翻译。",
+    "scenariosZh": [
+      "给应用增加语言或更新界面文案",
+      "检查源语言变更后翻译是否遗漏或失效"
+    ],
+    "tags": [
+      "文档",
+      "前端",
+      "自动化"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "05fc3e2ae72c2f55cc44fa0e9531688c1112081037d628e1124fd5bf40825325"
+  },
+  {
+    "id": "ecc/native/inherit-legacy-style",
+    "callName": "ecc:inherit-legacy-style",
+    "nameZh": "继承旧项目编码风格",
+    "summaryZh": "从手写旧代码中提取隐含约定，逐项解决冲突并记录可执行的风格与禁止事项。",
+    "scenariosZh": [
+      "让 AI 接手旧项目时沿用既有写法",
+      "把未写成文档的命名与代码惯例明确下来"
+    ],
+    "tags": [
+      "审查",
+      "开发实现",
+      "上下文"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "ccce44b6240e346e2d564a035f45abf01842cfc03f4c0253050b8304c505f709"
+  },
+  {
+    "id": "ecc/native/intent-driven-development",
+    "callName": "ecc:intent-driven-development",
+    "nameZh": "意图与验收条件澄清",
+    "summaryZh": "把模糊或影响较大的需求转成有范围、可验证的验收条件，明确数据、安全和集成边界。",
+    "scenariosZh": [
+      "复杂改动实施前明确目标与验收标准",
+      "给其他代理准备可验证的实施要求"
+    ],
+    "tags": [
+      "需求分析",
+      "架构设计",
+      "测试"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "e34045f7b3bf6a6fbd364f85c7bc81d8208e18bb929ceff80bbc987f78aadea8"
+  },
+  {
+    "id": "ecc/native/inventory-demand-planning",
+    "callName": "ecc:inventory-demand-planning",
+    "nameZh": "库存与需求规划",
+    "summaryZh": "为多地点零售选择预测方法，结合分层、安全库存、补货点、促销和季节变化安排库存。",
+    "scenariosZh": [
+      "制定安全库存和补货策略",
+      "评估促销销量变化及季末降价时机"
+    ],
+    "tags": [
+      "业务运营",
+      "研究检索"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "ad5bf71e6d95d80611beb8c4f424f8bbd6a49fb7e4766562d45133e9fdf4a6f2"
+  },
+  {
+    "id": "ecc/native/investor-materials",
+    "callName": "ecc:investor-materials",
+    "nameZh": "投资人融资资料",
+    "summaryZh": "编制路演稿、投资备忘录、财务模型和资金用途等融资材料，保持多份资料中的数字与叙述一致。",
+    "scenariosZh": [
+      "准备融资演示与投资人备忘录",
+      "核对里程碑、资金用途和财务预测的一致性"
+    ],
+    "tags": [
+      "文档",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "e2c8d64412e2af9a2def3144b3d1e32f0fd69c724f2d17615fcf5a9bfa5f01cc"
+  },
+  {
+    "id": "ecc/native/investor-outreach",
+    "callName": "ecc:investor-outreach",
+    "nameZh": "投资人沟通文案",
+    "summaryZh": "针对天使投资人、创投或战略投资方，撰写简洁且有针对性的初次联系、引荐与跟进消息。",
+    "scenariosZh": [
+      "准备融资冷邮件或熟人引荐说明",
+      "撰写投资人进展更新与跟进文案"
+    ],
+    "tags": [
+      "文档",
+      "业务运营",
+      "协作"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "e5d4918dcbc62eb25d42829b56683ae6befe3a623f7ce6ed66bef37ce1a57c65"
+  },
+  {
+    "id": "ecc/native/ios-icon-gen",
+    "callName": "ecc:ios-icon-gen",
+    "nameZh": "iOS 应用图标生成",
+    "summaryZh": "从 SF Symbols 或 Iconify 查找图标并生成 PNG imageset，接入 Xcode 资源目录。",
+    "scenariosZh": [
+      "给 iOS 项目创建应用图标资产",
+      "搜索可用符号并整理到 asset catalog"
+    ],
+    "tags": [
+      "移动开发",
+      "多媒体"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "893627c44e6d209f9b2e02de2f4879188649d22ae9723cd5b9445de6df3d6482"
+  },
+  {
+    "id": "ecc/native/iterative-retrieval",
+    "callName": "ecc:iterative-retrieval",
+    "nameZh": "逐步检索上下文",
+    "summaryZh": "通过多轮逐渐收敛的检索，为子代理补足完成任务需要的上下文。",
+    "scenariosZh": [
+      "子代理缺少代码或需求背景",
+      "初次检索不足时按结果继续缩小搜索范围"
+    ],
+    "tags": [
+      "上下文",
+      "研究检索",
+      "AI代理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "b453b16d3e36174b8487c05ab807d0321a66c2d058812b2ae129d82824183725"
+  },
+  {
+    "id": "ecc/native/ito-baskets",
+    "callName": "ecc:ito-baskets",
+    "nameZh": "Itô 篮子与预测市场研究",
+    "summaryZh": "只读浏览 Itô 篮子和预测市场资料，结合用户研究形成有来源的比较、简报或非执行性规划。",
+    "scenariosZh": [
+      "比较篮子目录与已有研究或观察列表",
+      "整理预测市场事件、场所与流动性资料"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "ef5e4353d1d90a75ad0b9c435d831c178187b4be407b9270e2d32b2bb64589bc"
+  },
+  {
+    "id": "ecc/native/ito-compute",
+    "callName": "ecc:ito-compute",
+    "nameZh": "Itô 算力采购与核验",
+    "summaryZh": "通过单独安装的官方 CLI 查询 GPU、提交固定价格询价、跟踪采购和进行明确授权的节点核验。",
+    "scenariosZh": [
+      "查找 H100 或 H200 等 GPU 容量并准备询价",
+      "核查已订算力状态或撤销设备访问凭据"
+    ],
+    "tags": [
+      "基础设施",
+      "业务运营",
+      "审查"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "ed0664f44307b1243cd7fa7521b05ca3f50a1dd4460e93b55edb8bcda988e815"
+  },
+  {
+    "id": "ecc/native/ito-inference",
+    "callName": "ecc:ito-inference",
+    "nameZh": "Itô 推理服务准备",
+    "summaryZh": "在算力预约完成后检查模型服务的可用性，在支持的后端就绪时交接经确认的服务清单。",
+    "scenariosZh": [
+      "预约 GPU 后核查推理服务是否可用",
+      "准备 OpenAI 兼容端点或自托管模型的服务参数"
+    ],
+    "tags": [
+      "AI代理",
+      "发布部署"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "60d2094ff4e8eb43f4599eaf806331231525a7a6cc5fee609f1764a0f848cc7b"
+  },
+  {
+    "id": "ecc/native/ito-training",
+    "callName": "ecc:ito-training",
+    "nameZh": "Itô 训练任务准备",
+    "summaryZh": "在算力预约完成后检查训练能力，在规范后端可用时交接经确认的预训练、微调或强化学习清单。",
+    "scenariosZh": [
+      "为已预约 GPU 准备训练工作负载",
+      "确认后端支持情况后提交训练配置交接"
+    ],
+    "tags": [
+      "AI代理",
+      "发布部署"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "43ce5354855709d10d7171bae301157b0b88e6ac9a3775c9acd9599c0b7617d5"
+  },
+  {
+    "id": "ecc/native/java-coding-standards",
+    "callName": "ecc:java-coding-standards",
+    "nameZh": "Java 服务编码规范",
+    "summaryZh": "针对 Spring Boot 与 Quarkus 明确命名、不可变性、Optional、异常、泛型、依赖注入和项目结构。",
+    "scenariosZh": [
+      "编写或审查 Java 后端代码",
+      "统一不同服务框架中的编码约定"
+    ],
+    "tags": [
+      "语言技术",
+      "后端",
+      "审查"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "c7088a434cd7efb4f3bb449bed2178cf683c1d71bc50f8ae5234a8880d3633f4"
+  },
+  {
+    "id": "ecc/native/jira-integration",
+    "callName": "ecc:jira-integration",
+    "nameZh": "Jira 任务集成",
+    "summaryZh": "通过 MCP 或 REST 接口读取 Jira 事项、分析需求，并处理状态更新、评论和工作流转换。",
+    "scenariosZh": [
+      "获取 Jira 任务内容并梳理实施要求",
+      "更新任务状态或准备事项评论"
+    ],
+    "tags": [
+      "协作",
+      "需求分析",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "ce0a0c815e3112a1e80d4dbd1d2d0c804c2af0371628d325e04d7ffbddf4247e"
+  },
+  {
+    "id": "ecc/native/jpa-patterns",
+    "callName": "ecc:jpa-patterns",
+    "nameZh": "JPA 与 Hibernate 数据访问",
+    "summaryZh": "整理实体关联、事务、查询、索引和分页，识别 N+1 等数据访问问题。",
+    "scenariosZh": [
+      "为 Spring Boot 设计实体和关联关系",
+      "排查 Hibernate 查询、事务或性能问题"
+    ],
+    "tags": [
+      "数据库",
+      "后端",
+      "性能"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "bcdd45c5e435df259856b20aae47182209b0467b542eacfc7e32bcf452326839"
+  },
+  {
+    "id": "ecc/native/knowledge-ops",
+    "callName": "ecc:knowledge-ops",
+    "nameZh": "多来源知识管理",
+    "summaryZh": "跨本地文件、记忆工具、向量库和 Git 仓库整理知识，提供录入、同步、去重和检索工作流。",
+    "scenariosZh": [
+      "把分散知识统一归档并消除重复",
+      "在多个知识存储中检索或同步资料"
+    ],
+    "tags": [
+      "上下文",
+      "技能管理",
+      "研究检索"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "958529713af2ab29c7b31b3cb758953271174b8909c94f1238dd7c78671672c2"
+  },
+  {
+    "id": "ecc/native/kotlin-coroutines-flows",
+    "callName": "ecc:kotlin-coroutines-flows",
+    "nameZh": "Kotlin 协程与数据流",
+    "summaryZh": "围绕结构化并发、Flow、StateFlow、错误处理与测试，组织 Android 和 KMP 异步代码。",
+    "scenariosZh": [
+      "编写 Android 协程或响应式数据流",
+      "排查取消传播、并发与状态更新问题"
+    ],
+    "tags": [
+      "移动开发",
+      "语言技术",
+      "测试"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "ed7d895ecd6c717fbdbf7f1469110df74a6337792acd1232c4ad7286abee76e4"
+  },
+  {
+    "id": "ecc/native/kotlin-exposed-patterns",
+    "callName": "ecc:kotlin-exposed-patterns",
+    "nameZh": "Exposed 数据访问模式",
+    "summaryZh": "使用 Exposed DSL 或 DAO 组织查询与事务，并结合连接池、迁移和仓储模式管理数据库访问。",
+    "scenariosZh": [
+      "在 Kotlin 服务中采用 Exposed ORM",
+      "设计事务、连接池或数据库迁移集成"
+    ],
+    "tags": [
+      "数据库",
+      "后端",
+      "语言技术"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "dda4952840ddff31a9ea4ad7161dd75fbc13ff73ebf73d5ee9fa42fcce287167"
+  },
+  {
+    "id": "ecc/native/kotlin-ktor-patterns",
+    "callName": "ecc:kotlin-ktor-patterns",
+    "nameZh": "Ktor 服务开发模式",
+    "summaryZh": "整理 Ktor 路由、插件、认证、依赖注入、序列化、WebSocket 和测试应用实践。",
+    "scenariosZh": [
+      "构建 Kotlin Ktor HTTP 服务",
+      "实现认证、插件或 WebSocket 并编写服务测试"
+    ],
+    "tags": [
+      "后端",
+      "语言技术",
+      "测试"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "f2fa0b135ad0f37ee7a79dd346d236758f25c60c525de451bba28678659a5261"
+  },
+  {
+    "id": "ecc/native/kotlin-patterns",
+    "callName": "ecc:kotlin-patterns",
+    "nameZh": "Kotlin 语言开发模式",
+    "summaryZh": "采用协程、空安全和 DSL 等惯用写法，构建稳定、易维护的 Kotlin 应用。",
+    "scenariosZh": [
+      "设计 Kotlin 代码结构与类型边界",
+      "审查空值处理和语言惯用写法"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "e519234772a3697763ad484908d180c4c653439fea75a56c03440c272f9f0896"
+  },
+  {
+    "id": "ecc/native/kotlin-testing",
+    "callName": "ecc:kotlin-testing",
+    "nameZh": "Kotlin 测试实践",
+    "summaryZh": "用 Kotest、MockK、协程测试和属性测试验证 Kotlin 代码，并结合 Kover 检查覆盖率。",
+    "scenariosZh": [
+      "为 Kotlin 模块编写隔离测试",
+      "测试协程行为或检查测试覆盖情况"
+    ],
+    "tags": [
+      "测试",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "13e39ad65e86e86c22fbdb6273bdc8d17d3784c221a8f08207a1e9e2e9c29a0a"
+  },
+  {
+    "id": "ecc/native/kubernetes-patterns",
+    "callName": "ecc:kubernetes-patterns",
+    "nameZh": "Kubernetes 部署与排障",
+    "summaryZh": "整理工作负载、资源限制、RBAC、探针、扩缩容和配置管理，协助检查生产部署。",
+    "scenariosZh": [
+      "编写或审查 Kubernetes 清单",
+      "排查探针、权限或资源限制导致的运行问题"
+    ],
+    "tags": [
+      "发布部署",
+      "网络运维",
+      "安全"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "808b2ec032224e251f1bef9f6e9879e88e2e7abd0feb393632fb6042d8ac5ecc"
+  },
+  {
+    "id": "ecc/native/laravel-patterns",
+    "callName": "ecc:laravel-patterns",
+    "nameZh": "Laravel 应用开发模式",
+    "summaryZh": "围绕路由、控制器、Eloquent、服务、队列、事件和缓存组织 Laravel 生产应用。",
+    "scenariosZh": [
+      "设计 Laravel API 和业务服务",
+      "审查 Eloquent、队列或缓存的使用方式"
+    ],
+    "tags": [
+      "后端",
+      "开发实现",
+      "数据库"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "6fa9d96a7b944ef9775e2ecb93a56bc29d6219e34eb5af491792638fc5cb46b4"
+  },
+  {
+    "id": "ecc/native/laravel-plugin-discovery",
+    "callName": "ecc:laravel-plugin-discovery",
+    "nameZh": "Laravel 插件发现",
+    "summaryZh": "通过 LaraPlugins.io MCP 查找 Laravel 扩展，评估包健康状况和 Laravel、PHP 版本兼容性。",
+    "scenariosZh": [
+      "为 Laravel 项目寻找已有功能包",
+      "引入扩展前检查维护状态与兼容条件"
+    ],
+    "tags": [
+      "后端",
+      "研究检索"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "6cf2b48ae39f26df7f8d17cf6480635b5203f6942a756a290efa27cf339169d3"
+  },
+  {
+    "id": "ecc/native/laravel-security",
+    "callName": "ecc:laravel-security",
+    "nameZh": "Laravel 安全检查",
+    "summaryZh": "检查认证、授权、Eloquent 使用、CSRF、XSS、API 与部署配置中的 Laravel 安全问题。",
+    "scenariosZh": [
+      "审查 Laravel 登录、权限与数据访问",
+      "发布前核对 Web 攻击防护和服务配置"
+    ],
+    "tags": [
+      "安全",
+      "后端",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "3a46a2883f08ab1004f33982dbb17fd7ef00c14a24c5c586c7f6575819ec02b4"
+  },
+  {
+    "id": "ecc/native/laravel-tdd",
+    "callName": "ecc:laravel-tdd",
+    "nameZh": "Laravel 测试驱动开发",
+    "summaryZh": "用 PHPUnit 或 Pest、工厂、HTTP 测试和模拟对象，以测试驱动 Laravel 功能实现。",
+    "scenariosZh": [
+      "新增 Laravel 功能时先写行为测试",
+      "测试 Sanctum 认证、HTTP 接口和模型数据"
+    ],
+    "tags": [
+      "测试",
+      "后端"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "505fa6c5caad022a5db0c359aebdcdcce1ad16e5863dc13ef862aec48cfa1628"
+  },
+  {
+    "id": "ecc/native/laravel-verification",
+    "callName": "ecc:laravel-verification",
+    "nameZh": "Laravel 交付验证",
+    "summaryZh": "在合并或部署前核对 Laravel 环境、代码规范、静态分析、测试覆盖和安全结果。",
+    "scenariosZh": [
+      "验证 Laravel 变更是否满足合并条件",
+      "部署前检查环境、安全与测试证据"
+    ],
+    "tags": [
+      "测试",
+      "安全",
+      "发布部署"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "577f592e4d570e8a6c4a0106acb8102063f67bea53c98eb6eae222191c038c35"
+  },
+  {
+    "id": "ecc/native/latency-critical-systems",
+    "callName": "ecc:latency-critical-systems",
+    "nameZh": "低延迟系统优化",
+    "summaryZh": "跟踪分位延迟、数据新鲜度和队列深度，分析实时系统热点并以运行读回验证改进。",
+    "scenariosZh": [
+      "排查实时仪表盘或流式代理的高分位延迟",
+      "分析消息队列、网关和缓存的吞吐瓶颈"
+    ],
+    "tags": [
+      "性能",
+      "后端",
+      "审查"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "e533b86d34fe05f5db46365608e15df35386f4d9ad2b8d9d0a350cce5fa8b59d"
+  },
+  {
+    "id": "ecc/native/lead-intelligence",
+    "callName": "ecc:lead-intelligence",
+    "nameZh": "潜在客户研究与触达",
+    "summaryZh": "结合信号评分、双方匹配、熟人引荐路径与来源风格，组织潜在客户筛选和分渠道触达。",
+    "scenariosZh": [
+      "研究并筛选高价值目标联系人",
+      "准备具有来源依据的邮件或社交触达计划"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营",
+      "协作"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "1b24027c5ef0ebfb046990433905b80d8df63d93f83fff9fdef4f74ad883a5f2"
+  },
+  {
+    "id": "ecc/native/liquid-glass-design",
+    "callName": "ecc:liquid-glass-design",
+    "nameZh": "苹果液态玻璃界面",
+    "summaryZh": "面向 iOS 26，在 SwiftUI、UIKit 与 WidgetKit 中使用动态玻璃、模糊、反射和形态变化。",
+    "scenariosZh": [
+      "为苹果应用设计 Liquid Glass 组件",
+      "检查玻璃材质与交互动画的实现方式"
+    ],
+    "tags": [
+      "移动开发",
+      "前端"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "6e424b8daba26c92a8283cd3e5b35c7b2bc78a0a9fc07821a5939027090b8e43"
+  },
+  {
+    "id": "ecc/native/living-docs-governance",
+    "callName": "ecc:living-docs-governance",
+    "nameZh": "长期项目文档治理",
+    "summaryZh": "赋予现有文档明确的规则、地图、状态和历史职责，防止代码与文档漂移和已删除内容被重建。",
+    "scenariosZh": [
+      "长期项目文档失真或会话交接丢失背景",
+      "将代理入口关联到现有权威文档"
+    ],
+    "tags": [
+      "文档",
+      "上下文",
+      "审查"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "e8c22a1f69743e256c6d6df138d99e49d22e29effbf008dfe2328b7fdc76247e"
+  },
+  {
+    "id": "ecc/native/llm-trading-agent-security",
+    "callName": "ecc:llm-trading-agent-security",
+    "nameZh": "交易代理权限安全",
+    "summaryZh": "检查持有钱包或交易权限的代理在提示注入、额度、发送前模拟、熔断与密钥处理方面的防护。",
+    "scenariosZh": [
+      "审查自动交易代理的资金权限和限额",
+      "核对交易执行前模拟及异常停止条件"
+    ],
+    "tags": [
+      "安全",
+      "AI代理",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "8a59b241f6ae86d8f96b88122643b4d27d70adb6c15b31f5163f9586cb81b293"
+  },
+  {
+    "id": "ecc/native/logistics-exception-management",
+    "callName": "ecc:logistics-exception-management",
+    "nameZh": "物流异常与索赔处理",
+    "summaryZh": "对延误、破损、丢失、短少和承运争议制定升级、索赔及成本取舍流程。",
+    "scenariosZh": [
+      "处理货运异常和交付争议",
+      "判断索赔材料、升级路径与处理成本"
+    ],
+    "tags": [
+      "业务运营",
+      "协作"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "7a1723164c36771a57601ade98296293a864c608d189a459dfbe18ab2259b877"
+  },
+  {
+    "id": "ecc/native/loop-design-check",
+    "callName": "ecc:loop-design-check",
+    "nameZh": "代理循环设计体检",
+    "summaryZh": "检查代理循环的目标、计划、构建与判定结构，识别空转、迎合验证器和错误目标跑到底等问题。",
+    "scenariosZh": [
+      "设计具有可判定目标的代理循环",
+      "审查循环停止条件与失控防护"
+    ],
+    "tags": [
+      "AI代理",
+      "架构设计",
+      "审查"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "d48c239c8b9ff253d103d7de7b9839c5bf9dbd3c90eddef7c4ac612b28d71bbd"
+  },
+  {
+    "id": "ecc/native/mailtrap-email-integration",
+    "callName": "ecc:mailtrap-email-integration",
+    "nameZh": "Mailtrap 事务邮件集成",
+    "summaryZh": "接入 Mailtrap Email API，处理沙箱测试、域名验证和认证，并排查投递问题。",
+    "scenariosZh": [
+      "给应用实现事务邮件发送",
+      "搭建开发邮件沙箱或排查邮件投递失败"
+    ],
+    "tags": [
+      "后端",
+      "测试",
+      "开发实现"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "917fe931b1ce8e796768d71686d4f90b37e413529593e5f7cf108c4c73b35ce4"
+  },
+  {
+    "id": "ecc/native/make-interfaces-feel-better",
+    "callName": "ecc:make-interfaces-feel-better",
+    "nameZh": "界面细节与手感优化",
+    "summaryZh": "检查间距、字体、边框、阴影、动效、点击区域、图标和状态反馈，提升界面阅读与交互体验。",
+    "scenariosZh": [
+      "改善页面排版与长文字换行",
+      "复核按钮点击区域、焦点和交互反馈"
+    ],
+    "tags": [
+      "前端",
+      "审查",
+      "无障碍"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "aff91aef917cba9c65681ae77197cee93ce9b697ee8916ea684ef8537c99fb52"
+  },
+  {
+    "id": "ecc/native/manim-video",
+    "callName": "ecc:manim-video",
+    "nameZh": "Manim 技术动画讲解",
+    "summaryZh": "使用 Manim 为概念、图表、系统结构和产品流程制作可复用动画，再按需要衔接视频流程。",
+    "scenariosZh": [
+      "把技术概念或系统关系做成动画",
+      "制作包含图形与步骤变化的产品讲解"
+    ],
+    "tags": [
+      "多媒体",
+      "文档"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "bb890b019664a995ca2bf6c08add444a85099caf4c0085de50e9ad6f62d62d5f"
+  },
+  {
+    "id": "ecc/native/market-research",
+    "callName": "ecc:market-research",
+    "nameZh": "市场与竞品研究",
+    "summaryZh": "围绕市场规模、竞争、基金或技术趋势收集有来源的证据，形成面向决策的研究结论。",
+    "scenariosZh": [
+      "比较竞品或评估市场规模",
+      "为投资尽调与行业决策整理公开证据"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "8cfc36dc8a93476d092115f3fc70c631dcab14fcd6e04371160fc4fb29547800"
+  },
+  {
+    "id": "ecc/native/marketing-campaign",
+    "callName": "ecc:marketing-campaign",
+    "nameZh": "多渠道营销活动",
+    "summaryZh": "从受众和定位出发，组织落地页、邮件、社交、广告和短视频文案及内容日历。",
+    "scenariosZh": [
+      "规划跨渠道产品发布活动",
+      "统一落地页、邮件和社交内容的活动主题"
+    ],
+    "tags": [
+      "业务运营",
+      "文档",
+      "协作"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "f4d2501b1abb19f7ef5f73b21afa5a7ea51c5dc3d766e8dbd239ec548899213f"
+  },
+  {
+    "id": "ecc/native/master-agreement-generator",
+    "callName": "ecc:master-agreement-generator",
+    "nameZh": "主协议草稿生成",
+    "summaryZh": "用统一模板和交易方 JSON 生成可复现的协议草稿，按角色选择条款，并在已签协议授权内准备附表通知。",
+    "scenariosZh": [
+      "为多个交易方生成同一框架协议的草稿",
+      "整理主协议附表及其通知授权，提交独立复核"
+    ],
+    "tags": [
+      "文档",
+      "业务运营"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "46f8c847b3fc406929a52c0064214715abb5412ecabb068730e6d4af50f89ac6"
+  },
+  {
+    "id": "ecc/native/mcp-dependency-review",
+    "callName": "ecc:mcp-dependency-review",
+    "nameZh": "MCP 依赖静态审查",
+    "summaryZh": "只读取 MCP 配置，识别可变包版本引用和审批后可能发生的代码漂移，不启动配置中的服务。",
+    "scenariosZh": [
+      "审批项目新增的 MCP 配置",
+      "在 CI 中检查未固定版本的 MCP 依赖"
+    ],
+    "tags": [
+      "安全",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "766536baa981710a85c8f761675f6a57f58600fff42b23ccf6171606180f4c12"
+  },
+  {
+    "id": "ecc/native/mcp-server-patterns",
+    "callName": "ecc:mcp-server-patterns",
+    "nameZh": "MCP 服务开发模式",
+    "summaryZh": "说明如何用 Node 与 TypeScript SDK 构建 MCP 工具、资源和提示词，并选择校验与传输方式。",
+    "scenariosZh": [
+      "开发新的 MCP 工具或资源接口",
+      "排查服务注册、输入校验或传输连接问题"
+    ],
+    "tags": [
+      "后端",
+      "AI代理",
+      "开发实现"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "eacb07c953e0440c758e3ee7d92984d2c9128e3444005ea7ad5da7bc0201d43d"
+  },
+  {
+    "id": "ecc/native/messages-ops",
+    "callName": "ecc:messages-ops",
+    "nameZh": "即时消息取证与查阅",
+    "summaryZh": "按实际消息来源查阅短信、私信与近期验证码，先核对会话证据再准备后续操作。",
+    "scenariosZh": [
+      "查找刚收到的短信或一次性验证码",
+      "回复前阅读私信上下文并说明已检查的来源"
+    ],
+    "tags": [
+      "协作",
+      "研究检索"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "c2036d3ff01fd13258a2d8af88c04b94f68a10808c799be4e62b975874b263af"
+  },
+  {
+    "id": "ecc/native/ml-adoption-playbook",
+    "callName": "ecc:ml-adoption-playbook",
+    "nameZh": "既有项目引入机器学习",
+    "summaryZh": "从问题界定、数据准备和架构解耦开始，为没有机器学习能力的项目建立并集成基线模型。",
+    "scenariosZh": [
+      "判断现有业务是否需要模型而非简单规则",
+      "为传统应用增加分类、推荐或预测能力"
+    ],
+    "tags": [
+      "AI代理",
+      "架构设计",
+      "需求分析"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "488f83a5c3766043e0ff98466f8d5534f69863d9adebda8b4d2903f00860e312"
+  },
+  {
+    "id": "ecc/native/mle-workflow",
+    "callName": "ecc:mle-workflow",
+    "nameZh": "机器学习工程流程",
+    "summaryZh": "组织数据契约、可复现训练、评估、部署、监控与回滚，将模型实验转为可运营的工程系统。",
+    "scenariosZh": [
+      "把研究笔记中的模型改造成训练和推理流水线",
+      "设计模型发布门槛并排查漂移或训练服务不一致"
+    ],
+    "tags": [
+      "AI代理",
+      "测试",
+      "发布部署"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "2497888dd543ca7bdf5d0cb4d90fce023eb2c1c14f860f0af8e8be42423131b4"
+  },
+  {
+    "id": "ecc/native/module-regression",
+    "callName": "ecc:module-regression",
+    "nameZh": "跨模块回归台账",
+    "summaryZh": "用 REGRESSION.md 记录模块下游依赖和验收命令，变更后以实际退出码证明相关模块回归结果。",
+    "scenariosZh": [
+      "修改公共模块后确认下游消费者仍能工作",
+      "为大型仓库建立可执行的回归依赖清单"
+    ],
+    "tags": [
+      "测试",
+      "审查",
+      "架构设计"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "5c3db104f8e4aec868d010fa9354ec64b4c138557a59d13d7355fc9eacdcc846"
+  },
+  {
+    "id": "ecc/native/motion-advanced",
+    "callName": "ecc:motion-advanced",
+    "nameZh": "复杂交互动效",
+    "summaryZh": "在 Motion 基础层之上实现 React 与 Next.js 的拖拽手势、文字动画、SVG 动画和命令式动画序列。",
+    "scenariosZh": [
+      "实现可拖拽排序或滑动关闭的组件",
+      "编排文字、SVG 路径和多步骤加载动画"
+    ],
+    "tags": [
+      "前端",
+      "开发实现"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "1ee09b942bf328ffa97148bed838ecc8789c1891ca441abccdca52b4c47a9742"
+  },
+  {
+    "id": "ecc/native/motion-foundations",
+    "callName": "ecc:motion-foundations",
+    "nameZh": "界面动效基础规范",
+    "summaryZh": "统一 Motion 动画令牌、弹簧参数、性能规则与减少动态效果策略，保障 React 动效的无障碍和 SSR 安全。",
+    "scenariosZh": [
+      "为项目建立统一动画时长与弹簧参数",
+      "排查动画导致的水合不一致或减少动态效果失效"
+    ],
+    "tags": [
+      "前端",
+      "无障碍",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "ac0dd6de088e8cf2bff57230b365469e893c5f3a9578815a7f113689d0401972"
+  },
+  {
+    "id": "ecc/native/motion-patterns",
+    "callName": "ecc:motion-patterns",
+    "nameZh": "常见组件动效模式",
+    "summaryZh": "基于统一 Motion 令牌，为按钮、弹窗、提示、列表、页面和滚动交互提供可复用动画模式。",
+    "scenariosZh": [
+      "给弹窗和条件组件加入正确的进入退出动画",
+      "实现列表交错入场、页面过渡或滚动显现"
+    ],
+    "tags": [
+      "前端",
+      "开发实现",
+      "无障碍"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "9d78bcd2c3b52abdb6fb29162f289b9c709547de264ad064b12e00bedb031907"
+  },
+  {
+    "id": "ecc/native/mybatis-patterns",
+    "callName": "ecc:mybatis-patterns",
+    "nameZh": "MyBatis 持久化模式",
+    "summaryZh": "规范 Java 项目中的 Mapper、结果映射、动态 SQL、事务、批量写入、分页和查询性能。",
+    "scenariosZh": [
+      "设计或审查 MyBatis XML 与注解映射",
+      "排查动态 SQL 风险、N+1 查询或事务异常"
+    ],
+    "tags": [
+      "后端",
+      "数据库",
+      "语言技术"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "9b1d2d79222a57ab7bdbebeeb53a92aa87849f329a96c7df5b9ada651796f9f0"
+  },
+  {
+    "id": "ecc/native/mysql-patterns",
+    "callName": "ecc:mysql-patterns",
+    "nameZh": "MySQL 与 MariaDB 实践",
+    "summaryZh": "围绕实际数据库版本设计表结构、索引、事务、复制和连接池，并定位生产查询与锁问题。",
+    "scenariosZh": [
+      "优化慢查询或设计新表索引",
+      "排查死锁、连接耗尽和只读副本延迟"
+    ],
+    "tags": [
+      "数据库",
+      "后端",
+      "性能"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "cab57c6a6d7e0bab99329945edda900811c40ec929b47aa95611f9df58f7391d"
+  },
+  {
+    "id": "ecc/native/nanoclaw-repl",
+    "callName": "ecc:nanoclaw-repl",
+    "nameZh": "NanoClaw 会话终端",
+    "summaryZh": "操作或扩展以 Markdown 持久化会话的 NanoClaw REPL，支持模型切换、技能加载、分支、搜索、压缩与导出。",
+    "scenariosZh": [
+      "恢复或分支一个 NanoClaw 工作会话",
+      "扩展终端命令并保留历史与导出能力"
+    ],
+    "tags": [
+      "AI代理",
+      "上下文",
+      "开发实现"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "75786102fd1a49d1bbed11f75bc014a93e1bb2eed2cdc0088f1bad0e92d29291"
+  },
+  {
+    "id": "ecc/native/nasiko-control-plane",
+    "callName": "ecc:nasiko-control-plane",
+    "nameZh": "Nasiko CLI 生命周期",
+    "summaryZh": "通过 ECC 查询 Nasiko CLI 状态，并在明确同意后预览安装或移除经过限定版本和归属校验的二进制。",
+    "scenariosZh": [
+      "检查本机是否安装合格的 Nasiko CLI",
+      "预览指定版本的安装或已归属二进制的卸载范围"
+    ],
+    "tags": [
+      "基础设施",
+      "安全"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "086650c5a5d797530086a1f7a5f6d853034a30c75c53e2e4aa80e8df7192b52b"
+  },
+  {
+    "id": "ecc/native/nestjs-patterns",
+    "callName": "ecc:nestjs-patterns",
+    "nameZh": "NestJS 后端开发模式",
+    "summaryZh": "规范 NestJS 模块、控制器、服务、DTO 校验、守卫、拦截器和环境配置，建立可测试的 TypeScript 后端。",
+    "scenariosZh": [
+      "搭建模块化 NestJS API",
+      "审查 DTO 校验、鉴权守卫和异常处理结构"
+    ],
+    "tags": [
+      "后端",
+      "语言技术",
+      "架构设计"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "7f41406abaf10185d9a784e894108ded771a0177b1051e0b2c65d14f226bd581"
+  },
+  {
+    "id": "ecc/native/netmiko-ssh-automation",
+    "callName": "ecc:netmiko-ssh-automation",
+    "nameZh": "Netmiko 网络自动化",
+    "summaryZh": "用 Python Netmiko 有界采集网络设备状态，配置超时、解析和错误处理，并为配置写入设置单独变更边界。",
+    "scenariosZh": [
+      "批量收集明确设备清单的只读命令输出",
+      "审查 SSH 自动化的超时、凭据与变更保护"
+    ],
+    "tags": [
+      "网络运维",
+      "自动化",
+      "语言技术"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "6dc91c80144c2ad86a5f457c5377dc5193fd0b64dd3e1ca4433f70188a38e104"
+  },
+  {
+    "id": "ecc/native/network-bgp-diagnostics",
+    "callName": "ecc:network-bgp-diagnostics",
+    "nameZh": "BGP 路由诊断",
+    "summaryZh": "以只读证据分析 BGP 邻居状态、路由交换、前缀策略和 AS 路径，将配置调整留给独立变更流程。",
+    "scenariosZh": [
+      "排查 BGP 邻居掉线或反复震荡",
+      "分析会话已建立但缺少路由或前缀被过滤"
+    ],
+    "tags": [
+      "网络运维",
+      "研究检索"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "44a8d9ba4644f33cb86227e54641930a280fc4417ebce5c1744985b9f4913d03"
+  },
+  {
+    "id": "ecc/native/network-config-validation",
+    "callName": "ecc:network-config-validation",
+    "nameZh": "网络配置部署前校验",
+    "summaryZh": "检查路由器和交换机配置中的危险命令、地址冲突、网段重叠、失效引用与管理面风险。",
+    "scenariosZh": [
+      "上线前审查 IOS 风格网络配置片段",
+      "检查自动生成配置中的 ACL 引用和 IP 地址冲突"
+    ],
+    "tags": [
+      "网络运维",
+      "安全",
+      "审查"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "08ba871a685d55e14e0866de27eb98a37ebf91dc2d0d06976c4acb4e99f76550"
+  },
+  {
+    "id": "ecc/native/network-interface-health",
+    "callName": "ecc:network-interface-health",
+    "nameZh": "网络接口健康诊断",
+    "summaryZh": "对比接口计数器趋势和链路两端状态，定位丢包、CRC 错误、双工不匹配、速率协商与链路抖动。",
+    "scenariosZh": [
+      "排查交换机端口错误增长或网络间歇性中断",
+      "更换线缆或模块前比较链路两端证据"
+    ],
+    "tags": [
+      "网络运维",
+      "性能"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "612cd44e1b80e10dd56f9a2296348cb48882fe24e2435654dae3b6447555e0a3"
+  },
+  {
+    "id": "ecc/native/nextjs-turbopack",
+    "callName": "ecc:nextjs-turbopack",
+    "nameZh": "Next.js 与 Turbopack",
+    "summaryZh": "结合 Next.js 版本说明 Turbopack 的增量构建、缓存和热更新，并核对 webpack 回退与代理文件命名差异。",
+    "scenariosZh": [
+      "排查 Next.js 开发启动或热更新缓慢",
+      "升级时核对打包器选择及 middleware 与 proxy 文件变化"
+    ],
+    "tags": [
+      "前端",
+      "性能",
+      "发布部署"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "336034322d2022f47b097e55b5448cbc1e204c11f964910fa6fb3baeab06a474"
+  },
+  {
+    "id": "ecc/native/nodejs-keccak256",
+    "callName": "ecc:nodejs-keccak256",
+    "nameZh": "以太坊 Keccak 哈希校验",
+    "summaryZh": "区分以太坊 Keccak-256 与 Node 内置 SHA3-256，避免函数选择器、签名、存储槽和地址派生计算错误。",
+    "scenariosZh": [
+      "编写以太坊 JS 或 TS 哈希辅助代码",
+      "排查合约函数选择器或派生地址与链上结果不一致"
+    ],
+    "tags": [
+      "安全",
+      "语言技术"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "973c1194e28b51f56895617abcbcca82a37d25282e7603700a6bf284459bebdb"
+  },
+  {
+    "id": "ecc/native/nutrient-document-processing",
+    "callName": "ecc:nutrient-document-processing",
+    "nameZh": "Nutrient 文档处理",
+    "summaryZh": "使用 Nutrient DWS API 转换文档、OCR、提取文字表格、脱敏、签名和填写表单。",
+    "scenariosZh": [
+      "通过文档 API 将 Office 文件转换为 PDF",
+      "提取扫描文档内容或对文档做脱敏与表单填写"
+    ],
+    "tags": [
+      "文档",
+      "自动化"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "2a8096af72efaeb29a4221929ac1f1ea9d97b95d44316720764fb7c191c7a5b9"
+  },
+  {
+    "id": "ecc/native/nuxt4-patterns",
+    "callName": "ecc:nuxt4-patterns",
+    "nameZh": "Nuxt 4 开发模式",
+    "summaryZh": "为 Nuxt 4 的服务端渲染、路由策略、懒加载和数据获取提供模式，重点避免水合不一致。",
+    "scenariosZh": [
+      "排查 Nuxt 页面首次渲染与客户端状态不一致",
+      "设计 useFetch 或 useAsyncData 数据获取及混合渲染"
+    ],
+    "tags": [
+      "前端",
+      "性能",
+      "开发实现"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "8f99946d5aa8e11dae8ba1ade746a6a803efcba63ba8b618dbf7748331c14e47"
+  },
+  {
+    "id": "ecc/native/openclaw-persona-forge",
+    "callName": "ecc:openclaw-persona-forge",
+    "nameZh": "OpenClaw 角色灵魂设计",
+    "summaryZh": "根据偏好或抽卡为 OpenClaw 创建身份、SOUL.md、角色边界、名字和头像提示词，可配合已审核生图技能。",
+    "scenariosZh": [
+      "从零设计 OpenClaw 龙虾角色与性格方案",
+      "为粗略角色补齐名字、规则和统一风格头像提示词"
+    ],
+    "tags": [
+      "AI代理",
+      "多媒体"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "3498442cf72ee7efbc4cc56553b48dbbb1a26d1d95eca4037aede69e164a9875"
+  },
+  {
+    "id": "ecc/native/opensource-pipeline",
+    "callName": "ecc:opensource-pipeline",
+    "nameZh": "私有项目开源准备",
+    "summaryZh": "编排派生副本、敏感内容清理与发布包装，准备适合公开发布的项目副本及使用说明。",
+    "scenariosZh": [
+      "将私有项目整理为可公开的仓库",
+      "在发布前检查秘密信息并补齐 README 与安装说明"
+    ],
+    "tags": [
+      "安全",
+      "版本管理",
+      "文档"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "1d4ef417d0254893968f9e9479ac23fea3643b95e86fb42d98d3de3e020a1a33"
+  },
+  {
+    "id": "ecc/native/operator-approval-loop",
+    "callName": "ecc:operator-approval-loop",
+    "nameZh": "外发消息人工审批",
+    "summaryZh": "把精确消息草稿、人工决定、发送声明和回执串成可追溯流程，避免旧审批放行新文本或重复外发。",
+    "scenariosZh": [
+      "让代理起草客户或合作方消息并逐条由人工批准",
+      "追溯实际发送内容与批准草稿是否一致"
+    ],
+    "tags": [
+      "协作",
+      "安全",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "6f79952c1498c2748ea13d74ca665c7508ae72068e014e848dee0754e3d650e5"
+  },
+  {
+    "id": "ecc/native/orch-add-feature",
+    "callName": "ecc:orch-add-feature",
+    "nameZh": "新功能编排",
+    "summaryZh": "按研究、计划、测试先行、实现和审查阶段组织新增能力，并在计划和提交处保留人工确认。",
+    "scenariosZh": [
+      "为系统增加当前不存在的功能",
+      "将新功能交给对应阶段的 ECC 代理协作完成"
+    ],
+    "tags": [
+      "开发实现",
+      "测试",
+      "协作"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "6ba858d94cfaa05f3b1e63ad09656285a4a33009e9cd837ebcaf093d39d29a25"
+  },
+  {
+    "id": "ecc/native/orch-build-mvp",
+    "callName": "ecc:orch-build-mvp",
+    "nameZh": "MVP 构建编排",
+    "summaryZh": "从设计或规格文档提取功能，以细小端到端切片搭建 MVP，再通过生成、评估、测试和审查逐步完善。",
+    "scenariosZh": [
+      "把 PRD 或系统设计文档做成可运行原型",
+      "先打通首条完整流程再按切片补齐 MVP"
+    ],
+    "tags": [
+      "需求分析",
+      "开发实现",
+      "协作"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "ab8591b1b9a2711be93a9690bcee95ff8486faa00522aa8c0847d0481f7f64d9"
+  },
+  {
+    "id": "ecc/native/orch-change-feature",
+    "callName": "ecc:orch-change-feature",
+    "nameZh": "既有功能调整编排",
+    "summaryZh": "先把现有测试更新为新行为规格，再修改已经正常工作的功能，并完成验证、审查和提交确认。",
+    "scenariosZh": [
+      "调整当前功能的使用规则或交互行为",
+      "在功能未损坏时按新需求改变其输出"
+    ],
+    "tags": [
+      "开发实现",
+      "测试",
+      "协作"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "d35ee5dfdf5f64e60e8905124eccf73267bc59852e7d11ba5ca5acf7d765c6f8"
+  },
+  {
+    "id": "ecc/native/orch-fix-defect",
+    "callName": "ecc:orch-fix-defect",
+    "nameZh": "缺陷修复编排",
+    "summaryZh": "先将错误复现为失败回归测试，再修复到通过并组织审查，在人工确认后进入提交。",
+    "scenariosZh": [
+      "修复已有功能的错误结果或崩溃",
+      "为已发现的回归增加测试并验证修复"
+    ],
+    "tags": [
+      "开发实现",
+      "测试",
+      "审查"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "399e142bbf3751b5a0fdec1ae450f5673bd1a038304a221748c865280e885b2d"
+  },
+  {
+    "id": "ecc/native/orch-pipeline",
+    "callName": "ecc:orch-pipeline",
+    "nameZh": "研发编排共享流程",
+    "summaryZh": "为 orch 系列提供阶段、规模分类和代理映射，统一计划审批与提交确认，通常由具体操作技能间接使用。",
+    "scenariosZh": [
+      "为 orch 操作增加或调整共享研发阶段",
+      "理解各 orch 技能的流程与人工确认边界"
+    ],
+    "tags": [
+      "协作",
+      "架构设计",
+      "技能管理"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "26707fc276a0a8489a5919c48af22f0c2c2d12724d3e031080200281f26a3f2e"
+  },
+  {
+    "id": "ecc/native/orch-refine-code",
+    "callName": "ecc:orch-refine-code",
+    "nameZh": "保持行为的重构编排",
+    "summaryZh": "先确认现有测试通过，再调整代码结构、消除重复或降低嵌套，并持续保持行为不变。",
+    "scenariosZh": [
+      "在不改变外部行为的前提下拆分模块",
+      "清理重复代码并用原测试证明重构安全"
+    ],
+    "tags": [
+      "开发实现",
+      "测试",
+      "审查"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "5f0f468ffa4e220bd8f76684b3df6a14b67b34333e1ae52e0de49ed2c16fa17b"
+  },
+  {
+    "id": "ecc/native/osint-investigation",
+    "callName": "ecc:osint-investigation",
+    "nameZh": "开源情报线索调查",
+    "summaryZh": "从图像、公开记录和零散信息提取线索，跨来源验证位置、事件和实体假设，并明确证据的不确定性。",
+    "scenariosZh": [
+      "根据照片或视频片段开展位置与事件调查",
+      "核对公开账户、实体或停滞调查中的零散线索"
+    ],
+    "tags": [
+      "研究检索",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "f30f873cb28cd3befc757dc7ea63d29250d6537c20c7fe4de8394fde0c2bd78b"
+  },
+  {
+    "id": "ecc/native/parallel-execution-optimizer",
+    "callName": "ecc:parallel-execution-optimizer",
+    "nameZh": "并行执行优化",
+    "summaryZh": "把任务拆成有依赖的执行图，批量开展独立读取和校验，并隔离写入范围后汇总验证结果。",
+    "scenariosZh": [
+      "缩短具有多个独立验证分支的任务耗时",
+      "安排并行代理时避免改动相同文件或共享服务"
+    ],
+    "tags": [
+      "协作",
+      "自动化",
+      "架构设计"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "e7de2fff9971d7bc179ac1827d62de701fd8951142d9e17ec7c782481c8b7941"
+  },
+  {
+    "id": "ecc/native/perl-patterns",
+    "callName": "ecc:perl-patterns",
+    "nameZh": "现代 Perl 开发模式",
+    "summaryZh": "运用 Perl 5.36 及以上的签名、模块、错误处理和可测试边界，改善应用的可维护性。",
+    "scenariosZh": [
+      "编写或审查现代 Perl 模块",
+      "将旧 Perl 代码迁移为更清晰的现代写法"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "617ced86628e866a6242ef763ec736d5f7ee3fa0a5afc34236d808db6de9c4b3"
+  },
+  {
+    "id": "ecc/native/perl-security",
+    "callName": "ecc:perl-security",
+    "nameZh": "Perl 安全开发",
+    "summaryZh": "围绕污点模式、输入校验、安全进程调用和参数化 DBI 查询检查 Perl 应用的注入及 Web 安全风险。",
+    "scenariosZh": [
+      "审查含用户输入的 Perl 文件与系统命令操作",
+      "加固 Perl Web 接口或数据库查询"
+    ],
+    "tags": [
+      "语言技术",
+      "安全",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "fd6dd778ed3b612dd8ee5f856d557b9328a1f92f87d5b69b91a53d58657531f6"
+  },
+  {
+    "id": "ecc/native/perl-testing",
+    "callName": "ecc:perl-testing",
+    "nameZh": "Perl 测试实践",
+    "summaryZh": "使用 Test2::V0 或 Test::More、prove、模拟与覆盖率工具组织 Perl 的测试驱动开发。",
+    "scenariosZh": [
+      "为 Perl 模块编写单元与回归测试",
+      "迁移旧测试框架或检查 Perl 覆盖率"
+    ],
+    "tags": [
+      "语言技术",
+      "测试"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "17723ed2249fa98d4ee7affc53bb479898725eb1a7466d46871bf215317fb79e"
+  },
+  {
+    "id": "ecc/native/plan-canvas",
+    "callName": "ecc:plan-canvas",
+    "nameZh": "计划可视化评审",
+    "summaryZh": "在本地浏览器画布中展示计划或 HTML 产物，让用户直接标注元素并给出批准或修改意见。",
+    "scenariosZh": [
+      "向用户展示计划并收集可定位的修改反馈",
+      "评审界面草图时直接指出需要移动或调整的元素"
+    ],
+    "tags": [
+      "需求分析",
+      "协作",
+      "文档"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "0ee9356f9305eb8ceec671753700a0a7a438c76dca9983ed87c66be0b5681b64"
+  },
+  {
+    "id": "ecc/native/plan-orchestrate",
+    "callName": "ecc:plan-orchestrate",
+    "nameZh": "计划转 ECC 命令",
+    "summaryZh": "读取多步骤计划，为每一步生成携带范围的可粘贴 ECC 命令；只生成建议，不自动执行命令。",
+    "scenariosZh": [
+      "把实施计划转为逐步可调用的 ECC 命令",
+      "为不同类型的计划步骤选择匹配技能或命令"
+    ],
+    "tags": [
+      "需求分析",
+      "技能管理"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "df127a46f7b5db2608f00da04d0cdfe5ed4a075ecc7e2876189e1de26c99d4fe"
+  },
+  {
+    "id": "ecc/native/plankton-code-quality",
+    "callName": "ecc:plankton-code-quality",
+    "nameZh": "编辑时质量检查",
+    "summaryZh": "通过 Plankton Hook 在文件编辑后运行格式化、静态检查与分层模型修复，建立即时质量约束。",
+    "scenariosZh": [
+      "配置多语言文件的编辑后格式化与检查",
+      "防止通过修改检查配置来绕过代码质量规则"
+    ],
+    "tags": [
+      "开发实现",
+      "自动化",
+      "审查"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "917920552320fdf0927a3bba61107eee8255dab469af80680dea40d671d51866"
+  },
+  {
+    "id": "ecc/native/postgres-patterns",
+    "callName": "ecc:postgres-patterns",
+    "nameZh": "PostgreSQL 数据库模式",
+    "summaryZh": "提供 PostgreSQL 的表结构、索引、查询性能和行级安全设计模式，并说明连接池等常见选择。",
+    "scenariosZh": [
+      "为 PostgreSQL 查询选择索引和优化方式",
+      "设计数据库结构、RLS 策略或连接池"
+    ],
+    "tags": [
+      "数据库",
+      "后端",
+      "性能"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "9c8c391ae9e9aa87faa7ca091e1d395c97766df14080d0bfbea8a97721776163"
+  },
+  {
+    "id": "ecc/native/prediction-market-oracle-research",
+    "callName": "ecc:prediction-market-oracle-research",
+    "nameZh": "预测市场信号研究",
+    "summaryZh": "研究预测市场隐含概率的来源、流动性和结算限制，评估其作为产品或代理数据源的用途。",
+    "scenariosZh": [
+      "为仪表盘评估预测市场概率信号",
+      "比较不同市场的结算规则及数据可信度"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "63f91f6e71839efc4b10be347fa160e402b9b72307f0a7e6ac0a50bd4b9fd8cb"
+  },
+  {
+    "id": "ecc/native/prediction-market-risk-review",
+    "callName": "ecc:prediction-market-risk-review",
+    "nameZh": "预测市场流程风险审查",
+    "summaryZh": "在涉及账户、组合、API 密钥或交易规划前，审查预测市场流程的规则、数据、隐私和执行风险。",
+    "scenariosZh": [
+      "设计带账户授权的预测市场工作流前审查边界",
+      "核对交易代理的数据质量、权限和敏感信息处理"
+    ],
+    "tags": [
+      "安全",
+      "审查",
+      "业务运营"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "19195e218716ed298fd8de9743e78462d17d95233b14e052c3bd1d1d7df31f91"
+  },
+  {
+    "id": "ecc/native/prisma-patterns",
+    "callName": "ecc:prisma-patterns",
+    "nameZh": "Prisma 数据访问模式",
+    "summaryZh": "为 TypeScript 后端设计 Prisma 模型、事务与分页，核对批量更新、迁移重置和无服务器连接等易错行为。",
+    "scenariosZh": [
+      "编写 Prisma schema 与高效数据查询",
+      "排查事务超时、批量返回值或连接耗尽问题"
+    ],
+    "tags": [
+      "数据库",
+      "后端",
+      "语言技术"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "fb0c7644f32b22ee030071c71fa00bda1825f955f7304a375ef299a7290227f2"
+  },
+  {
+    "id": "ecc/native/product-capability",
+    "callName": "ecc:product-capability",
+    "nameZh": "产品能力契约",
+    "summaryZh": "把 PRD、路线图和产品讨论转为可实施能力计划，明确约束、不变量、接口与未决问题。",
+    "scenariosZh": [
+      "跨服务开发前统一隐藏的产品与技术假设",
+      "把产品需求整理为工程可以直接执行的契约"
+    ],
+    "tags": [
+      "需求分析",
+      "架构设计",
+      "文档"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "c26114356edb15f0340e5af66b6f4444892bdf376b053a7152312fd04d22aced"
+  },
+  {
+    "id": "ecc/native/product-lens",
+    "callName": "ecc:product-lens",
+    "nameZh": "产品方向诊断",
+    "summaryZh": "通过产品诊断、市场匹配信号、用户旅程和 ICE 排序检查需求价值，形成方向与取舍建议。",
+    "scenariosZh": [
+      "开始开发前检验模糊产品想法",
+      "在多个功能之间排序或检查发布前的用户价值路径"
+    ],
+    "tags": [
+      "需求分析",
+      "业务运营",
+      "审查"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "58b82c847304b0c4fbf456c1f4ae9205f3733e011f8cbdeed30687f111a098c6"
+  },
+  {
+    "id": "ecc/native/production-audit",
+    "callName": "ecc:production-audit",
+    "nameZh": "生产就绪审查",
+    "summaryZh": "依据本地源码和运行证据检查应用上线风险，识别发布前、合并后或演示前可能暴露的问题。",
+    "scenariosZh": [
+      "上线前检查系统在生产中可能失效的环节",
+      "CI 通过后补做部署与运营风险审查"
+    ],
+    "tags": [
+      "审查",
+      "发布部署",
+      "安全"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "3ab3dd8a364ee17566e9361f0ebed2aec3b3146ede44e1db0a72c5ceae1ca0a4"
+  },
+  {
+    "id": "ecc/native/production-scheduling",
+    "callName": "ecc:production-scheduling",
+    "nameZh": "生产排程与瓶颈优化",
+    "summaryZh": "围绕离散与批量制造安排工单顺序、产线平衡和换线，结合约束、OEE 与现场扰动优化排程。",
+    "scenariosZh": [
+      "处理产线瓶颈或订单交期冲突",
+      "减少换线损耗并在设备故障后重新安排生产"
+    ],
+    "tags": [
+      "业务运营",
+      "性能"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "25704073f7bed19d61353ccba3ac1a988202375638637ff91b391b32c9053822"
+  },
+  {
+    "id": "ecc/native/project-flow-ops",
+    "callName": "ecc:project-flow-ops",
+    "nameZh": "GitHub 与 Linear 工作协同",
+    "summaryZh": "分类 Issue 与 PR 积压，关联正在执行的工作，区分 GitHub 对外协作与 Linear 内部执行记录。",
+    "scenariosZh": [
+      "整理积压 PR 的合并、重做或暂缓优先级",
+      "为 GitHub 问题关联实际计划中的 Linear 任务"
+    ],
+    "tags": [
+      "协作",
+      "版本管理"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "6d59e4118a91419fdc66cf51925371a3f9fad66881c5a1720ed1c5cc490df1f7"
+  },
+  {
+    "id": "ecc/native/prompt-caching-strategy",
+    "callName": "ecc:prompt-caching-strategy",
+    "nameZh": "提示词缓存策略",
+    "summaryZh": "区分稳定前缀与动态内容来提高提示缓存复用，并按实际提供方规则测量成本和延迟收益。",
+    "scenariosZh": [
+      "为共享上下文的重复模型请求设计缓存前缀",
+      "排查缓存命中率低或重复输入成本高"
+    ],
+    "tags": [
+      "AI代理",
+      "性能"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "bde64446760754680a6e821fce96ed70e4a409adc7145cb056a815aa64eb5b81"
+  },
+  {
+    "id": "ecc/native/prompt-optimizer",
+    "callName": "ecc:prompt-optimizer",
+    "nameZh": "提示词优化建议",
+    "summaryZh": "分析草稿意图与缺失上下文，匹配 ECC 命令和技能，输出可复制的改进提示词与说明，不执行目标任务。",
+    "scenariosZh": [
+      "把模糊任务描述改写为明确的模型指令",
+      "为草稿补齐范围、约束和适合调用的 ECC 能力"
+    ],
+    "tags": [
+      "AI代理",
+      "需求分析",
+      "技能管理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "e98058f34c3338014d0b9ef0c821d932d6820284d40d1eaf4f716bceb9147db0"
+  },
+  {
+    "id": "ecc/native/python-patterns",
+    "callName": "ecc:python-patterns",
+    "nameZh": "Python 代码模式",
+    "summaryZh": "运用 Python 惯用写法、PEP 8、类型标注和清晰模块结构，编写可读且可维护的应用。",
+    "scenariosZh": [
+      "编写或审查 Python 函数与包结构",
+      "改善类型提示、错误处理或不符合惯用法的旧代码"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "103e0130dac33a49d26705fc5a2df804980fcab6a0138d65bc7f370a987d49f6"
+  },
+  {
+    "id": "ecc/native/python-testing",
+    "callName": "ecc:python-testing",
+    "nameZh": "Python 测试实践",
+    "summaryZh": "使用 pytest 的 fixture、mock、参数化和覆盖率检查，按测试驱动流程验证 Python 行为。",
+    "scenariosZh": [
+      "为 Python 功能或缺陷增加 pytest 测试",
+      "整理共享 fixture、隔离依赖并检查测试覆盖"
+    ],
+    "tags": [
+      "语言技术",
+      "测试"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "b9f7a158dae3b6c06c9c75ffe84e27a1edc86092d2afdcb39e96fc2569902eb7"
+  },
+  {
+    "id": "ecc/native/pytorch-patterns",
+    "callName": "ecc:pytorch-patterns",
+    "nameZh": "PyTorch 训练工程",
+    "summaryZh": "规范 PyTorch 模型、训练循环和数据加载，关注设备兼容、可复现性、GPU 内存和训练效率。",
+    "scenariosZh": [
+      "编写或审查深度学习训练与数据流水线",
+      "排查实验难以复现或显存与训练速度问题"
+    ],
+    "tags": [
+      "AI代理",
+      "性能",
+      "开发实现"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "168c8740f548414a75f576265ddb03329be98ed57f06c5edaf79c7cd4b6a9cf4"
+  },
+  {
+    "id": "ecc/native/quality-nonconformance",
+    "callName": "ecc:quality-nonconformance",
+    "nameZh": "质量不符合项管理",
+    "summaryZh": "覆盖受监管制造中的不符合项处置、根因分析、纠正预防措施、SPC 解释、抽样与供应商质量。",
+    "scenariosZh": [
+      "调查检验或生产中的不符合项并开展根因分析",
+      "建立 CAPA 跟踪或核对供应商质量与过程波动"
+    ],
+    "tags": [
+      "业务运营",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "6aad53af0d1a5580f12f8901aca65946b29db88c5a394239d580cd0a57322edd"
+  },
+  {
+    "id": "ecc/native/quarkus-patterns",
+    "callName": "ecc:quarkus-patterns",
+    "nameZh": "Quarkus 服务开发模式",
+    "summaryZh": "以 Quarkus 构建云原生 Java 服务，组织 REST、CDI、Panache 数据访问与 Camel 事件处理。",
+    "scenariosZh": [
+      "开发 Quarkus REST API 与服务分层",
+      "设计 Camel 消息路由、异步处理或 Panache 数据层"
+    ],
+    "tags": [
+      "后端",
+      "语言技术",
+      "架构设计"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "5f91bed186170a23837452508fc731ec4cada0a337ae95b1327f80311fa6ab6b"
+  },
+  {
+    "id": "ecc/native/quarkus-security",
+    "callName": "ecc:quarkus-security",
+    "nameZh": "Quarkus 安全加固",
+    "summaryZh": "围绕 JWT/OIDC、角色授权、输入验证、参数化查询、密钥和安全响应头加固 Quarkus 应用。",
+    "scenariosZh": [
+      "为 Quarkus API 增加身份认证与访问控制",
+      "审查输入、密钥管理、限流和依赖漏洞"
+    ],
+    "tags": [
+      "后端",
+      "安全",
+      "语言技术"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "bb7c13aec927ec8d73f2e949eee2a4d44a9f908541e7d9acd7e2fd8f64f0ae3e"
+  },
+  {
+    "id": "ecc/native/quarkus-tdd",
+    "callName": "ecc:quarkus-tdd",
+    "nameZh": "Quarkus 测试驱动开发",
+    "summaryZh": "使用 JUnit 5、Mockito、REST Assured、Camel 测试和 JaCoCo，先测试再实现 Quarkus 服务变更。",
+    "scenariosZh": [
+      "为新的 Quarkus API 或事件处理器编写测试",
+      "修复服务缺陷并验证 Camel 路由或异步分支"
+    ],
+    "tags": [
+      "后端",
+      "测试",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "556d1c2d04e3e0ef10f474ed413013646088ff057f9be02d3a3c4f833ccc33c5"
+  },
+  {
+    "id": "ecc/native/quarkus-verification",
+    "callName": "ecc:quarkus-verification",
+    "nameZh": "Quarkus 交付验证",
+    "summaryZh": "组织构建、静态分析、覆盖率、安全扫描、原生编译、健康检查与配置验证，汇总 Quarkus 交付证据。",
+    "scenariosZh": [
+      "Quarkus 提交 PR 或上线前执行完整检查",
+      "重大重构或依赖升级后核对原生镜像与运行配置"
+    ],
+    "tags": [
+      "测试",
+      "发布部署",
+      "安全"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "487818bf26f1ec34a08d5a9c11400ad2603bc70831cf0649a9fe20eaeadf0118"
+  },
+  {
+    "id": "ecc/native/rails-patterns",
+    "callName": "ecc:rails-patterns",
+    "nameZh": "Rails 应用架构模式",
+    "summaryZh": "为现代 Rails 应用组织控制器、服务、表单、查询、ActiveRecord、后台任务与 Hotwire 视图。",
+    "scenariosZh": [
+      "开发或审查 Rails 控制器、模型和任务",
+      "拆分过长控制器与模型并明确查询责任"
+    ],
+    "tags": [
+      "后端",
+      "语言技术",
+      "架构设计"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "914ab8d9d907da06436a512180a65660fbb5d94cd04f56426e3b87a42357acd1"
+  },
+  {
+    "id": "ecc/native/ralphinho-rfc-pipeline",
+    "callName": "ecc:ralphinho-rfc-pipeline",
+    "nameZh": "RFC 多单元执行编排",
+    "summaryZh": "将大型 RFC 拆成含依赖和验收条件的工作单元，逐项研究、实现、验证与审查，再经合并队列集成。",
+    "scenariosZh": [
+      "单次代理难以完成的大型功能拆分",
+      "组织多个实现分支的依赖、合并和最终系统验证"
+    ],
+    "tags": [
+      "协作",
+      "架构设计",
+      "测试"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "00d92ba603b5989a243b1d4c2f5442bb8451f1153dce2c42aed2a60c821507d6"
+  },
+  {
+    "id": "ecc/native/react-native-patterns",
+    "callName": "ecc:react-native-patterns",
+    "nameZh": "React Native 与 Expo 模式",
+    "summaryZh": "规范移动端导航、状态分层、数据获取、高效列表、样式、原生 API 与安全存储。",
+    "scenariosZh": [
+      "开发 Expo 页面、导航和数据访问层",
+      "优化移动端列表或接入原生能力与安全存储"
+    ],
+    "tags": [
+      "移动开发",
+      "前端",
+      "开发实现"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "caf04da7ea1f20213b010f24dc19a8a20f1939c928156caa2f0482f26c31b12b"
+  },
+  {
+    "id": "ecc/native/react-patterns",
+    "callName": "ecc:react-patterns",
+    "nameZh": "React 组件开发模式",
+    "summaryZh": "规范 React 18/19 的 Hook、组件边界、Suspense、表单、数据获取与状态选择，保持语义和无障碍。",
+    "scenariosZh": [
+      "编写或审查 React 组件及自定义 Hook",
+      "设计服务端与客户端边界或迁移旧组件写法"
+    ],
+    "tags": [
+      "前端",
+      "开发实现",
+      "无障碍"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "f3208d44a5d553038c42e046cec4dc16e4a3d90a9dbf931f883a2e21919a64a9"
+  },
+  {
+    "id": "ecc/native/react-performance",
+    "callName": "ecc:react-performance",
+    "nameZh": "React 与 Next.js 性能优化",
+    "summaryZh": "按瀑布请求、包体积、服务端、数据获取和重渲染等优先级定位 React 与 Next.js 的性能问题。",
+    "scenariosZh": [
+      "排查页面加载、交互响应或水合缓慢",
+      "审查组件变更的包体积、请求瀑布和重复渲染"
+    ],
+    "tags": [
+      "前端",
+      "性能",
+      "审查"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "ac76e8694d4f802a7bccc3c07a73ac68ace6d82a65ea10f10d8b7384dda61a8f"
+  },
+  {
+    "id": "ecc/native/react-testing",
+    "callName": "ecc:react-testing",
+    "nameZh": "React 行为测试",
+    "summaryZh": "使用 React Testing Library、Vitest/Jest、MSW 和无障碍断言测试可见行为，并界定组件测试与端到端测试范围。",
+    "scenariosZh": [
+      "为 React 组件、Hook 或页面补充行为测试",
+      "模拟网络请求或从旧测试方案迁移到可访问性查询"
+    ],
+    "tags": [
+      "前端",
+      "测试",
+      "无障碍"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "51c18b4e28285bb876ef469e47c6f53108b5a9f900950a60e897c3c24826a65e"
+  },
+  {
+    "id": "ecc/native/recsys-pipeline-architect",
+    "callName": "ecc:recsys-pipeline-architect",
+    "nameZh": "推荐与排序流水线设计",
+    "summaryZh": "按候选获取、信息补全、过滤、评分、选择和副作用六阶段组织可组合的推荐系统。",
+    "scenariosZh": [
+      "为信息流选择最相关的内容",
+      "为搜索或RAG结果设计重排序流水线"
+    ],
+    "tags": [
+      "架构设计",
+      "后端",
+      "AI代理"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "309fe65f0ffdb44b62005c63ab9f460ddbe813f994e010316f7a2e55fc52e436"
+  },
+  {
+    "id": "ecc/native/recursive-decision-ledger",
+    "callName": "ecc:recursive-decision-ledger",
+    "nameZh": "递归决策证据账本",
+    "summaryZh": "为多轮试验记录候选、评分、一致性和晋级门槛，避免把重复推理误当作行动授权。",
+    "scenariosZh": [
+      "比较多个搜索或优化方案并保留证据",
+      "审查递归推理的结果是否满足执行门槛"
+    ],
+    "tags": [
+      "AI代理",
+      "审查"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "0c842b982a4ec80bb6487842ac8f019dc0f716c56e8363618a5f6d5a6de6e58e"
+  },
+  {
+    "id": "ecc/native/redis-patterns",
+    "callName": "ecc:redis-patterns",
+    "nameZh": "Redis 数据与缓存模式",
+    "summaryZh": "说明Redis数据结构、缓存、分布式锁、限流、消息发布订阅及连接管理的常见模式。",
+    "scenariosZh": [
+      "为后端增加缓存和请求限流",
+      "检查分布式锁、键设计或消息流方案"
+    ],
+    "tags": [
+      "数据库",
+      "后端",
+      "性能"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "6cabb1cd03174a0584ff3538371c780aba90da156db15260691278ed3307d8fe"
+  },
+  {
+    "id": "ecc/native/regex-vs-llm-structured-text",
+    "callName": "ecc:regex-vs-llm-structured-text",
+    "nameZh": "结构化文本提取方案选择",
+    "summaryZh": "优先用正则提取重复结构，再按置信度把难例交给语言模型校验，平衡成本与准确性。",
+    "scenariosZh": [
+      "从表单、试题或票据中提取字段",
+      "优化正则与语言模型混合解析流程"
+    ],
+    "tags": [
+      "AI代理",
+      "性能",
+      "文档"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "5d7d04591ad656ba7b8064b2fa25e83936f8bd077449dac6cc599b4c41ce662a"
+  },
+  {
+    "id": "ecc/native/remotion-video-creation",
+    "callName": "ecc:remotion-video-creation",
+    "nameZh": "Remotion 视频制作规则",
+    "summaryZh": "提供React与Remotion视频制作的分领域规则，覆盖动画、音频、字幕、图表及转场。",
+    "scenariosZh": [
+      "用React制作可编程动画视频",
+      "处理Remotion字幕、音轨和时间线转场"
+    ],
+    "tags": [
+      "多媒体",
+      "前端"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "dd727cadc4c1e179932b9736955ff3e537f75eeb759c038345ad9fe7d1bc55a9"
+  },
+  {
+    "id": "ecc/native/repo-scan",
+    "callName": "ecc:repo-scan",
+    "nameZh": "外部代码资产审计安装入口",
+    "summaryZh": "提供固定提交版本的外部repo-scan技能安装指引；此入口本身不执行代码资产审计。",
+    "scenariosZh": [
+      "安装前审查固定版本的repo-scan",
+      "准备跨语言仓库的自有代码与第三方资产盘点"
+    ],
+    "tags": [
+      "技能管理",
+      "审查"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "b3318f6263629467d895d71a281cb64575d9d5de12c96d97cd1d19c66734e98e"
+  },
+  {
+    "id": "ecc/native/research-ops",
+    "callName": "ecc:research-ops",
+    "nameZh": "基于证据的研究编排",
+    "summaryZh": "组合ECC研究技能获取当前事实、比较方案并区分来源、推断与建议。",
+    "scenariosZh": [
+      "基于最新公开资料比较方案",
+      "将已有材料补充为有来源的研究建议"
+    ],
+    "tags": [
+      "研究检索",
+      "业务运营"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "114d0e5480ce3ad263316c639ce0c401396e1d9fbec3cf15b3c962ae16f376db"
+  },
+  {
+    "id": "ecc/native/returns-reverse-logistics",
+    "callName": "ecc:returns-reverse-logistics",
+    "nameZh": "退货与逆向物流",
+    "summaryZh": "整理退货授权、收货检验、分级处置、退款、欺诈识别和保修索赔的业务流程。",
+    "scenariosZh": [
+      "设计退货检验与重新入库规则",
+      "分析退货欺诈、保修索赔和供应商追偿"
+    ],
+    "tags": [
+      "业务运营",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "e5091d29cedd093a80321615d9670ebdb3c15856f3a99da644e07335167c86df"
+  },
+  {
+    "id": "ecc/native/rules-distill",
+    "callName": "ecc:rules-distill",
+    "nameZh": "跨技能规则提炼",
+    "summaryZh": "扫描技能与已有规则，找出反复出现的原则，再决定追加、修订或新建规则文件。",
+    "scenariosZh": [
+      "多个技能重复同一约束时提炼公共规则",
+      "定期检查规则是否遗漏或已经过时"
+    ],
+    "tags": [
+      "技能管理",
+      "上下文"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "c451a63f96077f92ef6b40c4310f5a470a5d05103a181af518b115c4e828292c"
+  },
+  {
+    "id": "ecc/native/rust-patterns",
+    "callName": "ecc:rust-patterns",
+    "nameZh": "Rust 开发模式",
+    "summaryZh": "围绕所有权、错误处理、trait、并发和模块组织，提供安全且惯用的Rust设计方式。",
+    "scenariosZh": [
+      "编写或重构Rust模块和公共接口",
+      "审查所有权、并发和错误传播设计"
+    ],
+    "tags": [
+      "语言技术",
+      "开发实现",
+      "架构设计"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "51379df2bd92a482309e109e5a210210842594f660cceeb2d68d18e995108edf"
+  },
+  {
+    "id": "ecc/native/rust-testing",
+    "callName": "ecc:rust-testing",
+    "nameZh": "Rust 测试实践",
+    "summaryZh": "介绍Rust单元、集成、异步、属性测试与mock方法，并按TDD流程验证实现。",
+    "scenariosZh": [
+      "为Rust功能或缺陷补充回归测试",
+      "测试异步行为、错误路径和属性约束"
+    ],
+    "tags": [
+      "测试",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "02a9a40dcc42dd21d14730d29b13ee0a8b274694360585dc0fadb2602eb56ddf"
+  },
+  {
+    "id": "ecc/native/safety-guard",
+    "callName": "ecc:safety-guard",
+    "nameZh": "破坏性操作防护",
+    "summaryZh": "通过Careful、Freeze和Guard模式约束危险命令与可写目录，用于敏感操作期间的防护。",
+    "scenariosZh": [
+      "自主代理运行时限制写入范围",
+      "迁移或部署前为破坏性命令增加拦截"
+    ],
+    "tags": [
+      "安全",
+      "自动化"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "6378dad8e60286b3fcc32e064e4ba2e452000f5eef0cb2c2204ad7fe7dae3afc"
+  },
+  {
+    "id": "ecc/native/santa-method",
+    "callName": "ecc:santa-method",
+    "nameZh": "双重独立对抗验证",
+    "summaryZh": "由两名独立审查者按同一标准验证产物，修复后复审，并设置人工升级上限。",
+    "scenariosZh": [
+      "发布面向用户的内容前检查准确性",
+      "为生产部署或合规敏感产物设置独立审查门"
+    ],
+    "tags": [
+      "审查",
+      "协作",
+      "测试"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "942eb2301d759aec427771866779b431fa10129d11a4f058583770f68ca6baa7"
+  },
+  {
+    "id": "ecc/native/scientific-db-pubmed-database",
+    "callName": "ecc:scientific-db-pubmed-database",
+    "nameZh": "PubMed 生物医学检索",
+    "summaryZh": "使用MeSH、PMID与NCBI E-utilities开展可复现的生物医学文献检索和引用核对。",
+    "scenariosZh": [
+      "查找特定生物医学主题的论文与摘要",
+      "为系统综述记录可重复的PubMed检索式"
+    ],
+    "tags": [
+      "研究检索",
+      "文档"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "5b4c406c73b0fdee3dbbc352fd7d51ee28702d589ea44f3229402fb513354a54"
+  },
+  {
+    "id": "ecc/native/scientific-db-uspto-database",
+    "callName": "ecc:scientific-db-uspto-database",
+    "nameZh": "USPTO 专利与商标记录查询",
+    "summaryZh": "从USPTO官方系统检索美国专利、商标状态及转让记录，并保留可复现的研究证据。",
+    "scenariosZh": [
+      "核对美国专利申请或商标状态",
+      "为现有技术或知识产权研究整理官方记录"
+    ],
+    "tags": [
+      "研究检索",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "aeb87193dbafc68b5218612e4845ae3d6c3a040203ff8a625ed98661255fef58"
+  },
+  {
+    "id": "ecc/native/scientific-pkg-gget",
+    "callName": "ecc:scientific-pkg-gget",
+    "nameZh": "gget 生物信息查询",
+    "summaryZh": "用gget命令行或Python查询基因、转录本、序列及相关数据库，形成初步可复现证据。",
+    "scenariosZh": [
+      "快速查找Ensembl标识和基因序列",
+      "进行BLAST类查询或基因集富集初查"
+    ],
+    "tags": [
+      "研究检索",
+      "数据分析"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "9e7f11f0681ad90c91d665689053481a1be70de474855ff51c3d1cc84013d87b"
+  },
+  {
+    "id": "ecc/native/scientific-thinking-literature-review",
+    "callName": "ecc:scientific-thinking-literature-review",
+    "nameZh": "系统化文献综述",
+    "summaryZh": "规划检索、筛选来源、综合研究结论并核查引用，形成可追溯的学术或技术综述。",
+    "scenariosZh": [
+      "为研究问题整理现有证据与知识空白",
+      "撰写带引用核对的论文背景或技术综述"
+    ],
+    "tags": [
+      "研究检索",
+      "文档"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "380918f545c7e9b297b23bee4a0432deba977acbdb217232bf1ab9d5aa3c562e"
+  },
+  {
+    "id": "ecc/native/scientific-thinking-scholar-evaluation",
+    "callName": "ecc:scientific-thinking-scholar-evaluation",
+    "nameZh": "学术研究质量评估",
+    "summaryZh": "用可重复的评估标准审查论文、提案、研究方法、证据质量和引文支持程度。",
+    "scenariosZh": [
+      "检查论文结论是否有证据支持",
+      "比较研究方案的方法质量并提出修订意见"
+    ],
+    "tags": [
+      "研究检索",
+      "审查"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "079ed9182c086fbb2168b723f36cb167d4cb2272a10a41b131f38945d2f0b145"
+  },
+  {
+    "id": "ecc/native/search-first",
+    "callName": "ecc:search-first",
+    "nameZh": "开发前检索现成方案",
+    "summaryZh": "在实现前检索软件包、MCP、技能与开源项目，再决定采用、扩展或自行构建。",
+    "scenariosZh": [
+      "新增集成或依赖前查找成熟实现",
+      "编写工具函数前确认是否已有可复用方案"
+    ],
+    "tags": [
+      "研究检索",
+      "开发实现",
+      "技能管理"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "76835db48dd910061d2e4271b1151793d2fddbabeb2d2866eed068b3580c55d5"
+  },
+  {
+    "id": "ecc/native/security-bounty-hunter",
+    "callName": "ecc:security-bounty-hunter",
+    "nameZh": "可报告漏洞挖掘",
+    "summaryZh": "沿远程可达且受用户输入影响的路径寻找可利用漏洞，优先形成可复现的有效报告。",
+    "scenariosZh": [
+      "审查仓库中能被远程触发的安全缺陷",
+      "为漏洞赏金或负责任披露整理利用证据"
+    ],
+    "tags": [
+      "安全",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "c94945165ca16ec06a04727dcbcf7a7593810d83fe168247c9c2d88c5a078611"
+  },
+  {
+    "id": "ecc/native/security-review",
+    "callName": "ecc:security-review",
+    "nameZh": "应用安全审查",
+    "summaryZh": "按安全清单检查鉴权、输入、密钥、API以及支付和敏感数据处理中的风险。",
+    "scenariosZh": [
+      "新增登录、文件上传或API时检查安全边界",
+      "审查密钥管理及敏感数据存储传输"
+    ],
+    "tags": [
+      "安全",
+      "审查",
+      "后端"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "b9eb6416eebc8dda046674f0a2dbb3be88aff526d182b60a0f55998d3d6d0d8d"
+  },
+  {
+    "id": "ecc/native/security-scan",
+    "callName": "ecc:security-scan",
+    "nameZh": "Claude Code 配置安全扫描",
+    "summaryZh": "借助AgentShield检查.claude中的指令、设置、MCP、Hook和代理定义的漏洞及注入风险。",
+    "scenariosZh": [
+      "新建或接手Claude Code项目时审查配置",
+      "修改MCP或Hook后检查权限与注入风险"
+    ],
+    "tags": [
+      "安全",
+      "技能管理",
+      "审查"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "74bc3006fb15eef9cea6bf70a4e9cc45ec118ef00733d1c8226c9dc428f8d658"
+  },
+  {
+    "id": "ecc/native/seo",
+    "callName": "ecc:seo",
+    "nameZh": "搜索引擎优化",
+    "summaryZh": "按抓取与索引、页面内容、结构化数据及性能顺序审查和改善网站搜索可见性。",
+    "scenariosZh": [
+      "排查网站索引、canonical或重定向问题",
+      "完善结构化数据、站点地图和关键词映射"
+    ],
+    "tags": [
+      "前端",
+      "性能",
+      "业务运营"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "4b744d2ff5c9313e903e4e5139322cc98adb9f9778a7231d4826216ab0f6873a"
+  },
+  {
+    "id": "ecc/native/skill-comply",
+    "callName": "ecc:skill-comply",
+    "nameZh": "技能遵循度测量",
+    "summaryZh": "生成不同提示严格度的场景，记录代理工具调用及先后顺序，测量是否实际遵循技能和规则。",
+    "scenariosZh": [
+      "验证代理是否按技能要求执行步骤",
+      "比较不同提示条件下的规则遵循率"
+    ],
+    "tags": [
+      "技能管理",
+      "测试",
+      "AI代理"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "e26cbbc30a32ea8c76c56d09ba9a3a921e82ad6e2360f825ec63d3f8df6b1f5a"
+  },
+  {
+    "id": "ecc/native/skill-host-compat",
+    "callName": "ecc:skill-host-compat",
+    "nameZh": "技能宿主兼容性检查",
+    "summaryZh": "检查ECC技能的frontmatter和Claude专属写法，帮助确认Codex与Cursor副本的兼容性。",
+    "scenariosZh": [
+      "新增技能提交前运行宿主兼容性门禁",
+      "定位复制到Codex或Cursor后的技能定义问题"
+    ],
+    "tags": [
+      "技能管理",
+      "测试"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "246242187c2da04369c23d782ba0970bcb9b9fb74acb421161649e4c572d4b54"
+  },
+  {
+    "id": "ecc/native/skill-scout",
+    "callName": "ecc:skill-scout",
+    "nameZh": "可用技能发现",
+    "summaryZh": "创建新技能前搜索本地、市场和公开来源，评估可复用方案后再决定创建或扩展。",
+    "scenariosZh": [
+      "为具体工作流寻找现成技能",
+      "创建或fork技能前避免重复建设"
+    ],
+    "tags": [
+      "技能管理",
+      "研究检索"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "73ac14373108c29e35f6f950b43762e3e50848d693b712f7c3e989ec21e7abe8"
+  },
+  {
+    "id": "ecc/native/skill-stocktake",
+    "callName": "ecc:skill-stocktake",
+    "nameZh": "技能质量盘点",
+    "summaryZh": "按质量清单审查Claude技能和命令，支持仅检查变更项的快速扫描或完整分批盘点。",
+    "scenariosZh": [
+      "安装或修改技能后进行质量快速检查",
+      "定期评估全部技能的重复、陈旧和质量问题"
+    ],
+    "tags": [
+      "技能管理",
+      "审查"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "3de326f8f87216b024bf524433b91607068d805286394d5ed8e293b4799b7314"
+  },
+  {
+    "id": "ecc/native/social-graph-ranker",
+    "callName": "ecc:social-graph-ranker",
+    "nameZh": "社交关系图排序",
+    "summaryZh": "计算关系网络中的引荐价值、桥接能力与连接缺口，输出可解释的加权排名。",
+    "scenariosZh": [
+      "寻找最适合介绍目标联系人的现有人脉",
+      "分析一阶与二阶关系中的桥接路径"
+    ],
+    "tags": [
+      "业务运营",
+      "数据分析"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "24657648f76eb7b835fa71275980e704ebf798853565856623c1e3cd4fd7a183"
+  },
+  {
+    "id": "ecc/native/social-publisher",
+    "callName": "ecc:social-publisher",
+    "nameZh": "多平台社交发布",
+    "summaryZh": "通过SocialClaw统一安排和发布多平台帖子，管理媒体素材并跟踪投递状态。",
+    "scenariosZh": [
+      "经授权安排跨平台发布计划",
+      "检查媒体上传、计划有效性与投递结果"
+    ],
+    "tags": [
+      "业务运营",
+      "多媒体",
+      "自动化"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "c2fde5ac9d953cb649ce69331ca49be1df854d051ebc31eb54423c5d262337f6"
+  },
+  {
+    "id": "ecc/native/springboot-patterns",
+    "callName": "ecc:springboot-patterns",
+    "nameZh": "Spring Boot 后端模式",
+    "summaryZh": "介绍Spring Boot分层架构、REST接口、数据访问、缓存、异步处理与日志等实践。",
+    "scenariosZh": [
+      "开发或审查Spring Boot服务分层",
+      "设计接口校验、分页、缓存和异步处理"
+    ],
+    "tags": [
+      "后端",
+      "语言技术",
+      "架构设计"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "ff1884a8492d078d1bbb35f3ce0a8ae25f1ad95dab8596f4944a7c3110680946"
+  },
+  {
+    "id": "ecc/native/springboot-security",
+    "callName": "ecc:springboot-security",
+    "nameZh": "Spring Boot 安全实践",
+    "summaryZh": "检查Spring Security认证授权、输入校验、CSRF、密钥、安全头、限流与依赖安全。",
+    "scenariosZh": [
+      "为Spring服务增加JWT或OAuth2鉴权",
+      "审查跨域、会话、权限与敏感配置"
+    ],
+    "tags": [
+      "安全",
+      "后端",
+      "语言技术"
+    ],
+    "category": "安全与合规",
+    "version": "2.2.3",
+    "sourceHash": "566ecf928bf76812d15efd62e2f00841652e1618f0a97d8dda93e1c247a162c5"
+  },
+  {
+    "id": "ecc/native/springboot-tdd",
+    "callName": "ecc:springboot-tdd",
+    "nameZh": "Spring Boot 测试驱动开发",
+    "summaryZh": "结合JUnit 5、Mockito、MockMvc、Testcontainers和JaCoCo，先写测试再实现与重构。",
+    "scenariosZh": [
+      "为Spring Boot新接口添加单元和集成测试",
+      "修复业务或权限缺陷并验证覆盖率"
+    ],
+    "tags": [
+      "测试",
+      "后端",
+      "语言技术"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "e4bd145484d93fb569eb0e1a09ffeb5cca68533d63c83805146b111c48bba172"
+  },
+  {
+    "id": "ecc/native/springboot-verification",
+    "callName": "ecc:springboot-verification",
+    "nameZh": "Spring Boot 交付验证",
+    "summaryZh": "组织构建、静态分析、单元及容器集成测试、安全扫描和差异审查，报告交付就绪状态。",
+    "scenariosZh": [
+      "提交Spring Boot PR前完成验证",
+      "部署前核查覆盖率、依赖风险与构建结果"
+    ],
+    "tags": [
+      "测试",
+      "后端",
+      "审查"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "c9449f169a3b920fd01875e3b2b2712c743c5fe8f469d2eabfe78886c590d04a"
+  },
+  {
+    "id": "ecc/native/story-lifecycle",
+    "callName": "ecc:story-lifecycle",
+    "nameZh": "文件式需求交付跟踪",
+    "summaryZh": "在项目文件中组织Epic、用户故事和迭代，逐项跟踪实施，不要求外部项目管理平台。",
+    "scenariosZh": [
+      "没有Jira或Linear时管理功能交付",
+      "把较大需求拆成故事并分配到迭代"
+    ],
+    "tags": [
+      "需求分析",
+      "协作",
+      "文档"
+    ],
+    "category": "需求与架构",
+    "version": "2.2.3",
+    "sourceHash": "1492a724d4df362d8e95a340fabd22423e20965b1d0f9ebc6d2d319aca843194"
+  },
+  {
+    "id": "ecc/native/strategic-compact",
+    "callName": "ecc:strategic-compact",
+    "nameZh": "阶段式上下文压缩",
+    "summaryZh": "在研究、规划和实现等自然边界建议手动压缩会话上下文，减少任务中途丢失关键信息。",
+    "scenariosZh": [
+      "长会话接近上下文限制时保留决策",
+      "完成里程碑后切换阶段或无关任务"
+    ],
+    "tags": [
+      "上下文",
+      "AI代理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "44a71c6dcc3fdde8061b8a78296c5d37233e4accc8cf3c794e29ac5b9f2eee28"
+  },
+  {
+    "id": "ecc/native/swift-actor-persistence",
+    "callName": "ecc:swift-actor-persistence",
+    "nameZh": "Swift Actor 安全持久化",
+    "summaryZh": "使用Actor串行管理内存缓存与文件存储，减少Swift持久化层的数据竞争。",
+    "scenariosZh": [
+      "为Swift离线应用设计本地数据仓库",
+      "替换依靠手动加锁的缓存和文件访问"
+    ],
+    "tags": [
+      "移动开发",
+      "语言技术",
+      "数据库"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "438f75a3f37db2b8db699fb5d27a7207d0f31eace31d057b775ad152d6462c5c"
+  },
+  {
+    "id": "ecc/native/swift-concurrency-6-2",
+    "callName": "ecc:swift-concurrency-6-2",
+    "nameZh": "Swift 6.2 并发迁移",
+    "summaryZh": "说明默认单线程、显式后台卸载和隔离一致性，辅助采用Swift 6.2可理解并发模型。",
+    "scenariosZh": [
+      "从旧Swift版本迁移并发代码",
+      "处理MainActor隔离问题或CPU任务后台执行"
+    ],
+    "tags": [
+      "移动开发",
+      "语言技术",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "00aed6a804ff7dc9b37d119cdb115d0869643dd84caf3c01d7f058398ab1955a"
+  },
+  {
+    "id": "ecc/native/swift-protocol-di-testing",
+    "callName": "ecc:swift-protocol-di-testing",
+    "nameZh": "Swift 协议注入与测试",
+    "summaryZh": "用聚焦的小协议隔离文件系统、网络和外部API，为Swift代码提供确定性的替身测试。",
+    "scenariosZh": [
+      "不访问真实网络地测试Swift错误路径",
+      "为应用与预览环境替换外部依赖"
+    ],
+    "tags": [
+      "测试",
+      "移动开发",
+      "架构设计"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "1e0b9fddf0a731956cdc686fb55dfa1862a5f172a5140299f4ec9d95c7a5e6e9"
+  },
+  {
+    "id": "ecc/native/swiftui-patterns",
+    "callName": "ecc:swiftui-patterns",
+    "nameZh": "SwiftUI 界面模式",
+    "summaryZh": "涵盖SwiftUI状态管理、视图组合、类型安全导航及渲染性能等现代界面实践。",
+    "scenariosZh": [
+      "构建使用Observable的SwiftUI界面",
+      "优化导航结构、数据流和列表渲染"
+    ],
+    "tags": [
+      "移动开发",
+      "前端",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "79e3c8b5b7c38fa04778b1084cddc2f8db5f671e682b0e9c1d5bd2f95800f690"
+  },
+  {
+    "id": "ecc/native/taste",
+    "callName": "ecc:taste",
+    "nameZh": "音乐短视频视觉指导",
+    "summaryZh": "以angelcore、cloud-trance与hyperpop审美组织情绪、色彩、光线和节奏，串联视频制作技能。",
+    "scenariosZh": [
+      "为音乐视频或短片建立一致视觉方向",
+      "规划按节拍切镜与AI素材的风格统一"
+    ],
+    "tags": [
+      "多媒体",
+      "需求分析"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "c0aa611b4d150d2d8356fb29d0cc437e48a4e5ceeb870c609229b9afa78bb9cf"
+  },
+  {
+    "id": "ecc/native/taste-application",
+    "callName": "ecc:taste-application",
+    "nameZh": "参考风格视频制作",
+    "summaryZh": "按测量出的风格包规划镜头，生成或接入素材，调色、剪辑、合成并验证成片。",
+    "scenariosZh": [
+      "把已提炼的参考风格应用到新视频",
+      "补充已有镜头并输出可继续编辑的成片"
+    ],
+    "tags": [
+      "多媒体",
+      "自动化"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "422a07f05e0dfc16a1bcc14895ff6f34891473ddec28981c4fa7986591165d2e"
+  },
+  {
+    "id": "ecc/native/taste-distillation",
+    "callName": "ecc:taste-distillation",
+    "nameZh": "参考视频风格提炼",
+    "summaryZh": "将参考视频的调色、镜头时长、关键帧与叠加元素测量为可复用风格包。",
+    "scenariosZh": [
+      "复现参考片段的色彩与剪辑节奏",
+      "为后续生成或剪辑建立带测量依据的风格包"
+    ],
+    "tags": [
+      "多媒体",
+      "数据分析"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "7aa53f4a4cc7a959da5b60d77a6f43e5541cb3a95aa982fea73a2b706d9cd408"
+  },
+  {
+    "id": "ecc/native/tasteforge-video",
+    "callName": "ecc:tasteforge-video",
+    "nameZh": "多模态风格工作流",
+    "summaryZh": "围绕文件组织素材发现、审美访谈、风格包校验与应用，支持可编辑时间线和来源审计。",
+    "scenariosZh": [
+      "离线规划图像、视频与三维素材工作流",
+      "校验风格包并导出EDL或FCPXML时间线"
+    ],
+    "tags": [
+      "多媒体",
+      "审查",
+      "自动化"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "8c7e696fa6e34fa1722d9b8e7b8d8ca819aff68a660d85a35d7eca3f4541272a"
+  },
+  {
+    "id": "ecc/native/tdd-workflow",
+    "callName": "ecc:tdd-workflow",
+    "nameZh": "测试驱动开发流程",
+    "summaryZh": "先观察失败测试，再实现最小变更使其通过，随后重构并结合单元、集成和端到端覆盖。",
+    "scenariosZh": [
+      "实现新功能前定义可验证行为",
+      "修复缺陷时先建立回归测试"
+    ],
+    "tags": [
+      "测试",
+      "开发实现"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "8887afa786ef30de834e7567115d3df71934b343c3d9d849714f8ea43f979ee0"
+  },
+  {
+    "id": "ecc/native/team-agent-orchestration",
+    "callName": "ecc:team-agent-orchestration",
+    "nameZh": "多代理团队编排",
+    "summaryZh": "用明确的工作项、责任人、分支范围、看板状态与合并门槛协调多个代理交付。",
+    "scenariosZh": [
+      "并行开发时划分代理职责和文件归属",
+      "整合多个分支或工作树的代理产物"
+    ],
+    "tags": [
+      "AI代理",
+      "协作",
+      "版本管理"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "a64dbdf4b6df857c044d6b38cf23324fcd7d2c139ba1cfcd39535e8c928c49a3"
+  },
+  {
+    "id": "ecc/native/team-builder",
+    "callName": "ecc:team-builder",
+    "nameZh": "代理团队选择器",
+    "summaryZh": "发现可用代理角色并按领域展示，让用户选取最多五名角色并行分析任务后综合意见。",
+    "scenariosZh": [
+      "为任务组合安全、架构等专家代理",
+      "浏览可用角色并比较专家意见与冲突"
+    ],
+    "tags": [
+      "AI代理",
+      "协作"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "23ce20d4d50be35d4b6cfe7facc01010983e18cb95c4aaf3d100338ca55e671b"
+  },
+  {
+    "id": "ecc/native/terminal-opener",
+    "callName": "ecc:terminal-opener",
+    "nameZh": "可复用终端启动器",
+    "summaryZh": "用独立可执行文件和参数数组生成可检查的终端启动计划，支持能力探测与独立恢复模式。",
+    "scenariosZh": [
+      "经授权在新终端打开交互命令或SSH",
+      "诊断可用终端并预览无shell插值的启动参数"
+    ],
+    "tags": [
+      "自动化",
+      "基础设施"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "679b8aca9af3f47450d437fed7a71ac9c1272b6196224ddad8fead218f5f16ab"
+  },
+  {
+    "id": "ecc/native/terminal-ops",
+    "callName": "ecc:terminal-ops",
+    "nameZh": "基于证据的终端操作",
+    "summaryZh": "围绕已授权的仓库命令、Git检查和CI排查执行窄范围操作，并报告实际执行与验证证据。",
+    "scenariosZh": [
+      "运行项目命令并核对真实结果",
+      "排查CI失败或执行明确范围的Git操作"
+    ],
+    "tags": [
+      "自动化",
+      "版本管理",
+      "审查"
+    ],
+    "category": "开发与代码质量",
+    "version": "2.2.3",
+    "sourceHash": "f26e518e6922fe0796f5b6a55349a409f5b03745c4eeed9be80b4c66d890d852"
+  },
+  {
+    "id": "ecc/native/test-collaboration",
+    "callName": "ecc:test-collaboration",
+    "nameZh": "测试资产与证据治理",
+    "summaryZh": "将需求、规则、风险、缺陷及边界契约关联到稳定测试标识和仓库中可执行的验证证据。",
+    "scenariosZh": [
+      "盘点测试资产并发现关键验证缺口",
+      "为缺陷回归和前后端契约建立证据关联"
+    ],
+    "tags": [
+      "测试",
+      "协作",
+      "文档"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "741138330940e2c9d3cc7bec9e671787f24a361ff89be44e09a56abc8e10dcfa"
+  },
+  {
+    "id": "ecc/native/tinystruct-patterns",
+    "callName": "ecc:tinystruct-patterns",
+    "nameZh": "tinystruct Java 开发",
+    "summaryZh": "介绍tinystruct的CLI与HTTP双入口、Action路由、内置服务、数据持久化及事件系统实践。",
+    "scenariosZh": [
+      "为tinystruct项目建立应用类和Action接口",
+      "实现可从终端与网页调用的模块"
+    ],
+    "tags": [
+      "后端",
+      "语言技术",
+      "开发实现"
+    ],
+    "category": "数据与后端",
+    "version": "2.2.3",
+    "sourceHash": "ee23f46cbdf7d0a8fd9fe2e50df2e29d9acab6913459cf293a7ecd77173a3369"
+  },
+  {
+    "id": "ecc/native/token-budget-advisor",
+    "callName": "ecc:token-budget-advisor",
+    "nameZh": "回答深度与Token预算",
+    "summaryZh": "在用户需要控制篇幅时提供回答深度选项及Token估算，再按选定详细度作答。",
+    "scenariosZh": [
+      "要求简短版或限定回答Token预算",
+      "在长分析前选择25%到100%的解释深度"
+    ],
+    "tags": [
+      "上下文",
+      "AI代理"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "7f037a58306a6bd5c5a024491a6c4529cd8373309e413eda517ad2430420e25a"
+  },
+  {
+    "id": "ecc/native/token-card",
+    "callName": "ecc:token-card",
+    "nameZh": "Token 使用统计卡",
+    "summaryZh": "从本地编码代理会话日志提取使用量，渲染可分享的统计卡文件并按工作流纳入仓库。",
+    "scenariosZh": [
+      "为README制作编码代理用量卡片",
+      "整理当前Token使用情况供分享"
+    ],
+    "tags": [
+      "AI代理",
+      "文档",
+      "数据分析"
+    ],
+    "category": "AI与代理工程",
+    "version": "2.2.3",
+    "sourceHash": "ac297ba33187d7d2d66a6b151b1492a8757aac64938715f6eaabfbb1287cfd26"
+  },
+  {
+    "id": "ecc/native/ui-demo",
+    "callName": "ecc:ui-demo",
+    "nameZh": "网页演示视频录制",
+    "summaryZh": "使用Playwright录制带可见光标与自然节奏的WebM网页演示，展示应用交互流程。",
+    "scenariosZh": [
+      "为Web应用制作操作演示",
+      "录制功能走查或教学视频"
+    ],
+    "tags": [
+      "多媒体",
+      "前端",
+      "自动化"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "893eee77f98f52d28bffa6bbababa7481300cc13535dea519fa0cc1b0168b2f8"
+  },
+  {
+    "id": "ecc/native/ui-to-vue",
+    "callName": "ecc:ui-to-vue",
+    "nameZh": "界面截图转 Vue 组件",
+    "summaryZh": "将界面截图或设计导出批量转换为Vue 3组件，适用于Vant、Element Plus等组件库。",
+    "scenariosZh": [
+      "把设计截图落成Vue页面组件",
+      "批量转换移动端或管理后台界面"
+    ],
+    "tags": [
+      "前端",
+      "开发实现"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "cb6c17f7ae28a53b31fb2904180521ccdaa31ad0deafa96c6b4f5b2f4bfea480"
+  },
+  {
+    "id": "ecc/native/uncloud",
+    "callName": "ecc:uncloud",
+    "nameZh": "Uncloud 集群运维",
+    "summaryZh": "通过uc命令管理去中心化集群的服务部署、Caddy入口、网络、机器与存储卷。",
+    "scenariosZh": [
+      "部署Compose服务并配置域名或端口",
+      "排查集群日志、网络和服务扩缩容"
+    ],
+    "tags": [
+      "发布部署",
+      "网络运维",
+      "基础设施"
+    ],
+    "category": "基础设施与运维",
+    "version": "2.2.3",
+    "sourceHash": "cc2383ca4459a686ccda87ac08b2a1953028d91076e6a83f29e4c99de5f2fb7f"
+  },
+  {
+    "id": "ecc/native/unified-memory",
+    "callName": "ecc:unified-memory",
+    "nameZh": "跨代理共享记忆",
+    "summaryZh": "通过本地ECC Memory Vault保存可检查的项目上下文、交接与决策，供不同代理宿主共享。",
+    "scenariosZh": [
+      "将工作状态交接给其他编码代理",
+      "恢复任务或查询共享项目知识"
+    ],
+    "tags": [
+      "上下文",
+      "AI代理",
+      "协作"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "c42e96155783a44a50f13ab63e9d7f33c9d03b7a1f30777ef434401469c1630a"
+  },
+  {
+    "id": "ecc/native/unified-notifications-ops",
+    "callName": "ecc:unified-notifications-ops",
+    "nameZh": "统一通知运营",
+    "summaryZh": "在已有连接器与平台上统筹提醒、去重、严重度和升级路径，减少分散通知入口。",
+    "scenariosZh": [
+      "整合GitHub、工单和桌面通知",
+      "梳理重复告警并建立明确处置流程"
+    ],
+    "tags": [
+      "业务运营",
+      "协作",
+      "自动化"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "0ade130619dfc73781d6a4beaf79b65b6d3ac70f0751dce0844a8f9fd39167aa"
+  },
+  {
+    "id": "ecc/native/verification-loop",
+    "callName": "ecc:verification-loop",
+    "nameZh": "六阶段交付验证",
+    "summaryZh": "组织构建、类型检查、静态检查、测试、安全检索和差异审查，给出通过或失败及证据。",
+    "scenariosZh": [
+      "功能或重构完成后验证交付状态",
+      "创建PR前检查测试、安全与差异范围"
+    ],
+    "tags": [
+      "测试",
+      "审查",
+      "安全"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "5b06be54d4852f60e6cf1b04c6e9a4748554334eb3e41af6c0959b544e6464ae"
+  },
+  {
+    "id": "ecc/native/video-editing",
+    "callName": "ecc:video-editing",
+    "nameZh": "AI 辅助视频剪辑",
+    "summaryZh": "将现有视频与音频素材整理为剪辑、转码、字幕、配音和调色的可编辑制作流程。",
+    "scenariosZh": [
+      "把原始素材压缩为成片或短视频",
+      "添加字幕、音轨并适配不同画幅"
+    ],
+    "tags": [
+      "多媒体",
+      "自动化"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "4ab8c9ef5a511e8a0de9ed375b9edbbfa74f23a0881519d2aceea67e7252b197"
+  },
+  {
+    "id": "ecc/native/videodb",
+    "callName": "ecc:videodb",
+    "nameZh": "VideoDB 音视频检索与编辑",
+    "summaryZh": "使用VideoDB SDK导入音视频、建立语音与画面索引，并支持检索剪辑、转码和流监测。",
+    "scenariosZh": [
+      "对视频库建立可搜索的场景和转录索引",
+      "从现有音视频中定位片段并生成剪辑"
+    ],
+    "tags": [
+      "多媒体",
+      "研究检索",
+      "数据分析"
+    ],
+    "category": "多媒体创作",
+    "version": "2.2.3",
+    "sourceHash": "4509fd09f659314f8cec19bf8d9593e4907f244b576b36d83b2259064cae4da4"
+  },
+  {
+    "id": "ecc/native/visa-doc-translate",
+    "callName": "ecc:visa-doc-translate",
+    "nameZh": "签证材料翻译排版",
+    "summaryZh": "对签证证明文件图片进行格式处理、旋转和OCR，翻译成英文并制作双语PDF。",
+    "scenariosZh": [
+      "整理银行或在职证明的英文译稿",
+      "从扫描材料生成保留原结构的双语文档"
+    ],
+    "tags": [
+      "文档",
+      "多媒体"
+    ],
+    "category": "文档与发布",
+    "version": "2.2.3",
+    "sourceHash": "528a180f10389f3228980a487f004e0eaccccf00be0d88073a554001c36bcd89"
+  },
+  {
+    "id": "ecc/native/vite-patterns",
+    "callName": "ecc:vite-patterns",
+    "nameZh": "Vite 构建与开发模式",
+    "summaryZh": "介绍Vite配置、插件、环境变量、代理、预构建、发布库和构建优化的常见实践。",
+    "scenariosZh": [
+      "排查Vite开发服务器或HMR问题",
+      "优化依赖预构建并设置库构建配置"
+    ],
+    "tags": [
+      "前端",
+      "开发实现",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "2238d353196b6732ba897e32f1872078fde7a9d11f5aca43b53da8bfc7e3917d"
+  },
+  {
+    "id": "ecc/native/vue-patterns",
+    "callName": "ecc:vue-patterns",
+    "nameZh": "Vue 3 开发模式",
+    "summaryZh": "介绍组合式API、响应式状态、组件组织、Pinia、路由及Nuxt相关的性能与架构实践。",
+    "scenariosZh": [
+      "构建或审查Vue 3组件和状态管理",
+      "设计路由并优化界面响应与渲染"
+    ],
+    "tags": [
+      "前端",
+      "架构设计",
+      "性能"
+    ],
+    "category": "界面与移动端",
+    "version": "2.2.3",
+    "sourceHash": "65e322383510de25bd5fc6fce4b0980d99d38b341f09bea662bd9a410e20c016"
+  },
+  {
+    "id": "ecc/native/windows-desktop-e2e",
+    "callName": "ecc:windows-desktop-e2e",
+    "nameZh": "Windows 桌面端到端测试",
+    "summaryZh": "借助pywinauto与Windows UI Automation测试WPF、WinForms、Win32及Qt原生桌面应用。",
+    "scenariosZh": [
+      "为Windows原生应用编写自动化操作测试",
+      "诊断Qt桌面控件的可访问性与测试定位"
+    ],
+    "tags": [
+      "测试",
+      "自动化"
+    ],
+    "category": "测试与验证",
+    "version": "2.2.3",
+    "sourceHash": "cbc93a1e2514ecdcee30da744aa13eb6c0ebe4948ca3dfff52b287df4f9f0814"
+  },
+  {
+    "id": "ecc/native/workspace-surface-audit",
+    "callName": "ecc:workspace-surface-audit",
+    "nameZh": "工作区能力盘点",
+    "summaryZh": "只读核对当前仓库、MCP、插件、技能和配置，区分已具备能力与待补集成。",
+    "scenariosZh": [
+      "接手工作区时了解可用工具与约束",
+      "评估是否需增加插件或代理工作流"
+    ],
+    "tags": [
+      "技能管理",
+      "审查",
+      "上下文"
+    ],
+    "category": "技能与上下文管理",
+    "version": "2.2.3",
+    "sourceHash": "ca6eadae6bd303713da56344bedbd8b246fe07bde1d20a26c9f21844d919cd6f"
+  },
+  {
+    "id": "ecc/native/x-api",
+    "callName": "ecc:x-api",
+    "nameZh": "X 平台 API 集成",
+    "summaryZh": "介绍X的认证、发帖、线程、时间线、搜索和统计接口集成，并要求核对当前访问权限。",
+    "scenariosZh": [
+      "构建X内容检索或数据统计工具",
+      "经授权集成发帖、线程或账号操作"
+    ],
+    "tags": [
+      "业务运营",
+      "后端",
+      "自动化"
+    ],
+    "category": "研究与业务",
+    "version": "2.2.3",
+    "sourceHash": "997937ac9dc11779c6bb6c16833630836a22f1b2f115482982f6350474fa8ff1"
+  }
+]
