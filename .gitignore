@@ -1,0 +1,15 @@
+# Local provenance and runtime state must never be published.
+.local/
+backups/
+.catalog.lock
+__pycache__/
+*.py[cod]
+.coverage
+htmlcov/
+.venv/
+.env
+.env.*
+*.log
+screenshots/
+*.tmp
+.DS_Store

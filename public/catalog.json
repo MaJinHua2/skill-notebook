@@ -1,0 +1,235 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-10-19",
+  "skills": [
+    {
+      "invocation": "ecc:ecc-recipes",
+      "chinese_name": "任务与技能匹配",
+      "summary": "根据你想完成的任务，推荐适合的 ECC 命令组合、使用顺序和停止条件。",
+      "scenarios": [
+        "知道要做什么，但不清楚该调用哪个技能",
+        "需要安排多个技能的使用顺序"
+      ],
+      "categories": [
+        "技能选择与发现"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "只提供建议，不会自动执行推荐的任务。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:skill-scout",
+      "chinese_name": "可用技能发现",
+      "summary": "先搜索本地和外部技能来源，判断是否已有可以复用的技能，再决定是否创建。",
+      "scenarios": [
+        "有具体需求，想找现成技能",
+        "准备创建新技能前，先查找可复用方案"
+      ],
+      "categories": [
+        "技能选择与发现"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "外部搜索需要相应工具可用；找到技能不等于已安装或验证。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "development-scope-review:review-development-readiness",
+      "chinese_name": "开发范围与就绪复核",
+      "summary": "在分析或修改代码前，明确目标、允许的变更、必须保留的行为，以及验证范围。",
+      "scenarios": [
+        "准备修改旧项目，先锁定变更边界",
+        "需要防止开发偏离需求或破坏旧规则"
+      ],
+      "categories": [
+        "技能选择与发现"
+      ],
+      "provider": "development-scope-review",
+      "aliases": [],
+      "notes": "属于 development-scope-review 独立插件，不属于 ECC。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:skill-stocktake",
+      "chinese_name": "技能库质量盘点",
+      "summary": "盘点已有技能与命令的质量，整理重复、过时或需要改进的内容。",
+      "scenarios": [
+        "技能太多，难以选择",
+        "准备清理和优化已有技能库"
+      ],
+      "categories": [
+        "技能选择与发现"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "源技能面向 Claude skills 与命令评估；在 Codex 中使用时仍需核对宿主工具与流程兼容性。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:codebase-onboarding",
+      "chinese_name": "项目代码导览",
+      "summary": "理解陌生代码库，梳理技术栈、目录职责、关键入口、主要数据流和开发约定。",
+      "scenarios": [
+        "刚接手一个旧项目，想快速建立整体认识",
+        "为按模块补写技术文档做准备"
+      ],
+      "categories": [
+        "项目理解与开发文档"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "默认侧重简洁的项目入门指南，不能单独代表完整模块技术设计文档。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:source-command-update-codemaps",
+      "chinese_name": "架构与模块地图",
+      "summary": "根据项目结构建立精简的架构、模块依赖和关键入口地图，为理解代码提供导航。",
+      "scenarios": [
+        "想弄清模块之间的关系",
+        "按模块补文档前，先建立代码索引"
+      ],
+      "categories": [
+        "项目理解与开发文档"
+      ],
+      "provider": "ECC",
+      "aliases": [
+        "/update-codemaps"
+      ],
+      "notes": "偏精简架构地图，不能当作完整技术设计说明书。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:source-command-update-docs",
+      "chinese_name": "开发与技术文档同步",
+      "summary": "从源码、接口、配置和构建文件等事实来源，同步开发指南与技术参考文档。",
+      "scenarios": [
+        "项目缺少环境配置、接口或开发文档",
+        "代码发生变化，需要同步已有技术文档"
+      ],
+      "categories": [
+        "项目理解与开发文档"
+      ],
+      "provider": "ECC",
+      "aliases": [
+        "/update-docs"
+      ],
+      "notes": "详细业务流程、状态机或逐模块设计说明，需要在任务中明确要求；它主要处理文档文件。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:living-docs-governance",
+      "chinese_name": "长期文档与状态治理",
+      "summary": "明确项目文档的权威来源、地图、当前状态和历史记录，减少文档与代码脱节。",
+      "scenarios": [
+        "长期项目的文档逐渐过时",
+        "需要维护阶段进度、阻塞和历史结果"
+      ],
+      "categories": [
+        "项目理解与开发文档",
+        "需求进度与验证"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "优先沿用项目既有文档体系；进度结论仍需源码、测试和 Issue 等证据支持。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:coding-standards",
+      "chinese_name": "通用编码与注释规范",
+      "summary": "提供跨项目的代码质量与可读性规范，帮助编写准确的接口和关键逻辑说明。",
+      "scenarios": [
+        "源码缺少有用的类、函数或参数注释",
+        "需要统一注释质量，解释原因而非复述代码"
+      ],
+      "categories": [
+        "源码注释与规范"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "技能中的接口注释示例包含 JSDoc；用于 C++ 时应明确沿用项目已有 Doxygen 等格式。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:cpp-coding-standards",
+      "chinese_name": "C++ 编码与接口规范",
+      "summary": "参考 C++ Core Guidelines，检查接口契约、所有权、资源生命周期和其他 C++ 编码约束。",
+      "scenarios": [
+        "编写或复核 Qt/C++ 代码",
+        "补充函数的所有权、生命周期或线程约束说明"
+      ],
+      "categories": [
+        "源码注释与规范"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "是 C++ 规范技能，没有内置完整的 Doxygen 注释补齐流水线；说明必须以实际代码为依据。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:inherit-legacy-style",
+      "chinese_name": "旧项目风格继承",
+      "summary": "从代表代码中识别旧项目的隐含约定，形成可遵循的风格规则，减少新旧风格混杂。",
+      "scenarios": [
+        "接手大量手写代码，约定没有写下来",
+        "给旧项目补注释或改代码前，先沿用原有风格"
+      ],
+      "categories": [
+        "源码注释与规范"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "本身不是注释生成专用技能；原流程可能生成风格规则文件，使用时应明确允许的变更范围。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:product-capability",
+      "chinese_name": "需求能力与边界梳理",
+      "summary": "把产品需求或讨论整理成可实施的能力计划，明确规则、约束、接口和未决问题。",
+      "scenarios": [
+        "需求模糊，无法判断做到什么才算完成",
+        "需求进度评估前，需要先明确验收基线"
+      ],
+      "categories": [
+        "需求进度与验证"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "偏实施前的需求准备，不是直接计算完成百分比的工具。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:test-collaboration",
+      "chinese_name": "需求验证与测试协作",
+      "summary": "关联需求、业务规则、测试资产和验证证据，识别缺失、未验证及覆盖不足的部分。",
+      "scenarios": [
+        "评估需求实现后是否有验证证据",
+        "交付前梳理测试缺口和剩余工作"
+      ],
+      "categories": [
+        "需求进度与验证"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "主要评估验证覆盖；完整实现进度还需结合需求基线和源码核查，不能只看测试数量或 CI 通过。",
+      "verification": "已核对本地技能定义"
+    },
+    {
+      "invocation": "ecc:project-flow-ops",
+      "chinese_name": "Issue 与 PR 进度协同",
+      "summary": "围绕 GitHub 与 Linear 整理 Issue、PR 和执行状态，帮助维护任务流及阻塞关系。",
+      "scenarios": [
+        "查看负责人、PR 阻塞和待办任务流",
+        "协调 GitHub 与 Linear 之间的项目进度"
+      ],
+      "categories": [
+        "需求进度与验证"
+      ],
+      "provider": "ECC",
+      "aliases": [],
+      "notes": "现有流程针对 GitHub 与 Linear，不等同于 Gitee 进度工具；管理状态不能替代源码和验收证据。",
+      "verification": "已核对本地技能定义"
+    }
+  ]
+}

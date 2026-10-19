@@ -1,0 +1,15 @@
+[Unit]
+Description=Skill Notebook local learning notes
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=@WORKING_DIRECTORY@
+ExecStart="@PYTHON@" -B "@PROJECT_ROOT@/server.py" --host 0.0.0.0 --port 8765
+Restart=on-failure
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
