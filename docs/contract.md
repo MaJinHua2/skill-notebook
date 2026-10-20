@@ -34,7 +34,7 @@ GET `/api/skills` 响应：
   "skills":[{
     "id":"ecc/native/example","provider":"ecc","providerLabel":"ECC",
     "kind":"native","slug":"example","version":"2.2.3",
-    "callName":"ecc:example","description":"Original description",
+    "callName":"ecc:example","description":"Original description","searchText":"Complete original SKILL.md body",
     "sourceHash":"<sha256>","nameZh":"示例","summaryZh":"用途说明",
     "scenariosZh":["使用场景"],"tags":["技能管理"],"category":"技能与上下文管理",
     "status":"verified"
@@ -44,6 +44,7 @@ GET `/api/skills` 响应：
 ```
 
 状态 verified / missing / stale，分别为版本/hash匹配、无中文笔记、来源变化。无中文时字段为空、数组为空，UI显示待整理。
+`description` 保留英文简介，`searchText` 保留通过来源校验的完整技能正文（不含 frontmatter）。两者参与搜索但不显示在列表；它们是可下发的检索数据，不是保密字段。搜索不包含关联文档内容。详情仍显示原文；资料刷新同时替换正文检索快照。
 GET `/api/skills/${encodeURIComponent(id)}`：上述单条字段加 `body`（完整正文，不含 frontmatter）、`references:[{id,label}]`。
 GET `/api/references/${encodeURIComponent(id)}`：服务器登记过的包内 Markdown 引用，返回 `{title,body,references}`。不直接暴露文件路径，不跟随远程图片。
 失败返回 `{error:"中文说明",code:"NOT_FOUND"}`，状态符合 HTTP，不含堆栈/宿主路径。只接受 GET/HEAD。
@@ -51,6 +52,10 @@ GET `/api/references/${encodeURIComponent(id)}`：服务器登记过的包内 Ma
 前端入口是 `web/index.html`，客户端构建入口 `web/app.mjs`。构建输出到 `dist/`（index.html、app.js、app.css）；本地 esbuild 将 marked 和 DOMPurify 一起打包，运行无需 CDN。静态资源严格映射，不暴露项目树。
 
 UI 筛选状态 `{provider:"",category:"",query:"",tags:[]}`，标签 AND，与其他条件 AND。切换 provider 清 category；全技能清 provider/category；clear 清所有。库存不随筛选变化。
+
+每张卡片在标签下方提供“查看详情与原文”原生链接，与标题使用相同的 skills 路由，不拦截浏览器原生新标签页操作。支持键盘和至少 44px 高的点击区域；返回列表保留筛选条件，列表本身不显示原文。
+
+查询先做 Unicode NFKC、英文小写和空白归一，再按空白拆词去重，所有词均须命中，但可命中不同字段。每词按最高命中字段计分：调用名／目录名／中文名 100，标签／分类 60，中英文简介／场景 30，原文正文 10。总分降序，同分保留库存顺序；空查询保留原顺序。支持字面子串，并按完整英文词识别显式词形组 orchestration、orchestrate、orchestrates、orchestrated、orchestrating、orchestrator、orchestrators，不扩展中文同义词。
 
 最小脚本：`npm run build` 构建前端，`npm start` 启动读取本地配置的服务，环境变量 `SKILL_READER_CONFIG` / `SKILL_READER_PORT` 可覆盖配置文件/端口。默认回环3457，不读3456 API。
 

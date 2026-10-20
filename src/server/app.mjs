@@ -117,7 +117,7 @@ async function buildCatalog(config,notesFiles,approvedRoots) {
             const parsed=parseSkill(raw,slug);
             const id=`${source.id}/${entry.kind}/${slug}`;
             if(records.has(id)) throw safeError('SKILL_CONFLICT');
-            const item={id,provider:source.id,providerLabel:source.label,kind:entry.kind,slug,version:source.version,callName:`${source.id}:${slug}`,description:parsed.description,sourceHash:hash(raw),nameZh:'',summaryZh:'',scenariosZh:[],tags:[],category:'',status:'missing'};
+            const item={id,provider:source.id,providerLabel:source.label,kind:entry.kind,slug,version:source.version,callName:`${source.id}:${slug}`,description:parsed.description,searchText:parsed.body,sourceHash:hash(raw),nameZh:'',summaryZh:'',scenariosZh:[],tags:[],category:'',status:'missing'};
             records.set(id,{item,root,entryRoot,skillRoot,file,actual,metadataSkills:JSON.stringify(metadata.skills)}); sourceInfo.count++;
           } catch(error) { diag(source.id,error.code==='FILE_TOO_LARGE'?error.code:'SKILL_INVALID','一项技能的正文、名称或路径未通过校验。'); }
         }

@@ -44,3 +44,45 @@ test('route IDs use one encoded segment and malformed routes rejected',()=>{
  assert.deepEqual(parseRoute('#/skills/ecc/native/a'),{type:'invalid'});
  assert.deepEqual(parseRoute(''),{type:'list'});
 });
+
+test('full-text terms cross fields; tags/category participate; unrelated terms and missing searchText remain safe',()=>{
+ const rows=[
+  {id:'one',callName:'ecc:one',nameZh:'任务安排',description:'Original summary',searchText:'独有正文 orchestration',tags:['多Agent'],category:'项目规划'},
+  {id:'two',callName:'ecc:two',nameZh:'其他技能',description:'Another summary',tags:['测试'],category:'开发'}
+ ];
+ assert.deepEqual(filterSkills(rows,{query:'ORCHESTRATION'}).map(s=>s.id),['one']);
+ assert.deepEqual(filterSkills(rows,{query:'多Ａｇｅｎｔ   独有正文\noriginal'}).map(s=>s.id),['one']);
+ assert.deepEqual(filterSkills(rows,{query:'项目规划'}).map(s=>s.id),['one']);
+ assert.deepEqual(filterSkills(rows,{query:'orchestration absent'}),[]);
+ assert.deepEqual(filterSkills(rows,{query:'original',tags:['测试']}),[]);
+ assert.deepEqual(filterSkills(rows,{query:'another'}).map(s=>s.id),['two']);
+ assert.deepEqual(filterSkills(rows,{query:' \t\n'}),rows);
+ assert.deepEqual(rows[0].tags,['多Agent']);
+});
+
+test('explicit orchestration word forms match each other without inventing synonyms or word stems',()=>{
+ const forms=['orchestration','orchestrate','orchestrates','orchestrated','orchestrating','orchestrator','orchestrators'];
+ const rows=forms.map((word,i)=>({id:String(i),searchText:`A ${word} workflow.`}));
+ for(const query of forms)assert.equal(filterSkills(rows,{query}).length,forms.length);
+ assert.equal(filterSkills([{searchText:'orchestratingly orchestra'}],{query:'orchestration'}).length,0);
+ assert.equal(filterSkills([{searchText:'编排任务'}],{query:'orchestration'}).length,0);
+ assert.equal(filterSkills(rows,{query:'orch'}).length,forms.length);
+});
+
+test('relevance orders name, tag/category, descriptions/scenarios, then body with stable ties',()=>{
+ const rows=[
+  {id:'body',searchText:'Orchestration'},
+  {id:'summary',summaryZh:'Orchestration'},
+  {id:'tag',tags:['Orchestration']},
+  {id:'call',callName:'ecc:team-agent-orchestration'},
+  {id:'name',nameZh:'Orchestration'},
+  {id:'scenario',scenariosZh:['Orchestration']}
+ ];
+ assert.deepEqual(filterSkills(rows,{query:'orchestration'}).map(s=>s.id),['call','name','tag','summary','scenario','body']);
+ assert.deepEqual(filterSkills(rows,clearState()),rows);
+ // A refreshed snapshot must build its own index even when stable IDs are unchanged.
+ const old={id:'refresh',searchText:'oldtoken'};
+ assert.equal(filterSkills([old],{query:'oldtoken'}).length,1);
+ assert.equal(filterSkills([{...old,searchText:'newtoken'}],{query:'oldtoken'}).length,0);
+ assert.equal(filterSkills([{...old,searchText:'newtoken'}],{query:'newtoken'}).length,1);
+});

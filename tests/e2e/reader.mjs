@@ -27,9 +27,10 @@ for(const provider of ['ecc','cyto']) {
  for(const [p,kind,slug,nameZh,tags,category] of cases.filter(x=>x[0]===provider)) {
   const dir=path.join(root,entries.find(e=>e.kind===kind).directory,slug);await mkdir(dir,{recursive:true});
   const body='# 原始标题\n\n'+('完整段落中的长正文。\n\n'.repeat(160))+'\n## 末尾标题\n\n正文结束标记\n\n| 列一 | 列二 |\n|---|---|\n| 测试 | 表格 |\n\n```js\n'+('veryLongName'.repeat(30))+'\n```\n\n[第一篇](guide.md)\n\n[外部资料](https://example.test/document)\n\n'+attack;
-  const raw=`---\nname: ${slug}\ndescription: >-\n  Original description\n  searchable\n---\n${body}`;
+  const searchableBody=body+(p==='ecc'&&slug==='alpha'?'\n\nOrchestrating hidden-search-token.':'');
+  const raw=`---\nname: ${slug}\ndescription: >-\n  Original description\n  searchable\n---\n${searchableBody}`;
   const file=path.join(dir,'SKILL.md');await writeFile(file,raw);sourceFiles.push([file,raw]);
-  await writeFile(path.join(dir,'guide.md'),'# 第一篇关联文档\n\n[第二篇](nested.md)');
+  await writeFile(path.join(dir,'guide.md'),'# 第一篇关联文档\n\nreference-only-needle\n\n[第二篇](nested.md)');
   await writeFile(path.join(dir,'nested.md'),'# 第二篇关联文档\n\n嵌套阅读内容');
   notes.push({id:`${p}/${kind}/${slug}`,callName:`${p}:${slug}`,nameZh,summaryZh:`${nameZh}的具体用途说明`,scenariosZh:['检查具体任务是否适用','对照原文理解操作边界'],tags,category,version:'1.0.0',sourceHash:hash(raw)});
  }
@@ -60,6 +61,20 @@ try {
   assert.equal(await page.locator('.card').count(),4);
   assert.equal(await page.locator('#main').evaluate(n=>n===document.activeElement),true);
  });
+ await check('隐藏原文参与全文和词形检索，关联文档不参与，中文列表不渲染原文',async()=>{
+  await page.locator('#search').fill('ORCHESTRATOR');
+  assert.equal(await page.locator('.card').count(),1);
+  assert.equal(await page.locator('.card').getAttribute('data-skill-id'),'ecc/native/alpha');
+  assert.doesNotMatch(await page.locator('.card').innerText(),/Orchestrating|hidden-search-token|Original description/);
+  assert.equal(await page.locator('.card script,.card img,.card [onclick]').count(),0);
+  assert.equal(await page.evaluate(()=>globalThis.readerXss),undefined);
+  await page.locator('#search').fill('orchestration 架构');assert.equal(await page.locator('.card').count(),1);
+  await page.locator('.card').getByRole('button',{name:'安全',exact:true}).click();
+  assert.equal(await page.locator('.card').count(),1);
+  await page.locator('#search').fill('reference-only-needle');assert.equal(await page.locator('.card').count(),0);
+  await page.getByRole('button',{name:'清除全部筛选',exact:true}).first().click();
+  assert.equal(await page.locator('.card').count(),4);
+ });
  await check('独立折叠、模块与下拉同步、来源库存',async()=>{
   await page.getByRole('button',{name:'展开 ECC 分类',exact:true}).click();
   assert.equal(await page.locator('.card').count(),4);
@@ -85,6 +100,27 @@ try {
   assert.equal(await page.locator('#provider').inputValue(),'ecc');assert.equal(await page.locator('#search').inputValue(),'架构');
   assert.equal(await page.getByRole('button',{name:'收起 ECC 分类',exact:true}).getAttribute('aria-expanded'),'true');
   await page.getByRole('button',{name:'清除全部筛选',exact:true}).first().click();
+ });
+ await check('明确详情入口支持键盘、新标签页、手机点击并保留列表筛选',async()=>{
+  await page.locator('#provider').selectOption('ecc');await page.locator('#search').fill('架构');
+  await page.locator('.card').getByRole('button',{name:'安全',exact:true}).click();
+  const entry=page.getByRole('link',{name:'查看详情与原文',exact:true});
+  assert.equal(await entry.getAttribute('href'),await page.locator('.skill-link').getAttribute('href'));
+  assert.equal(await entry.getAttribute('target'),null);
+  await entry.focus();await page.keyboard.press('Enter');await page.locator('.markdown h1').waitFor();
+  assert.equal(await page.getByRole('heading',{name:'完整技能原文',exact:true}).count(),1);
+  await page.getByRole('link',{name:'← 返回技能列表',exact:true}).click();await page.locator('.card').waitFor();
+  assert.equal(await page.locator('#search').inputValue(),'架构');assert.equal(await page.locator('#provider').inputValue(),'ecc');
+  assert.match(await page.locator('.active-filters').innerText(),/标签：安全/);
+  const opened=context.waitForEvent('page');await page.getByRole('link',{name:'查看详情与原文',exact:true}).click({modifiers:['Control']});
+  const detailTab=await opened;try{await detailTab.locator('.detail-title').waitFor();assert.equal(await detailTab.locator('.detail-title').innerText(),'架构安全审查');}finally{await detailTab.close();}
+  await page.setViewportSize({width:390,height:844});
+  assert.ok((await page.getByRole('link',{name:'查看详情与原文',exact:true}).boundingBox()).height>=44);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  await page.getByRole('link',{name:'查看详情与原文',exact:true}).click();await page.locator('.markdown h1').waitFor();
+  await page.getByRole('link',{name:'← 返回技能列表',exact:true}).click();await page.locator('.card').waitFor();
+  await page.setViewportSize({width:1440,height:1000});
+  await page.getByRole('button',{name:'清除全部筛选',exact:true}).first().click();assert.equal(await page.locator('.card').count(),4);
  });
  await check('完整长文、Markdown排版、复制与深链刷新',async()=>{
   await page.locator('[data-skill-id="ecc/native/alpha"] .skill-link').click();await page.locator('.markdown h1').waitFor();

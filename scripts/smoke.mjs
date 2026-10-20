@@ -23,6 +23,7 @@ for(const skill of catalog.skills) {
  const sourceText=raw.toString('utf8');
  const header=/^\uFEFF?---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/.exec(sourceText);
  assert.ok(header,skill.id);assert.equal(detail.body,sourceText.slice(header[0].length),`${skill.id} 正文完整`);
+ assert.equal(skill.searchText,detail.body,`${skill.id} 检索正文与详情一致`);
  assert.equal(detail.callName,skill.callName);
  bodyLengths.push(detail.body.length);checked++;
 }

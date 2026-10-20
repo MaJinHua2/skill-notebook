@@ -55,7 +55,8 @@ function card(skill){
  const top=el('div','top');const title=el('a','skill-link');title.href=routeFor('skills',skill.id);title.append(el('span','skill-icon','◇'),el('h3','',skill.nameZh||'中文名待整理'),el('span','arrow','↗'));top.append(title);
  article.append(top,field('技能调用名',el('code','call-name',skill.callName)),field('技能概括',skill.summaryZh||'中文概括待整理'),field('技能使用场景',scenarios(skill)));
  const footer=el('div','card-footer');footer.append(el('span','source-badge',`${skill.providerLabel} · ${skill.kind==='migrated'?'迁移命令技能':'技能'}`),el('span','muted',skill.category||'未分类'));
- article.append(tagsFor(skill),footer);const note=statusNote(skill);if(note)article.append(note);return article;
+ const details=el('a','button primary detail-entry','查看详情与原文');details.href=routeFor('skills',skill.id);
+ article.append(tagsFor(skill),details,footer);const note=statusNote(skill);if(note)article.append(note);return article;
 }
 function renderList(){
  const main=document.querySelector('#main');main.removeAttribute('aria-busy');main.replaceChildren();document.title='技能阅读器 · 从用途理解技能';
@@ -63,7 +64,7 @@ function renderList(){
  const controls=el('div','controls');
  const searchLabel=el('label','search');searchLabel.append(el('span','sr-only','搜索技能'));const search=el('input');search.type='search';search.id='search';search.placeholder='搜索调用名、中文名、用途或使用场景…';search.value=filters.query;search.addEventListener('input',()=>changeFilters({...filters,query:search.value}));searchLabel.append(search);
  const selectLabel=el('label','provider-select');selectLabel.append(el('span','sr-only','技能来源'));const select=el('select');select.id='provider';select.add(new Option('全部来源',''));for(const source of sources)select.add(new Option(`${source.label} · ${source.count}`,source.id));select.value=filters.provider;select.addEventListener('change',()=>{if(select.value)expanded[select.value]=true;changeFilters(selectProvider(filters,select.value));});selectLabel.append(select);
- controls.append(searchLabel,selectLabel);main.append(controls);
+ controls.append(searchLabel,selectLabel);main.append(controls,el('p','muted','搜索中英文技能信息、标签、分类及技能正文；多关键词取交集，按相关度排序，不含关联文档。'));
  const tagDetails=el('details','tag-filter');const summary=el('summary','','按标签筛选（多选取交集）');tagDetails.append(summary,el('div','tags tag-options'));main.append(tagDetails);
  const resultsHeader=el('div','results-heading');const count=el('h2');count.id='match-count';const reset=button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button');resultsHeader.append(count,reset);main.append(resultsHeader,el('div','active-filters'),el('div','diagnostics'),el('div','grid'));updateList();
 }

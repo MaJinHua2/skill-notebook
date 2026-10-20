@@ -8,9 +8,37 @@ export function normalizeState(value,skills){
  const known=new Set(skills.flatMap(s=>s.tags||[]));
  return {provider,category,query:typeof input.query==='string'?input.query.slice(0,2000):'',tags:Array.isArray(input.tags)?[...new Set(input.tags.filter(t=>typeof t==='string'&&known.has(t)))]:[]};
 }
+const normalizeText=value=>String(value||'').normalize('NFKC').toLowerCase().replace(/\s+/gu,' ').trim();
+const orchestrationForms=new Set(['orchestration','orchestrate','orchestrates','orchestrated','orchestrating','orchestrator','orchestrators']);
+const orchestrationWord=/\borchestrat(?:ion|e|es|ed|ing|or|ors)\b/u;
+const searchCache=new WeakMap();
+// Catalog refreshes replace skill objects, so old snapshot indexes can be collected.
+function searchFields(skill){
+ if(!searchCache.has(skill)){
+  const groups=[
+   [100,[skill.callName,skill.slug,skill.nameZh]],
+   [60,[...(skill.tags||[]),skill.category]],
+   [30,[skill.summaryZh,skill.description,...(skill.scenariosZh||[])]],
+   [10,[skill.searchText]]
+  ];
+  searchCache.set(skill,groups.map(([weight,values])=>{const text=normalizeText(values.filter(Boolean).join(' '));return {weight,text,orchestration:orchestrationWord.test(text)};}));
+ }
+ return searchCache.get(skill);
+}
 export function filterSkills(skills,state={}){
- const query=(state.query||'').trim().toLocaleLowerCase();
- return skills.filter(s=>(!state.provider||s.provider===state.provider)&&(!state.category||s.category===state.category)&&(state.tags||[]).every(t=>(s.tags||[]).includes(t))&&(!query||[s.callName,s.nameZh,s.slug,s.summaryZh,s.description,...(s.scenariosZh||[])].filter(Boolean).join(' ').toLocaleLowerCase().includes(query)));
+ const terms=[...new Set(normalizeText(state.query).split(' ').filter(Boolean))];
+ const rows=[];
+ for(const skill of skills){
+  if((state.provider&&skill.provider!==state.provider)||(state.category&&skill.category!==state.category)||!(state.tags||[]).every(tag=>(skill.tags||[]).includes(tag)))continue;
+  let score=0,matched=true;
+  for(const term of terms){
+   const group=searchFields(skill).find(field=>field.text.includes(term)||(orchestrationForms.has(term)&&field.orchestration));
+   if(!group){matched=false;break;}score+=group.weight;
+  }
+  if(matched)rows.push({skill,score});
+ }
+ if(terms.length)rows.sort((a,b)=>b.score-a.score);
+ return rows.map(row=>row.skill);
 }
 export function inventory(skills){
  const providers=[...new Set(skills.map(s=>s.provider))];

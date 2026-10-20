@@ -50,6 +50,7 @@ test('complete CRLF/multiline frontmatter, stable IDs, full body, no author/path
   assert.equal(list.skills[0].id,'ecc/native/sample');
   assert.equal(list.skills[0].callName,'ecc:sample');
   assert.equal(list.skills[0].description,'多行说明 正确解析');
+  assert.equal(list.skills[0].searchText,body);
   assert.equal(list.skills[0].sourceHash,digest(raw));
   assert.equal(list.skills[0].status,'missing');
   assert.equal(list.skills[0].nameZh,'');
@@ -219,6 +220,7 @@ test('explicit list refresh rereads skill and overlay snapshots without stale ve
   const changed=skillText('sample','更新后的完整正文'); await writeFile(file,changed);
   let list=(await request('/api/skills')).json();
   assert.equal(list.skills[0].status,'stale'); assert.equal(list.skills[0].sourceHash,digest(changed));
+  assert.equal(list.skills[0].searchText,'更新后的完整正文');
   assert.equal((await request('/api/skills/ecc%2Fnative%2Fsample')).json().body,'更新后的完整正文');
   await writeFile(notesFile,JSON.stringify([{...note,nameZh:'更新说明',sourceHash:digest(changed)}]));
   list=(await request('/api/skills')).json();
