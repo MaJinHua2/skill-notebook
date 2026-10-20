@@ -4,6 +4,7 @@ import { constants } from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { parseDocument } from 'yaml';
+import {createAccessPolicy} from './network.mjs';
 
 const MAX_BYTES = 2 * 1024 * 1024;
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -151,7 +152,8 @@ async function buildCatalog(config,notesFiles,approvedRoots) {
   return {records,sources,diagnostics};
 }
 
-export async function createApp({config,notesFiles=[],webRoot}={}) {
+export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={}) {
+  const allowRequest=createAccessPolicy(allowedCidrs);
   const approvedRoots=new Map();
   let catalog=await buildCatalog(config,notesFiles,approvedRoots);
   // Keep opaque IDs across explicit refreshes, so another open tab can still read valid references.
@@ -194,10 +196,7 @@ export async function createApp({config,notesFiles=[],webRoot}={}) {
     };
     const fail=(status,code,message)=>send(status,{error:message,code});
     try {
-      const address=server.address(); const port=address?.port;
-      const hosts=new Set([`127.0.0.1:${port}`,`localhost:${port}`]);
-      if(address?.address==='::1') hosts.add(`[::1]:${port}`);
-      if(!hosts.has(req.headers.host) || (req.headers.origin && req.headers.origin!==`http://${req.headers.host}`)) return fail(403,'FORBIDDEN','请求来源未获允许。');
+      if(!allowRequest(req,server.address())) return fail(403,'FORBIDDEN','请求来源未获允许。');
       if(req.method!=='GET' && req.method!=='HEAD') return send(405,{error:'此阅读器仅支持读取。',code:'METHOD_NOT_ALLOWED'},undefined,{Allow:'GET, HEAD'});
       const url=new URL(req.url,'http://'+req.headers.host); const route=url.pathname;
       if(route==='/api/skills') {

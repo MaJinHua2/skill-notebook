@@ -57,8 +57,8 @@ UI 筛选状态 `{provider:"",category:"",query:"",tags:[]}`，标签 AND，与�
 
 查询先做 Unicode NFKC、英文小写和空白归一，再按空白拆词去重，所有词均须命中，但可命中不同字段。每词按最高命中字段计分：调用名／目录名／中文名 100，标签／分类 60，中英文简介／场景 30，原文正文 10。总分降序，同分保留库存顺序；空查询保留原顺序。支持字面子串，并按完整英文词识别显式词形组 orchestration、orchestrate、orchestrates、orchestrated、orchestrating、orchestrator、orchestrators，不扩展中文同义词。
 
-最小脚本：`npm run build` 构建前端，`npm start` 启动读取本地配置的服务，环境变量 `SKILL_READER_CONFIG` / `SKILL_READER_PORT` 可覆盖配置文件/端口。默认回环3457，不读3456 API。
+最小脚本：`npm run build` 构建前端，`npm start` 启动读取本地配置的服务，环境变量 `SKILL_READER_CONFIG` / `SKILL_READER_PORT` 可覆盖配置文件/端口。默认回环3457，不读3456 API。`SKILL_READER_HOST` 支持 `127.0.0.1` 或 `0.0.0.0`；后者必须显式配置 `SKILL_READER_ALLOWED_CIDRS`（逗号分隔的 IPv4 CIDR，前缀 1–32）。实际局域网网段仅保存在本机私有配置。
 
-后端对外供测试的工厂：`createApp({config, notesFiles=[], webRoot}) -> Promise<http.Server>`，由调用者 `.listen(0,'127.0.0.1')`。Host/Origin 检查按实际 server.address().port。配置读取与监听在 start.mjs，import 工厂不得启动服务。
+后端对外供测试的工厂：`createApp({config, notesFiles=[], webRoot, allowedCidrs=[]}) -> Promise<http.Server>`，由调用者 `.listen(0,'127.0.0.1')`。默认只允许回环客户端；网段按真实 socket 地址检查，忽略代理头。Host 使用实际监听端口与允许网段内的本机网卡 IPv4 地址，Origin 须同源。配置读取与监听在 start.mjs，import 工厂不得启动服务。
 
 实施分工：后端维护 src/server 与 tests/server，前端维护 web 与 tests/web；package/lock、scripts、docs、data 和 E2E 由集成人维护。
