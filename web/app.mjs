@@ -1,5 +1,5 @@
 import './style.css';
-import {clearState,normalizeState,selectProvider,toggleTag,filterSkills,inventory,parseRoute,routeFor} from './state.mjs';
+import {clearState,normalizeState,selectProvider,toggleTag,filterSkills,inventory,parseRoute,routeFor,WORKFLOWS,workflowStage,toggleStage} from './state.mjs';
 import {renderMarkdown} from './markdown.mjs';
 
 const app=document.querySelector('#app');
@@ -66,6 +66,17 @@ function renderList(){
  const selectLabel=el('label','provider-select');selectLabel.append(el('span','sr-only','技能来源'));const select=el('select');select.id='provider';select.add(new Option('全部来源',''));for(const source of sources)select.add(new Option(`${source.label} · ${source.count}`,source.id));select.value=filters.provider;select.addEventListener('change',()=>{if(select.value)expanded[select.value]=true;changeFilters(selectProvider(filters,select.value));});selectLabel.append(select);
  controls.append(searchLabel,selectLabel);main.append(controls,el('p','muted','搜索中英文技能信息、标签、分类及技能正文；多关键词取交集，按相关度排序，不含关联文档。'));
  const tagDetails=el('details','tag-filter');const summary=el('summary','','按标签筛选（多选取交集）');tagDetails.append(summary,el('div','tags tag-options'));main.append(tagDetails);
+ const workflow=el('details','workflow-filter');
+ const workflowHeading=el('summary','','按工作流阶段');workflow.append(workflowHeading,el('p','muted','阶段内任一标签匹配，与其他筛选取交集。'));
+ for(const flow of WORKFLOWS){
+  const row=el('div','workflow-row');const title=el('h3','workflow-label',flow.label);title.id=`workflow-${flow.id}`;
+  const steps=el('ol','workflow-steps');steps.setAttribute('aria-labelledby',title.id);
+  flow.stages.forEach((stage,index)=>{
+   const item=el('li','workflow-step');
+   const b=button(`${['①','②','③','④','⑤','⑥','⑦','⑧'][index]} ${stage.label}`,()=>changeFilters(toggleStage(filters,stage.id)),'button stage-button');
+   b.dataset.stage=stage.id;b.dataset.focusKey=`stage-${stage.id}`;item.append(b);steps.append(item);
+  });row.append(title,steps);workflow.append(row);
+ }main.append(workflow);
  const resultsHeader=el('div','results-heading');const count=el('h2');count.id='match-count';const reset=button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button');resultsHeader.append(count,reset);main.append(resultsHeader,el('div','active-filters'),el('div','diagnostics'),el('div','grid'));updateList();
 }
 function updateList(){
@@ -73,10 +84,14 @@ function updateList(){
  const main=document.querySelector('#main');const count=main?.querySelector('#match-count');if(!count)return;
  const matches=filterSkills(skills,filters);count.textContent=`匹配 ${matches.length} 项 / 库存 ${skills.length} 项`;
  main.querySelector('#provider').value=filters.provider;
- const active=main.querySelector('.active-filters');const parts=[filters.provider&&`${sources.find(s=>s.id===filters.provider)?.label||filters.provider} 模块`,filters.category,filters.query&&`搜索“${filters.query}”`,...filters.tags.map(t=>`标签：${t}`)].filter(Boolean);active.textContent=parts.length?`当前条件：${parts.join(' · ')}`:'全部技能 · 点击卡片标题阅读全文，点击标签过滤';
+ const active=main.querySelector('.active-filters');const parts=[filters.provider&&`${sources.find(s=>s.id===filters.provider)?.label||filters.provider} 模块`,filters.category,filters.query&&`搜索“${filters.query}”`,...filters.tags.map(t=>`标签：${t}`)].filter(Boolean);active.replaceChildren();
+ const stage=workflowStage(filters.stage);const flow=WORKFLOWS.find(w=>w.stages.some(s=>s.id===filters.stage));
+ if(stage){const cancel=button(`${flow.label} · ${stage.label} ×`,()=>changeFilters({...filters,stage:''}),'button stage-selection');cancel.setAttribute('aria-label','取消阶段筛选');cancel.dataset.focusKey='cancel-stage';active.append(el('span','','当前阶段：'),cancel);}
+ active.append(el('span','',parts.length?`当前条件：${parts.join(' · ')}`:stage?'未限制其他条件':'全部技能 · 点击卡片标题阅读全文，点击标签过滤'));
+ for(const b of main.querySelectorAll('[data-stage]'))b.setAttribute('aria-pressed',String(b.dataset.stage===filters.stage));
  const options=main.querySelector('.tag-options');options.replaceChildren();for(const tag of [...new Set(skills.flatMap(s=>s.tags||[]))].sort((a,b)=>a.localeCompare(b,'zh-CN'))){const b=button(tag,()=>changeFilters(toggleTag(filters,tag)),'tag');b.setAttribute('aria-pressed',String(filters.tags.includes(tag)));b.dataset.focusKey=`filter-tag-${tag}`;options.append(b);}
  if(!options.children.length)options.append(el('p','muted','暂无已整理标签。'));
- const region=main.querySelector('.grid');region.replaceChildren();if(matches.length)region.append(...matches.map(card));else{const empty=el('div','empty-state');empty.append(el('h3','','没有匹配的技能'),el('p','','可减少关键词或标签，或清除全部筛选。'),button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button primary'));region.append(empty);}
+ const region=main.querySelector('.grid');region.replaceChildren();if(matches.length)region.append(...matches.map(card));else{const empty=el('div','empty-state');empty.append(el('h3','','没有匹配的技能'),el('p','','可减少关键词、标签或阶段限制，或清除全部筛选。'));if(stage)empty.append(button('取消阶段',()=>changeFilters({...filters,stage:''}),'button'));empty.append(button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button primary'));region.append(empty);}
  const diagnosticRegion=main.querySelector('.diagnostics');diagnosticRegion.replaceChildren();for(const diagnostic of diagnostics)diagnosticRegion.append(el('p','notice warning',`${diagnostic.source||'来源'}：${diagnostic.message}`));
  announce(`匹配 ${matches.length} 项技能`);
 }
