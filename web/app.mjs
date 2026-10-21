@@ -1,6 +1,7 @@
 import './style.css';
 import {clearState,normalizeState,selectProvider,toggleTag,filterSkills,inventory,parseRoute,routeFor,WORKFLOWS,workflowStage,toggleStage} from './state.mjs';
 import {renderMarkdown} from './markdown.mjs';
+import {EMBEDDED_GUIDE} from './embedded-guide.mjs';
 
 const app=document.querySelector('#app');
 const STORE='skill-reader.preferences.v1';
@@ -67,7 +68,7 @@ function renderList(){
  controls.append(searchLabel,selectLabel);main.append(controls,el('p','muted','搜索中英文技能信息、标签、分类及技能正文；多关键词取交集，按相关度排序，不含关联文档。'));
  const tagDetails=el('details','tag-filter');const summary=el('summary','','按标签筛选（多选取交集）');tagDetails.append(summary,el('div','tags tag-options'));main.append(tagDetails);
  const workflow=el('details','workflow-filter');
- const workflowHeading=el('summary','','按工作流阶段');workflow.append(workflowHeading,el('p','muted','阶段内任一标签匹配，与其他筛选取交集。'));
+ const workflowHeading=el('summary','','按工作流程阶段');workflow.append(workflowHeading,el('p','muted','项目管理与软件开发：阶段内任一标签匹配，与其他筛选取交集。'));
  for(const flow of WORKFLOWS){
   const row=el('div','workflow-row');const title=el('h3','workflow-label',flow.label);title.id=`workflow-${flow.id}`;
   const steps=el('ol','workflow-steps');steps.setAttribute('aria-labelledby',title.id);
@@ -76,7 +77,21 @@ function renderList(){
    const b=button(`${['①','②','③','④','⑤','⑥','⑦','⑧'][index]} ${stage.label}`,()=>changeFilters(toggleStage(filters,stage.id)),'button stage-button');
    b.dataset.stage=stage.id;b.dataset.focusKey=`stage-${stage.id}`;item.append(b);steps.append(item);
   });row.append(title,steps);workflow.append(row);
- }main.append(workflow);
+ }
+ const guide=el('section','embedded-guide');const guideTitle=el('h3','workflow-label','嵌入式开发引导');guideTitle.id='embedded-guide-title';
+ const guideItems=el('ol','embedded-guide-items');guideItems.setAttribute('aria-labelledby',guideTitle.id);
+ const available=new Set(skills.map(skill=>skill.id));
+ for(const entry of EMBEDDED_GUIDE){
+  const item=el('li','embedded-guide-item');item.dataset.guideId=entry.id;
+  item.append(el('h4','embedded-guide-stage',entry.label));
+  const link=el(available.has(entry.id)?'a':'span','embedded-guide-link',entry.slug);
+  if(available.has(entry.id))link.href=routeFor('skills',entry.id);
+  else link.setAttribute('aria-disabled','true');
+  item.append(link,el('p','muted',entry.description));
+  if(!available.has(entry.id))item.append(el('p','muted guide-unavailable','当前来源未提供该技能'));
+  guideItems.append(item);
+ }
+ guide.append(guideTitle,el('p','muted','点击技能名称直接阅读中文说明与完整原文。'),guideItems);workflow.append(guide);main.append(workflow);
  const resultsHeader=el('div','results-heading');const count=el('h2');count.id='match-count';const reset=button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button');resultsHeader.append(count,reset);main.append(resultsHeader,el('div','active-filters'),el('div','diagnostics'),el('div','grid'));updateList();
 }
 function updateList(){

@@ -5,6 +5,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 import { createApp } from '../../src/server/app.mjs';
+import { checkEmbeddedGuide } from './embedded-guide.mjs';
 
 // Isolated test browser/profile and synthetic documents; never attaches to user tabs.
 const reportDir=path.resolve('.local/acceptance');
@@ -229,6 +230,7 @@ try {
   for(const [file,raw] of sourceFiles)assert.equal(await readFile(file,'utf8'),raw);
   assert.deepEqual(errors,[]);
  });
+ await checkEmbeddedGuide(browser,check,reportDir);
  const report={status:'passed',browser:browser.version(),platform:process.platform,node:process.version,checks,externalRequests:externalRequests.length,errors,windowsEdge:'not available; requires Windows verification',zoom:'720 CSS px available space only; native browser zoom not verified'};
  await writeFile(path.join(reportDir,'e2e.json'),JSON.stringify(report,null,2)+'\n');
  console.log(`浏览器验收通过：${checks.length} 项（独立测试浏览器）`);
