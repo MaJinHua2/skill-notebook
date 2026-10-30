@@ -97,6 +97,28 @@ function renderList(){
  guide.append(guideTitle,el('p','muted','点击技能名称直接阅读中文说明与完整原文。'),guideItems);workflow.append(guide);main.append(workflow);
  const resultsHeader=el('div','results-heading');const count=el('h2');count.id='match-count';const reset=button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button');resultsHeader.append(count,reset);main.append(resultsHeader,el('div','active-filters'),el('div','diagnostics'),el('div','grid'));updateList();
 }
+function renderDiagnostics(region){
+ const open=new Set([...region.querySelectorAll('.note-status[open]')].map(n=>n.dataset.provider));
+ region.replaceChildren();const summarized=new Set();
+ const affected=skills.filter(skill=>skill.status==='stale'||skill.status==='missing');
+ for(const provider of new Set(affected.map(skill=>skill.provider))){
+  const rows=affected.filter(skill=>skill.provider===provider),stale=rows.filter(skill=>skill.status==='stale'),missing=rows.filter(skill=>skill.status==='missing');
+  const label=sources.find(source=>source.id===provider)?.label||rows[0].providerLabel||provider;
+  const details=el('details','note-status');details.dataset.provider=provider;details.open=open.has(provider);
+  const summary=el('summary','',`${label} · 全库中文说明：${stale.length} 项待复核，${missing.length} 项待整理`);summary.dataset.focusKey=`note-status-${provider}`;details.append(summary);
+  for(const [status,title,items] of [['stale','待复核',stale],['missing','待整理',missing]]){
+   if(!items.length)continue;
+   const group=el('section','note-status-group');group.dataset.status=status;group.append(el('h3','',title));const list=el('ul','note-status-list');
+   for(const skill of items){const item=el('li'),link=el('a','',skill.nameZh?`${skill.nameZh} · ${skill.callName}`:skill.callName);link.href=routeFor('skills',skill.id);item.append(link);list.append(item);}
+   group.append(list);details.append(group);
+  }
+  if(stale.length)summarized.add(provider);region.append(details);
+ }
+ for(const diagnostic of diagnostics){
+  if(diagnostic.code==='NOTE_STALE'&&summarized.has(diagnostic.source))continue;
+  region.append(el('p','notice warning',`${diagnostic.source||'来源'}：${diagnostic.message}`));
+ }
+}
 function updateList(){
  if(parseRoute(location.hash).type!=='list')return;
  const main=document.querySelector('#main');const count=main?.querySelector('#match-count');if(!count)return;
@@ -110,7 +132,7 @@ function updateList(){
  const options=main.querySelector('.tag-options');options.replaceChildren();for(const tag of [...new Set(skills.flatMap(s=>s.tags||[]))].sort((a,b)=>a.localeCompare(b,'zh-CN'))){const b=button(tag,()=>changeFilters(toggleTag(filters,tag)),'tag');b.setAttribute('aria-pressed',String(filters.tags.includes(tag)));b.dataset.focusKey=`filter-tag-${tag}`;options.append(b);}
  if(!options.children.length)options.append(el('p','muted','暂无已整理标签。'));
  const region=main.querySelector('.grid');region.replaceChildren();if(matches.length)region.append(...matches.map(card));else{const empty=el('div','empty-state');empty.append(el('h3','','没有匹配的技能'),el('p','','可减少关键词、标签或阶段限制，或清除全部筛选。'));if(stage)empty.append(button('取消阶段',()=>changeFilters({...filters,stage:''}),'button'));empty.append(button('清除全部筛选',()=>{changeFilters(clearState());document.querySelector('#search').value='';},'button primary'));region.append(empty);}
- const diagnosticRegion=main.querySelector('.diagnostics');diagnosticRegion.replaceChildren();for(const diagnostic of diagnostics)diagnosticRegion.append(el('p','notice warning',`${diagnostic.source||'来源'}：${diagnostic.message}`));
+ renderDiagnostics(main.querySelector('.diagnostics'));
  announce(`匹配 ${matches.length} 项技能`);
 }
 async function copyCall(callName,b){try{await navigator.clipboard.writeText(callName);b.textContent='已复制';announce('已复制技能调用名');setTimeout(()=>{if(b.isConnected)b.textContent='复制调用名';},1800);}catch{announce('复制失败，请手动选择调用名复制');b.textContent='请选中调用名手动复制';}}

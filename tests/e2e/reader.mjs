@@ -7,6 +7,7 @@ import { chromium } from 'playwright';
 import { createApp } from '../../src/server/app.mjs';
 import { checkEmbeddedGuide } from './embedded-guide.mjs';
 import { checkDevelopmentGuide } from './development-guide.mjs';
+import { checkNoteStatus } from './note-status.mjs';
 
 // Isolated test browser/profile and synthetic documents; never attaches to user tabs.
 const reportDir=path.resolve('.local/acceptance');
@@ -51,6 +52,7 @@ try {
  const page=await context.newPage();
  page.on('pageerror',error=>errors.push(error.message));
  page.on('request',request=>{if(!request.url().startsWith(base)&&!request.url().startsWith('data:'))externalRequests.push(request.url());});
+ await checkNoteStatus(browser,check,reportDir);
  await page.goto(base);await page.locator('.card').first().waitFor();
  await check('首次全部视图与两个模块收起',async()=>{
   assert.equal(await page.locator('.card').count(),4);

@@ -23,3 +23,8 @@ a.guide-nav{text-decoration:none}
 .guide-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
 .guide-actions a{text-decoration:none;display:inline-flex;align-items:center}
 .development-guide-frame{display:block;width:100%;height:calc(100dvh - 15rem);min-height:32rem;border:1px solid var(--border);border-radius:var(--radius);background:white}
+.note-status{padding:.8rem 1rem;margin:1rem 0;background:#fff5df;border:1px solid #d8b967;border-radius:8px;color:#624300;font-size:1rem;overflow-wrap:anywhere}
+.note-status summary{cursor:pointer;font-weight:600;line-height:1.7}
+.note-status-group{margin-top:1rem}.note-status-group h3{font-size:1rem}
+.note-status-list{margin:.4rem 0;padding-left:1.4rem}
+.note-status-list a{display:inline-flex;align-items:center;min-height:2.75rem;max-width:100%;overflow-wrap:anywhere}

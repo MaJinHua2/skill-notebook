@@ -23,7 +23,7 @@
 callName 由 `${source.id}:${frontmatter.name}` 得到，name 必须与技能目录相同，否则诊断拒绝。
 
 学习笔记是 JSON 数组。每项含 `id, callName, nameZh, summaryZh, scenariosZh: string[], tags: string[], category, version, sourceHash`。
-sourceHash 是完整 SKILL.md UTF-8 文件字节的 SHA-256。当前仅维护 ECC，笔记文件是 `data/learning-notes/ecc.json`，共 348 项；配置目录由启动器确定，不随请求指定。本机与后续 Sites 数据范围均只包含 ECC。
+sourceHash 是完整 SKILL.md UTF-8 文件字节的 SHA-256。当前仅维护 ECC，笔记文件是 `data/learning-notes/ecc.json`；笔记条目数随复核和整理更新，来源新增或变化时可以与实时库存不同。配置目录由启动器确定，不随请求指定。本机与后续 Sites 数据范围均只包含 ECC。
 
 GET `/api/skills` 响应：
 
@@ -44,6 +44,8 @@ GET `/api/skills` 响应：
 ```
 
 状态 verified / missing / stale，分别为版本/hash匹配、无中文笔记、来源变化。无中文时字段为空、数组为空，UI显示待整理。
+
+界面按来源从全量 skills 统计 stale、missing，使用一个默认收起的“全库中文说明”区域分别列出待复核、待整理及原生详情链接。统计独立于列表筛选，同页筛选更新保留展开状态；卡片与详情仍显示自身状态。对应来源的 NOTE_STALE 已有汇总时不重复展示相同全局文案；其他诊断及无对应技能的诊断保留。API 原有诊断字段和逐项说明状态不变。
 `description` 保留英文简介，`searchText` 保留通过来源校验的完整技能正文（不含 frontmatter）。两者参与搜索但不显示在列表；它们是可下发的检索数据，不是保密字段。搜索不包含关联文档内容。详情仍显示原文；资料刷新同时替换正文检索快照。
 GET `/api/skills/${encodeURIComponent(id)}`：上述单条字段加 `body`（完整正文，不含 frontmatter）、`references:[{id,label}]`。
 GET `/api/references/${encodeURIComponent(id)}`：服务器登记过的包内 Markdown 引用，返回 `{title,body,references}`。不直接暴露文件路径，不跟随远程图片。
@@ -64,3 +66,5 @@ UI 筛选状态 `{provider:"",category:"",query:"",tags:[]}`，标签 AND，与�
 后端对外供测试的工厂：`createApp({config, notesFiles=[], webRoot, allowedCidrs=[]}) -> Promise<http.Server>`，由调用者 `.listen(0,'127.0.0.1')`。默认只允许回环客户端；网段按真实 socket 地址检查，忽略代理头。Host 使用实际监听端口与允许网段内的本机网卡 IPv4 地址，Origin 须同源。配置读取与监听在 start.mjs，import 工厂不得启动服务。
 
 实施分工：后端维护 src/server 与 tests/server，前端维护 web 与 tests/web；package/lock、scripts、docs、data 和 E2E 由集成人维护。
+
+真实资料检查产物 `.local/acceptance/smoke.json` 表示最近一次获准启动的运行。新增 `runId`、`startedAt`、`finishedAt`、`stage`，失败时有安全的 `error:{stage,message}`，详情失败可有 `currentSkillId`；保留既有库存、状态数和 `completeDetailsChecked` 等字段。尚未观测的数据为 null，已完成数量从本轮 0 开始。校验前先发布 running，正常成功发布 passed 并退出 0，可捕获失败发布 failed 并非零退出；写入使用同目录临时文件与替换。smoke.lock 阻止并发覆盖，硬中断的 running 不构成通过，写入失败须明确报告结果不可用。
