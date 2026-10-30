@@ -23,24 +23,27 @@ function shell(){
  const menu=button('技能导航',()=>{mobileOpen=!mobileOpen;updateMobile();},'button mobile-menu');menu.id='mobile-menu';menu.setAttribute('aria-controls','navigation');
  const refresh=button('刷新资料',load,'button refresh');
  header.append(brand,tagline,menu,refresh);
- const layout=el('div','layout');const nav=el('nav','navigation');nav.id='navigation';nav.setAttribute('aria-label','技能模块与分类');
+ const layout=el('div','layout');const nav=el('nav','navigation');nav.id='navigation';nav.setAttribute('aria-label','技能模块、分类与学习指南');
  const main=el('main','main');main.id='main';main.tabIndex=-1;
  layout.append(nav,main);app.append(header,layout);renderNavigation();updateMobile();
 }
 function updateMobile(){document.querySelector('#navigation')?.classList.toggle('mobile-open',mobileOpen);document.querySelector('#mobile-menu')?.setAttribute('aria-expanded',String(mobileOpen));}
 function renderNavigation(){
  const nav=document.querySelector('#navigation');if(!nav)return;nav.replaceChildren(el('p','eyebrow','我的技能库'));
+ const viewingGuide=parseRoute(location.hash).type==='guides';
  const all=button(`全部技能 · ${skills.length}`,()=>{changeFilters(selectProvider(filters,''));mobileOpen=false;updateMobile();goList();},'nav-item');
- all.dataset.focusKey='all';all.classList.toggle('active',!filters.provider);if(!filters.provider)all.setAttribute('aria-current','page');nav.append(all);
+ all.dataset.focusKey='all';all.classList.toggle('active',!viewingGuide&&!filters.provider);if(!viewingGuide&&!filters.provider)all.setAttribute('aria-current','page');nav.append(all);
  for(const group of inventory(skills)){
   const section=el('section','nav-group');const row=el('div','module-row');
   const choose=button(`${group.label} 模块 · ${group.count}`,()=>{expanded[group.provider]=true;changeFilters(selectProvider(filters,group.provider));goList();},'nav-item module-name');
-  choose.dataset.focusKey=`provider-${group.provider}`;choose.classList.toggle('active',filters.provider===group.provider&&!filters.category);
+  choose.dataset.focusKey=`provider-${group.provider}`;choose.classList.toggle('active',!viewingGuide&&filters.provider===group.provider&&!filters.category);
   const toggle=button(expanded[group.provider]?'▾':'▸',()=>{expanded[group.provider]=!expanded[group.provider];save();preserveFocus(renderNavigation);},'fold');toggle.setAttribute('aria-label',`${expanded[group.provider]?'收起':'展开'} ${group.label} 分类`);toggle.setAttribute('aria-expanded',String(!!expanded[group.provider]));toggle.setAttribute('aria-controls',`categories-${group.provider}`);toggle.dataset.focusKey=`fold-${group.provider}`;
   row.append(choose,toggle);section.append(row);
   const categories=el('div','categories');categories.id=`categories-${group.provider}`;categories.hidden=!expanded[group.provider];
-  for(const category of group.categories){const b=button(`${category.name} · ${category.count}`,()=>{changeFilters({...filters,provider:group.provider,category:category.name});mobileOpen=false;updateMobile();goList();},'nav-item subcategory');b.dataset.focusKey=`category-${group.provider}-${category.name}`;b.classList.toggle('active',filters.provider===group.provider&&filters.category===category.name);categories.append(b);}section.append(categories);nav.append(section);
+  for(const category of group.categories){const b=button(`${category.name} · ${category.count}`,()=>{changeFilters({...filters,provider:group.provider,category:category.name});mobileOpen=false;updateMobile();goList();},'nav-item subcategory');b.dataset.focusKey=`category-${group.provider}-${category.name}`;b.classList.toggle('active',!viewingGuide&&filters.provider===group.provider&&filters.category===category.name);categories.append(b);}section.append(categories);nav.append(section);
  }
+ const guide=el('a','nav-item guide-nav','多智能体开发全流程');guide.href=routeFor('guides','multi-agent-development');guide.dataset.focusKey='development-guide';guide.classList.toggle('active',viewingGuide);if(viewingGuide)guide.setAttribute('aria-current','page');
+ guide.addEventListener('click',()=>{mobileOpen=false;updateMobile();});nav.append(el('p','eyebrow guide-nav-heading','学习指南'),guide);
  nav.append(el('p','nav-foot','本地只读 · 原文与中文学习说明分开保存'));
 }
 function statusNote(skill){
@@ -112,9 +115,19 @@ function updateList(){
 }
 async function copyCall(callName,b){try{await navigator.clipboard.writeText(callName);b.textContent='已复制';announce('已复制技能调用名');setTimeout(()=>{if(b.isConnected)b.textContent='复制调用名';},1800);}catch{announce('复制失败，请手动选择调用名复制');b.textContent='请选中调用名手动复制';}}
 function errorView(message,retry){const main=document.querySelector('#main');const section=el('section','empty-state');section.setAttribute('role','alert');section.append(el('h1','','暂时无法显示'),el('p','',message),button('返回技能列表',goList));if(retry)section.append(button('重试',retry));main.replaceChildren(section);}
+function renderDevelopmentGuide(){
+ const main=document.querySelector('#main');main.removeAttribute('aria-busy');main.replaceChildren();
+ const heading=el('div','section-heading');heading.append(el('h1','','多智能体开发全流程'),el('p','muted','从需求到 Git，查看角色分工、文档交接与各环节的 ECC 技能。'));main.append(heading);
+ const actions=el('div','guide-actions');const back=el('a','button','返回技能列表');back.href='#/';
+ const standalone=el('a','button','单独打开指南');standalone.href='/guides/multi-agent-development/index.html';standalone.target='_blank';standalone.rel='noopener noreferrer';actions.append(back,standalone);main.append(actions);
+ const frame=el('iframe','development-guide-frame');frame.title='ECC 多智能体软件开发全流程';frame.src=standalone.href;frame.setAttribute('allow','clipboard-write');main.append(frame);
+ document.title='多智能体开发全流程 · 技能阅读器';main.focus();window.scrollTo({top:0});
+}
 async function showRoute(){
  const route=parseRoute(location.hash);const number=++requestNumber;
+ renderNavigation();
  if(route.type==='list'){renderList();return;}
+ if(route.type==='guides'){renderDevelopmentGuide();return;}
  if(route.type==='invalid'){errorView('链接格式无效，请返回技能列表重新选择。');return;}
  const main=document.querySelector('#main');main.replaceChildren(el('p','notice','正在读取完整文档…'));main.setAttribute('aria-busy','true');
  try{

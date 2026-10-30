@@ -51,6 +51,8 @@ GET `/api/references/${encodeURIComponent(id)}`：服务器登记过的包内 Ma
 
 前端入口是 `web/index.html`，客户端构建入口 `web/app.mjs`。构建输出到 `dist/`（index.html、app.js、app.css）；本地 esbuild 将 marked 和 DOMPurify 一起打包，运行无需 CDN。静态资源严格映射，不暴露项目树。
 
+指南接入补充（2026-10-30）：`#/guides/multi-agent-development` 显示“多智能体开发全流程”板块。`web/guides/multi-agent-development/` 保存用户提供 HTML 的接入副本，原内联样式和脚本分别拆为 `guide.css` 和 `guide.js`；构建复制三项资源到同名 `dist/` 子目录。服务器仅增加这三个精确资源路径，只有成功返回的指南 HTML 使用 `frame-ancestors 'self'`，其他响应仍为 `'none'`。指南通过同源 iframe 隔离样式和章节锚点，保持原稿搜索、筛选和复制行为；技能列表筛选继续由阅读器管理。需求与完成条件见 `PRODUCT-BRIEF.md`。
+
 UI 筛选状态 `{provider:"",category:"",query:"",tags:[]}`，标签 AND，与其他条件 AND。切换 provider 清 category；全技能清 provider/category；clear 清所有。库存不随筛选变化。
 
 每张卡片在标签下方提供“查看详情与原文”原生链接，与标题使用相同的 skills 路由，不拦截浏览器原生新标签页操作。支持键盘和至少 44px 高的点击区域；返回列表保留筛选条件，列表本身不显示原文。

@@ -18,3 +18,8 @@
 .embedded-guide-link{display:flex;align-items:center;min-height:2.75rem;padding:.3rem 0;font-size:1rem;overflow-wrap:anywhere}
 .embedded-guide-link[aria-disabled=true]{color:#42516a}.guide-unavailable{margin-top:.5rem}
 @media(max-width:900px){.embedded-guide-items{grid-template-columns:minmax(0,1fr)}}
+.guide-nav-heading{margin-top:1.5rem}
+a.guide-nav{text-decoration:none}
+.guide-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
+.guide-actions a{text-decoration:none;display:inline-flex;align-items:center}
+.development-guide-frame{display:block;width:100%;height:calc(100dvh - 15rem);min-height:32rem;border:1px solid var(--border);border-radius:var(--radius);background:white}

@@ -38,6 +38,33 @@ async function fixture(t) {
   return {base,root,webRoot,outside,source,config,serve};
 }
 
+test('development guide serves only fixed local assets and allows only its HTML to be embedded',async t=>{
+  const f=await fixture(t);const dir=path.join(f.webRoot,'guides','multi-agent-development');
+  await mkdir(dir,{recursive:true});
+  const files=[['index.html','<h1>流程指南</h1>','text/html'],['guide.css','body{color:green}','text/css'],['guide.js','document.title="流程指南"','text/javascript']];
+  for(const [name,body] of files)await writeFile(path.join(dir,name),body);
+  await writeFile(path.join(dir,'private.txt'),'不公开');
+  const {request}=await f.serve();
+  for(const [name,body,type] of files){
+    const response=await request(`/guides/multi-agent-development/${name}`);
+    assert.equal(response.status,200);assert.equal(response.body,body);
+    assert.ok(response.headers['content-type'].startsWith(type));
+    assert.match(response.headers['content-security-policy'],/script-src 'self'; style-src 'self'/);
+    assert.doesNotMatch(response.headers['content-security-policy'],/unsafe-inline/);
+    assert.ok(response.headers['content-security-policy'].includes(`frame-ancestors '${name==='index.html'?'self':'none'}'`));
+  }
+  assert.match((await request('/')).headers['content-security-policy'],/frame-ancestors 'none'/);
+  const head=await request('/guides/multi-agent-development/index.html?preview=1',{},'HEAD');
+  assert.equal(head.status,200);assert.equal(head.body,'');assert.match(head.headers['content-security-policy'],/frame-ancestors 'self'/);
+  assert.equal((await request('/guides/multi-agent-development/private.txt')).status,404);
+  assert.equal((await request('/guides/unknown/index.html')).status,404);
+  assert.equal((await request('/guides/multi-agent-development/index.html',{'Host':'external.invalid'})).status,403);
+  assert.equal((await request('/guides/multi-agent-development/index.html',{},'POST')).status,405);
+  await unlink(path.join(dir,'index.html'));
+  const missing=await request('/guides/multi-agent-development/index.html');
+  assert.equal(missing.status,404);assert.match(missing.headers['content-security-policy'],/frame-ancestors 'none'/);
+});
+
 test('complete CRLF/multiline frontmatter, stable IDs, full body, no author/path leakage and zero source writes', async t => {
   const f = await fixture(t);
   const file = path.join(f.root,'skills','sample','SKILL.md');

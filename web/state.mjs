@@ -71,6 +71,7 @@ export function inventory(skills){
 export function routeFor(type,id){return `#/${type}/${encodeURIComponent(id)}`;}
 export function parseRoute(hash){
  if(!hash||hash==='#'||hash==='#/')return {type:'list'};
+ if(hash==='#/guides/multi-agent-development')return {type:'guides',id:'multi-agent-development'};
  const match=/^#\/(skills|references)\/([^/]+)$/.exec(hash);
  if(!match)return {type:'invalid'};
  try{return {type:match[1],id:decodeURIComponent(match[2])};}catch{return {type:'invalid'};}

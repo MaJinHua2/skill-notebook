@@ -186,12 +186,17 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
     return {body,references:refs};
   }
 
-  const assets=new Map([['/',['index.html','text/html; charset=utf-8']],['/index.html',['index.html','text/html; charset=utf-8']],['/app.js',['app.js','text/javascript; charset=utf-8']],['/app.css',['app.css','text/css; charset=utf-8']]]);
+  const guideRoot='guides/multi-agent-development';
+  const assets=new Map([['/',['index.html','text/html; charset=utf-8']],['/index.html',['index.html','text/html; charset=utf-8']],['/app.js',['app.js','text/javascript; charset=utf-8']],['/app.css',['app.css','text/css; charset=utf-8']],
+    [`/${guideRoot}/index.html`,[`${guideRoot}/index.html`,'text/html; charset=utf-8']],
+    [`/${guideRoot}/guide.css`,[`${guideRoot}/guide.css`,'text/css; charset=utf-8']],
+    [`/${guideRoot}/guide.js`,[`${guideRoot}/guide.js`,'text/javascript; charset=utf-8']]]);
   let assetRoot; try { assetRoot=await realpath(webRoot); } catch { assetRoot=null; }
+  const csp="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'";
   const server=http.createServer(async(req,res)=> {
     const send=(status,payload,type='application/json; charset=utf-8',headers={})=> {
       const body=typeof payload==='string'?payload:JSON.stringify(payload);
-      res.writeHead(status,{'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Cache-Control':'no-store','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",...headers});
+      res.writeHead(status,{'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','Cache-Control':'no-store','Content-Security-Policy':csp,...headers});
       res.end(req.method==='HEAD'?'':body);
     };
     const fail=(status,code,message)=>send(status,{error:message,code});
@@ -216,7 +221,10 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
       }
       const asset=assets.get(route);
       if(asset && assetRoot) {
-        try { return send(200,await checkedRead(assetRoot,path.join(assetRoot,asset[0])),asset[1]); } catch { return fail(404,'NOT_FOUND','页面资源不可用，请先构建前端。'); }
+        try {
+          const headers=route===`/${guideRoot}/index.html`?{'Content-Security-Policy':csp.replace("frame-ancestors 'none'","frame-ancestors 'self'")} : {};
+          return send(200,await checkedRead(assetRoot,path.join(assetRoot,asset[0])),asset[1],headers);
+        } catch { return fail(404,'NOT_FOUND','页面资源不可用，请先构建前端。'); }
       }
       return fail(404,'NOT_FOUND','未找到资源。');
     } catch { return fail(500,'READ_ERROR','暂时无法读取内容。'); }

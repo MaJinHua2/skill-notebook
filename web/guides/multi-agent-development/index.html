@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>ECC 多智能体软件开发全流程</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<div class="topline"><div class="wrap"><span>CODEX × ECC / 软件工程工作指南</span><small>本机 ECC 2.2.3 · 单文件离线阅读</small></div></div>
+<header class="hero"><div class="wrap hero-grid"><div><span class="eyebrow">Agent-led · Human-assisted</span><h1>从需求到 Git<br>多智能体生产链路</h1><p>以智能体主导、人类辅助的方式组织软件开发。每个工程环节配一个协作技能和一个文档或证据技能，让需求、设计、实现、审核与验收可以沿同一依据衔接。</p></div><aside class="hero-note"><strong>先共同理解，再分工执行</strong>参与者读取同一版权威需求，形成清晰交接。业务事实、关键取舍和需要额外授权的操作由人参与；其余工作在已授权范围内自主推进。</aside></div></header>
+<main class="wrap">
+<div class="overview" aria-label="文档概览"><div><strong>17 个环节</strong><span>实现与重构为两种路径</span></div><div><strong>2 个技能</strong><span>每行：协作 + 文档或证据</span></div><div><strong>7 种角色</strong><span>主代理统筹，职责独立</span></div><div><strong>1 份需求正文</strong><span>共享路径与版本 / 指纹</span></div></div>
+<nav class="jump" aria-label="页面导航"><a href="#flow">工程步骤</a><a href="#roles">角色分工</a><a href="#documents">文档交接</a><a href="#skills">技能清单</a><a href="#rules">适配说明</a><a href="#example">调用示例</a></nav>
+<section class="section" aria-labelledby="principles-title"><div class="section-heading"><div><span class="section-no">THE OPERATING MODEL</span><h2 id="principles-title">这条链路怎样运转</h2></div></div><div class="principle"><article class="principle-card"><h3>智能体主导工作</h3><p><span class="accent">主代理负责组织。</span>需求分析、实施、代码与质量审核、风险核实和需求验收分别承担任务；审核发现交实施者处理，再按影响范围复核。</p></article><article class="principle-card"><h3>人类提供必要判断</h3><p><span class="accent">先查资料并形成可审阅结果。</span>只有需要业务事实、产品取舍或额外授权时才请人参与；已确认决定和授权内常规事项继续推进。</p></article></div><div class="notice"><strong>共同需求来源：</strong>各角色开始、接手和交接前，读取同一权威需求正文的对应版本或内容指纹，并说明本角色范围。用户变更即时生效；受影响的旧任务先停止，按授权同步正文并通知相关角色。</div></section>
+<section class="section" id="flow" aria-labelledby="flow-title"><div class="section-heading"><div><span class="section-no">01 / WORKFLOW</span><h2 id="flow-title">逐步查看工程链路</h2></div><p>每行恰好列出两个 ECC 技能。第二项有时是工程审查或验证技能，可支撑报告、清单和证据，不代表它自动生成完整文档。</p></div>
+<div class="toolbar"><div class="toolbar-top"><input class="search" id="search" type="search" placeholder="搜索步骤、技能、角色或交付物" aria-label="搜索步骤、技能、角色或交付物"><span class="result-count" id="result-count" aria-live="polite">显示全部流程</span></div><div class="filters" aria-label="按阶段筛选"><button type="button" class="filter" data-filter="all" aria-pressed="true">全部</button><button type="button" class="filter" data-filter="需求定义" aria-pressed="false">需求定义</button><button type="button" class="filter" data-filter="设计准备" aria-pressed="false">设计准备</button><button type="button" class="filter" data-filter="开发验证" aria-pressed="false">开发验证</button><button type="button" class="filter" data-filter="审核验收" aria-pressed="false">审核验收</button><button type="button" class="filter" data-filter="交付" aria-pressed="false">交付</button></div></div>
+<div class="steps" id="steps"><article class="step" id="step-01" data-group="需求定义" data-search="01 需求挖掘 需求定义 dev-team product-lens 需求分析者、主代理 产品简述 / 需求背景 围绕使用者、问题、目标和现有依据开展多角色讨论。业务事实不足时，由人补充或决定。">
+      <div class="step-number">01</div>
+      <div class="step-main"><div class="step-kicker">需求定义</div><h3>需求挖掘</h3><p>围绕使用者、问题、目标和现有依据开展多角色讨论。业务事实不足时，由人补充或决定。</p>
+        <div class="step-meta"><span><b>参与角色</b>需求分析者、主代理</span><span><b>交接产物</b>产品简述 / 需求背景</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:dev-team" data-skill-name="$ecc:dev-team" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:dev-team">$ecc:dev-team</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:product-lens" data-skill-name="$ecc:product-lens" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:product-lens">$ecc:product-lens</button></div>
+    </article>
+<article class="step" id="step-02" data-group="需求定义" data-search="02 需求澄清 需求定义 dev-team intent-driven-development 需求分析者、实施者、验收视角 权威需求正文 写清目标、允许变化、范围、保持项、业务关系和已确认来源。">
+      <div class="step-number">02</div>
+      <div class="step-main"><div class="step-kicker">需求定义</div><h3>需求澄清</h3><p>写清目标、允许变化、范围、保持项、业务关系和已确认来源。</p>
+        <div class="step-meta"><span><b>参与角色</b>需求分析者、实施者、验收视角</span><span><b>交接产物</b>权威需求正文</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:dev-team" data-skill-name="$ecc:dev-team" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:dev-team">$ecc:dev-team</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:intent-driven-development" data-skill-name="$ecc:intent-driven-development" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:intent-driven-development">$ecc:intent-driven-development</button></div>
+    </article>
+<article class="step" id="step-03" data-group="需求定义" data-search="03 制定验收标准 需求定义 dev-team intent-driven-development 需求分析者、实施者、需求验收者 可观察的验收条件 讨论正常、边界、失败、取消及不得产生的副作用，并为条件指定适用证据。">
+      <div class="step-number">03</div>
+      <div class="step-main"><div class="step-kicker">需求定义</div><h3>制定验收标准</h3><p>讨论正常、边界、失败、取消及不得产生的副作用，并为条件指定适用证据。</p>
+        <div class="step-meta"><span><b>参与角色</b>需求分析者、实施者、需求验收者</span><span><b>交接产物</b>可观察的验收条件</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:dev-team" data-skill-name="$ecc:dev-team" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:dev-team">$ecc:dev-team</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:intent-driven-development" data-skill-name="$ecc:intent-driven-development" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:intent-driven-development">$ecc:intent-driven-development</button></div>
+    </article>
+<article class="step" id="step-04" data-group="设计准备" data-search="04 现状、基线与影响 设计准备 parallel-execution-optimizer change-impact 实施者、代码评审者 固定代码基线与影响说明 并行查证直接入口、调用方、数据来源与消费者，区分已证实事实和未验证项。">
+      <div class="step-number">04</div>
+      <div class="step-main"><div class="step-kicker">设计准备</div><h3>现状、基线与影响</h3><p>并行查证直接入口、调用方、数据来源与消费者，区分已证实事实和未验证项。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、代码评审者</span><span><b>交接产物</b>固定代码基线与影响说明</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:parallel-execution-optimizer" data-skill-name="$ecc:parallel-execution-optimizer" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:parallel-execution-optimizer">$ecc:parallel-execution-optimizer</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:change-impact" data-skill-name="$ecc:change-impact" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:change-impact">$ecc:change-impact</button></div>
+    </article>
+<article class="step" id="step-05" data-group="设计准备" data-search="05 技术设计 设计准备 team-agent-orchestration product-capability 实施者、代码评审者、主代理 设计文档 形成模块职责、接口、数据流、异常路径与兼容设计；能力合约由实施者补成具体方案。">
+      <div class="step-number">05</div>
+      <div class="step-main"><div class="step-kicker">设计准备</div><h3>技术设计</h3><p>形成模块职责、接口、数据流、异常路径与兼容设计；能力合约由实施者补成具体方案。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、代码评审者、主代理</span><span><b>交接产物</b>设计文档</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:product-capability" data-skill-name="$ecc:product-capability" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:product-capability">$ecc:product-capability</button></div>
+    </article>
+<article class="step" id="step-06" data-group="设计准备" data-search="06 技术决策 设计准备 team-agent-orchestration architecture-decision-records 实施者、风险审核者、主代理 决策记录 / 适用的既有决定 列明真实选项、依据、代价和后果；待定事项保持待定，必要取舍由人决定。">
+      <div class="step-number">06</div>
+      <div class="step-main"><div class="step-kicker">设计准备</div><h3>技术决策</h3><p>列明真实选项、依据、代价和后果；待定事项保持待定，必要取舍由人决定。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、风险审核者、主代理</span><span><b>交接产物</b>决策记录 / 适用的既有决定</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:architecture-decision-records" data-skill-name="$ecc:architecture-decision-records" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:architecture-decision-records">$ecc:architecture-decision-records</button></div>
+    </article>
+<article class="step" id="step-07" data-group="设计准备" data-search="07 计划与任务分派 设计准备 team-agent-orchestration blueprint 主代理、相关角色 实施计划 / 任务交接 明确负责人、范围、依赖、可并行事项、验证和交接条件。蓝图适用于多会话或多 pr。">
+      <div class="step-number">07</div>
+      <div class="step-main"><div class="step-kicker">设计准备</div><h3>计划与任务分派</h3><p>明确负责人、范围、依赖、可并行事项、验证和交接条件。蓝图适用于多会话或多 PR。</p>
+        <div class="step-meta"><span><b>参与角色</b>主代理、相关角色</span><span><b>交接产物</b>实施计划 / 任务交接</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:blueprint" data-skill-name="$ecc:blueprint" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:blueprint">$ecc:blueprint</button></div>
+    </article>
+<article class="step" id="step-08" data-group="设计准备" data-search="08 测试设计与旧行为基线 设计准备 team-agent-orchestration test-collaboration 实施者、代码质量审核者 测试方案与需求证据对应 以已确认需求和固定旧基线设计代表输入及预期，检查测试是否经过真实生产路径。">
+      <div class="step-number">08</div>
+      <div class="step-main"><div class="step-kicker">设计准备</div><h3>测试设计与旧行为基线</h3><p>以已确认需求和固定旧基线设计代表输入及预期，检查测试是否经过真实生产路径。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、代码质量审核者</span><span><b>交接产物</b>测试方案与需求证据对应</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:test-collaboration" data-skill-name="$ecc:test-collaboration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:test-collaboration">$ecc:test-collaboration</button></div>
+    </article>
+<article class="step" id="step-09a" data-group="开发验证" data-search="09a 新功能或缺陷修复 开发验证 team-agent-orchestration tdd-workflow 实施者、主代理 代码、测试与 red / green 证据 在适用任务中先确认目标测试有效失败，再做最小实现并复测。">
+      <div class="step-number">09A</div>
+      <div class="step-main"><div class="step-kicker">开发验证</div><h3>新功能或缺陷修复</h3><p>在适用任务中先确认目标测试有效失败，再做最小实现并复测。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、主代理</span><span><b>交接产物</b>代码、测试与 RED / GREEN 证据</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:tdd-workflow" data-skill-name="$ecc:tdd-workflow" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:tdd-workflow">$ecc:tdd-workflow</button></div>
+    </article>
+<article class="step" id="step-09b" data-group="开发验证" data-search="09b 保持行为的重构 开发验证 orch-refine-code test-collaboration 实施者、代码质量审核者 重构前后行为对照与回归证据 先确认旧行为基线和相关测试通过，再分步重构；该路径与 09a 按任务选择。">
+      <div class="step-number">09B</div>
+      <div class="step-main"><div class="step-kicker">开发验证</div><h3>保持行为的重构</h3><p>先确认旧行为基线和相关测试通过，再分步重构；该路径与 09A 按任务选择。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、代码质量审核者</span><span><b>交接产物</b>重构前后行为对照与回归证据</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:orch-refine-code" data-skill-name="$ecc:orch-refine-code" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:orch-refine-code">$ecc:orch-refine-code</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:test-collaboration" data-skill-name="$ecc:test-collaboration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:test-collaboration">$ecc:test-collaboration</button></div>
+    </article>
+<article class="step" id="step-10" data-group="开发验证" data-search="10 构建与实施自检 开发验证 parallel-execution-optimizer verification-loop 实施者 自检报告 记录实际工具、命令、退出状态、环境和未验证项；只有独立且不冲突的工作才并行。">
+      <div class="step-number">10</div>
+      <div class="step-main"><div class="step-kicker">开发验证</div><h3>构建与实施自检</h3><p>记录实际工具、命令、退出状态、环境和未验证项；只有独立且不冲突的工作才并行。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者</span><span><b>交接产物</b>自检报告</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:parallel-execution-optimizer" data-skill-name="$ecc:parallel-execution-optimizer" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:parallel-execution-optimizer">$ecc:parallel-execution-optimizer</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:verification-loop" data-skill-name="$ecc:verification-loop" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:verification-loop">$ecc:verification-loop</button></div>
+    </article>
+<article class="step" id="step-11" data-group="开发验证" data-search="11 下游模块回归 开发验证 team-agent-orchestration module-regression 实施者、代码质量审核者 回归范围与执行证据 根据真实依赖确定相关消费者与回归入口，缺少命令或结果时标记未验证。">
+      <div class="step-number">11</div>
+      <div class="step-main"><div class="step-kicker">开发验证</div><h3>下游模块回归</h3><p>根据真实依赖确定相关消费者与回归入口，缺少命令或结果时标记未验证。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、代码质量审核者</span><span><b>交接产物</b>回归范围与执行证据</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:module-regression" data-skill-name="$ecc:module-regression" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:module-regression">$ecc:module-regression</button></div>
+    </article>
+<article class="step" id="step-12" data-group="审核验收" data-search="12 代码质量与正确性审核 审核验收 team-agent-orchestration source-command-cpp-review 代码质量审核者、代码评审者 代码审核记录 只读检查必要性、可维护性、旧行为、兼容、内存、生命周期和并发。">
+      <div class="step-number">12</div>
+      <div class="step-main"><div class="step-kicker">审核验收</div><h3>代码质量与正确性审核</h3><p>只读检查必要性、可维护性、旧行为、兼容、内存、生命周期和并发。</p>
+        <div class="step-meta"><span><b>参与角色</b>代码质量审核者、代码评审者</span><span><b>交接产物</b>代码审核记录</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:source-command-cpp-review" data-skill-name="$ecc:source-command-cpp-review" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:source-command-cpp-review">$ecc:source-command-cpp-review</button></div>
+    </article>
+<article class="step" id="step-13" data-group="审核验收" data-search="13 安全与风险审核 审核验收 team-agent-orchestration security-review 代码评审者、风险审核者 安全与风险审核记录 检查实际相关的权限、输入、sql、凭据与敏感信息；风险审核者核实并归并发现。">
+      <div class="step-number">13</div>
+      <div class="step-main"><div class="step-kicker">审核验收</div><h3>安全与风险审核</h3><p>检查实际相关的权限、输入、SQL、凭据与敏感信息；风险审核者核实并归并发现。</p>
+        <div class="step-meta"><span><b>参与角色</b>代码评审者、风险审核者</span><span><b>交接产物</b>安全与风险审核记录</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:security-review" data-skill-name="$ecc:security-review" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:security-review">$ecc:security-review</button></div>
+    </article>
+<article class="step" id="step-14" data-group="审核验收" data-search="14 整改与定向复核 审核验收 team-agent-orchestration change-impact 实施者、原审核者、主代理 问题处理与复核记录 实施者处理已授权范围内的问题，原审核者核对修改与受影响路径；范围外事项交用户决定。">
+      <div class="step-number">14</div>
+      <div class="step-main"><div class="step-kicker">审核验收</div><h3>整改与定向复核</h3><p>实施者处理已授权范围内的问题，原审核者核对修改与受影响路径；范围外事项交用户决定。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、原审核者、主代理</span><span><b>交接产物</b>问题处理与复核记录</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:change-impact" data-skill-name="$ecc:change-impact" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:change-impact">$ecc:change-impact</button></div>
+    </article>
+<article class="step" id="step-15" data-group="审核验收" data-search="15 文档同步 审核验收 team-agent-orchestration source-command-update-docs 实施者、审核者 受影响的设计、使用和技术资料 依据核实来源同步生成区域；手写和历史材料沿现有职责按授权定向维护。">
+      <div class="step-number">15</div>
+      <div class="step-main"><div class="step-kicker">审核验收</div><h3>文档同步</h3><p>依据核实来源同步生成区域；手写和历史材料沿现有职责按授权定向维护。</p>
+        <div class="step-meta"><span><b>参与角色</b>实施者、审核者</span><span><b>交接产物</b>受影响的设计、使用和技术资料</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:source-command-update-docs" data-skill-name="$ecc:source-command-update-docs" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:source-command-update-docs">$ecc:source-command-update-docs</button></div>
+    </article>
+<article class="step" id="step-16" data-group="审核验收" data-search="16 独立需求验收 审核验收 team-agent-orchestration test-collaboration 需求验收者 验收结果与证据 对照同一版权威需求逐项判断通过、失败、受阻或未验证，必要时执行获授权检查。">
+      <div class="step-number">16</div>
+      <div class="step-main"><div class="step-kicker">审核验收</div><h3>独立需求验收</h3><p>对照同一版权威需求逐项判断通过、失败、受阻或未验证，必要时执行获授权检查。</p>
+        <div class="step-meta"><span><b>参与角色</b>需求验收者</span><span><b>交接产物</b>验收结果与证据</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:test-collaboration" data-skill-name="$ecc:test-collaboration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:test-collaboration">$ecc:test-collaboration</button></div>
+    </article>
+<article class="step" id="step-17" data-group="交付" data-search="17 git 整理与提交 交付 team-agent-orchestration git-workflow 主代理 / 集成负责人 提交范围、git 提交说明 核对实际差异、已有暂存内容、真实 issue 及提交范围；提交和推送分别按授权处理。">
+      <div class="step-number">17</div>
+      <div class="step-main"><div class="step-kicker">交付</div><h3>Git 整理与提交</h3><p>核对实际差异、已有暂存内容、真实 Issue 及提交范围；提交和推送分别按授权处理。</p>
+        <div class="step-meta"><span><b>参与角色</b>主代理 / 集成负责人</span><span><b>交接产物</b>提交范围、Git 提交说明</span></div>
+      </div>
+      <div class="step-skills"><span class="skill-label">协作技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button><span class="skill-label second">文档 / 证据技能</span><button type="button" class="skill-link" data-skill-copy="$ecc:git-workflow" data-skill-name="$ecc:git-workflow" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:git-workflow">$ecc:git-workflow</button></div>
+    </article></div><p class="empty" id="empty" hidden>没有找到匹配的步骤。可以换一个关键词，或选择“全部”。</p>
+</section>
+<section class="section" id="roles" aria-labelledby="roles-title"><div class="section-heading"><div><span class="section-no">02 / PEOPLE & AGENTS</span><h2 id="roles-title">七角色分工</h2></div><p>角色提供职责边界；是否派工、采用哪些角色以及授权范围以当前任务和 Codex 可用能力为准。</p></div><div class="roles"><article class="role"><strong>项目经理 / 主代理</strong><p>统筹需求版本、任务分派、证据、问题整合和交接。</p></article><article class="role"><strong>需求分析者</strong><p>澄清目标、保持项和验收条件，维护权威需求正文。</p></article><article class="role"><strong>实施者</strong><p>完成范围内设计、实现、配套材料和自检。</p></article><article class="role"><strong>代码质量审核者</strong><p>只读检查实现必要性、可维护性和测试证据。</p></article><article class="role"><strong>代码评审者</strong><p>只读核对正确性、兼容性、边界和副作用。</p></article><article class="role"><strong>风险审核者</strong><p>核实、去重和分级已有发现，说明证据与范围。</p></article><article class="role"><strong>需求验收者</strong><p>依据确认需求独立验收，并报告结论与证据层级。</p></article></div></section>
+<section class="section" id="documents" aria-labelledby="documents-title"><div class="section-heading"><div><span class="section-no">03 / DELIVERABLES</span><h2 id="documents-title">每次交接需要什么</h2></div><p>下列内容可以复用既有 Issue、专题或文档的相应部分；同一事实只保留一个权威来源。</p></div><div class="documents"><article class="doc"><h3>需求正文</h3><p>目标、边界、保持项、已确认来源、验收条件，以及版本或内容指纹。</p></article><article class="doc"><h3>设计与决策</h3><p>固定基线、模块与接口、数据关系、失败路径、可选方案和实际决策。</p></article><article class="doc"><h3>计划与测试方案</h3><p>责任分工、依赖、执行范围、代表输入、预期、验证方法和交接条件。</p></article><article class="doc"><h3>实施与回归证据</h3><p>实际差异、工具与命令、测试结果、受影响消费者和未验证项。</p></article><article class="doc"><h3>审核与验收记录</h3><p>位置、触发条件、影响、事实与风险；逐项记录通过、失败、受阻或未验证。</p></article><article class="doc"><h3>Git 提交说明</h3><p>真实关联、变更原因、范围、兼容边界和验证结果；遵守项目格式。</p></article></div></section>
+<section class="section" id="skills" aria-labelledby="skills-title"><div class="section-heading"><div><span class="section-no">04 / SKILL INDEX</span><h2 id="skills-title">ECC 技能清单</h2></div><p>点击技能名可复制调用名，例如 $ecc:dev-team。末尾四项为按需补充的技能。</p></div><div class="inventory"><article class="inventory-item"><div class="inventory-head"><span>多视角需求讨论</span><button type="button" class="skill-link" data-skill-copy="$ecc:dev-team" data-skill-name="$ecc:dev-team" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:dev-team">$ecc:dev-team</button></div><p>固定四个只读视角并行提出意见，主代理汇总共识与分歧。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>团队组织与交接</span><button type="button" class="skill-link" data-skill-copy="$ecc:team-agent-orchestration" data-skill-name="$ecc:team-agent-orchestration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:team-agent-orchestration">$ecc:team-agent-orchestration</button></div><p>明确责任、任务范围、依赖、交接证据和整合条件。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>并行任务拆分</span><button type="button" class="skill-link" data-skill-copy="$ecc:parallel-execution-optimizer" data-skill-name="$ecc:parallel-execution-optimizer" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:parallel-execution-optimizer">$ecc:parallel-execution-optimizer</button></div><p>识别可并行的工作并隔离写入、构建和验证范围。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>需求挖掘</span><button type="button" class="skill-link" data-skill-copy="$ecc:product-lens" data-skill-name="$ecc:product-lens" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:product-lens">$ecc:product-lens</button></div><p>从用户、问题、价值和使用路径整理产品背景。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>需求与验收标准</span><button type="button" class="skill-link" data-skill-copy="$ecc:intent-driven-development" data-skill-name="$ecc:intent-driven-development" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:intent-driven-development">$ecc:intent-driven-development</button></div><p>澄清目标、范围、保持项和可观察的验收条件。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>基线与影响分析</span><button type="button" class="skill-link" data-skill-copy="$ecc:change-impact" data-skill-name="$ecc:change-impact" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:change-impact">$ecc:change-impact</button></div><p>沿真实调用、数据和消费者核对影响，并对照实际差异。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>能力与设计约束</span><button type="button" class="skill-link" data-skill-copy="$ecc:product-capability" data-skill-name="$ecc:product-capability" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:product-capability">$ecc:product-capability</button></div><p>整理业务不变量、状态、接口、数据关系和未决事项。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>重要决策记录</span><button type="button" class="skill-link" data-skill-copy="$ecc:architecture-decision-records" data-skill-name="$ecc:architecture-decision-records" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:architecture-decision-records">$ecc:architecture-decision-records</button></div><p>记录真正的选项、背景、取舍、后果及决策状态。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>大型任务计划</span><button type="button" class="skill-link" data-skill-copy="$ecc:blueprint" data-skill-name="$ecc:blueprint" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:blueprint">$ecc:blueprint</button></div><p>为跨多会话或多个 PR 的任务整理依赖、阶段与交接。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>测试与需求证据</span><button type="button" class="skill-link" data-skill-copy="$ecc:test-collaboration" data-skill-name="$ecc:test-collaboration" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:test-collaboration">$ecc:test-collaboration</button></div><p>关联需求、业务规则、测试点、实际结果和缺口。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>测试驱动实现</span><button type="button" class="skill-link" data-skill-copy="$ecc:tdd-workflow" data-skill-name="$ecc:tdd-workflow" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:tdd-workflow">$ecc:tdd-workflow</button></div><p>以有效 RED、最小实现和 GREEN 为核心，记录验证证据。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>等价重构编排</span><button type="button" class="skill-link" data-skill-copy="$ecc:orch-refine-code" data-skill-name="$ecc:orch-refine-code" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:orch-refine-code">$ecc:orch-refine-code</button></div><p>先建立通过的行为基线，再分步重构并保持验证通过。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>构建与测试报告</span><button type="button" class="skill-link" data-skill-copy="$ecc:verification-loop" data-skill-name="$ecc:verification-loop" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:verification-loop">$ecc:verification-loop</button></div><p>组织适用的构建、检查、测试和差异复核，记录实际结果。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>下游回归</span><button type="button" class="skill-link" data-skill-copy="$ecc:module-regression" data-skill-name="$ecc:module-regression" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:module-regression">$ecc:module-regression</button></div><p>记录真实模块依赖、受影响消费者及回归命令。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>C++ 专项审核</span><button type="button" class="skill-link" data-skill-copy="$ecc:source-command-cpp-review" data-skill-name="$ecc:source-command-cpp-review" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:source-command-cpp-review">$ecc:source-command-cpp-review</button></div><p>检查内存、生命周期、并发、安全和代码正确性。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>安全审核清单</span><button type="button" class="skill-link" data-skill-copy="$ecc:security-review" data-skill-name="$ecc:security-review" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:security-review">$ecc:security-review</button></div><p>检查实际涉及的权限、输入、SQL、敏感信息和依赖风险。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>文档生成区同步</span><button type="button" class="skill-link" data-skill-copy="$ecc:source-command-update-docs" data-skill-name="$ecc:source-command-update-docs" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:source-command-update-docs">$ecc:source-command-update-docs</button></div><p>以已核实的来源同步适合生成的文档内容。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>Git 与提交说明</span><button type="button" class="skill-link" data-skill-copy="$ecc:git-workflow" data-skill-name="$ecc:git-workflow" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:git-workflow">$ecc:git-workflow</button></div><p>管理提交范围、历史、合并方式及提交说明。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>方案分歧讨论</span><button type="button" class="skill-link" data-skill-copy="$ecc:council" data-skill-name="$ecc:council" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:council">$ecc:council</button></div><p>在存在实质取舍时集中呈现不同意见和建议。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>机器学习工程</span><button type="button" class="skill-link" data-skill-copy="$ecc:mle-workflow" data-skill-name="$ecc:mle-workflow" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:mle-workflow">$ecc:mle-workflow</button></div><p>用于模型数据、训练、评估、部署、监测和回滚。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>文档治理审核</span><button type="button" class="skill-link" data-skill-copy="$ecc:docs-governance" data-skill-name="$ecc:docs-governance" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:docs-governance">$ecc:docs-governance</button></div><p>在需要跨文档治理时核对职责、链接和证据引用。</p></article>
+<article class="inventory-item"><div class="inventory-head"><span>提交说明草稿</span><button type="button" class="skill-link" data-skill-copy="$ecc:conventional-commit-review" data-skill-name="$ecc:conventional-commit-review" title="点击复制技能调用名" aria-label="复制技能调用名 $ecc:conventional-commit-review">$ecc:conventional-commit-review</button></div><p>审视拟提交差异并辅助整理提交信息；格式按项目规则适配。</p></article></div></section>
+<section class="section" id="rules" aria-labelledby="rules-title"><div class="section-heading"><div><span class="section-no">05 / PRACTICAL BOUNDARIES</span><h2 id="rules-title">使用时的关键适配</h2></div><p>这些说明对应当前讨论和 Cyto 项目约定，实际任务仍应核对所用仓库、工具和授权。</p></div><div class="guidance">
+<article class="guidance-card"><h3>多角色讨论与真实派工</h3><p><code>dev-team</code> 的原生流程是 PM、架构、开发、QA 四个只读视角并行发言，由主代理综合；它不保证角色之间直接辩论。现有七角色需要通过实际可用的 Codex 派工能力适配，不能声称自动映射。</p></article>
+<article class="guidance-card"><h3>设计、决策与计划</h3><p><code>product-capability</code> 提供能力合约和设计输入；具体模块设计仍须补齐。重大决策记录真实取舍；没有新决定时复用既有依据。<code>blueprint</code> 适合多会话或多 PR，较小任务使用精简计划。</p></article>
+<article class="guidance-card"><h3>测试驱动与等价重构</h3><p><code>tdd-workflow</code> 原文要求 RED/GREEN、覆盖率目标和检查点提交；项目授权与实际测试入口优先。保持行为的重构先建立通过的旧基线，不为流程制造修前失败。</p></article>
+<article class="guidance-card"><h3>审核和验收各自独立</h3><p>安全技能提供检查清单，报告由审核者依据实际发现形成。测试全绿或构建通过不能代替需求、真实设备、样本或客户验收；未验证项要明确列出。</p></article>
+<article class="guidance-card"><h3>项目工具与文档</h3><p>Cyto 采用 C++11、Qt 5 和 qmake；不要照搬 C++17/20、CMake、npm 等示例。复用项目已有文档和测试入口，先区分生成区域与手写材料。</p></article>
+<article class="guidance-card"><h3>提交与专业扩展</h3><p>Cyto 提交格式采用 <code>type[模块]: 中文主题 [#真实编号]</code>，正文填写真实关联。<code>mle-workflow</code> 用于机器学习任务，<code>council</code> 用于存在实际取舍的多立场讨论。</p></article>
+</div></section>
+<section class="section" id="example" aria-labelledby="example-title"><div class="section-heading"><div><span class="section-no">06 / EXAMPLE</span><h2 id="example-title">从需求讨论开始</h2></div><p>示例展示同一任务中组合两个技能；多角色派工应通过当前会话实际支持的 Codex 能力完成。</p></div><pre>$ecc:dev-team $ecc:intent-driven-development
+
+围绕【具体需求】组织多角色讨论，澄清目标、范围、保持项和验收条件。
+参与角色读取同一版权威需求正文，并说明各自关注的范围。
+汇总共识、分歧和仍需人决定的问题，形成可验证的需求草稿。</pre></section>
+</main>
+<footer><div class="wrap"><p>依据本次讨论、用户提供的协作与项目规则，以及本机 ECC 2.2.3 技能说明整理。</p><p>本文件是流程说明；生成本文件不代表已经执行开发、审核、设备验证或需求验收。整理时间：2026-10-30 08:38 CST。</p></div></footer>
+<div id="copy-status" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+<script src="guide.js"></script>
+</body>
+</html>
