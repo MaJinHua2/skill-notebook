@@ -1,3 +1,4 @@
+import {guideById} from './guides-config.mjs';
 export const WORKFLOWS = [
  {id:'management',label:'项目管理',stages:[
   {id:'management-needs',label:'需求定义',tags:['需求分析']},
@@ -71,7 +72,8 @@ export function inventory(skills){
 export function routeFor(type,id){return `#/${type}/${encodeURIComponent(id)}`;}
 export function parseRoute(hash){
  if(!hash||hash==='#'||hash==='#/')return {type:'list'};
- if(hash==='#/guides/multi-agent-development')return {type:'guides',id:'multi-agent-development'};
+ const guide=/^#\/guides\/([a-z0-9-]+)$/.exec(hash);
+ if(guide&&guideById(guide[1]))return {type:'guides',id:guide[1]};
  const match=/^#\/(skills|references)\/([^/]+)$/.exec(hash);
  if(!match)return {type:'invalid'};
  try{return {type:match[1],id:decodeURIComponent(match[2])};}catch{return {type:'invalid'};}

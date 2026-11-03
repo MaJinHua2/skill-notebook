@@ -65,6 +65,36 @@ test('development guide serves only fixed local assets and allows only its HTML 
   assert.equal(missing.status,404);assert.match(missing.headers['content-security-policy'],/frame-ancestors 'none'/);
 });
 
+test('Matt guide assets are exact allowlisted local files with isolated framing CSP',async t=>{
+ const f=await fixture(t);const dir=path.join(f.webRoot,'guides','mattpocock-skills');
+ await mkdir(dir,{recursive:true});
+ const files=[['index.html','<h1>Matt guide</h1>','text/html'],['guide.css','body{}','text/css'],['guide.js','"use strict";','text/javascript'],['source-manifest.json','{"version":"1.3.2"}','application/json'],['LICENSE.txt','MIT License','text/plain']];
+ for(const [name,body] of files)await writeFile(path.join(dir,name),body);
+ await writeFile(path.join(dir,'private.md'),'private');
+ const {request}=await f.serve();
+ for(const [name,body,mime] of files){
+  for(const method of ['GET','HEAD']){
+   const result=await request(`/guides/mattpocock-skills/${name}?v=1`,{},method);
+   assert.equal(result.status,200);assert.equal(result.body,method==='GET'?body:'');
+   assert.equal(result.headers['content-type'],`${mime}; charset=utf-8`);
+   assert.match(result.headers['content-security-policy'],/script-src 'self'; style-src 'self'/);
+   assert.ok(result.headers['content-security-policy'].includes(`frame-ancestors '${name==='index.html'?'self':'none'}'`));
+   assert.equal(result.headers['x-content-type-options'],'nosniff');
+  }
+ }
+ for(const url of ['/guides/mattpocock-skills/','/guides/mattpocock-skills/private.md','/guides/mattpocock-skills/other.js','/guides/unknown/index.html','/guides/mattpocock-skills/../private.md','/guides/mattpocock-skills/%2e%2e/private.md','/guides/mattpocock-skills/%2findex.html','/guides/mattpocock-skills/%5cindex.html','/guides/mattpocock-skills/%00index.html','/guides/mattpocock-skills/index.html/extra','/guides/mattpocock-skills/../../index.html','/guides/mattpocock-skills/%2e%2e/%2e%2e/index.html','/guides/mattpocock-skills/../multi-agent-development/index.html']){
+  const result=await request(url);assert.equal(result.status,404,url);assert.match(result.headers['content-security-policy'],/frame-ancestors 'none'/);
+ }
+ assert.equal((await request('/guides/mattpocock-skills/index.html',{'Host':'external.invalid'})).status,403);
+ assert.equal((await request('/guides/mattpocock-skills/index.html',{},'POST')).status,405);
+ const catalog=(await request('/api/skills')).json();assert.deepEqual(catalog.sources.map(s=>s.id),['ecc']);
+ await unlink(path.join(dir,'guide.js'));await symlink(path.join(f.outside,'secret.js'),path.join(dir,'guide.js'));
+ await writeFile(path.join(f.outside,'secret.js'),'secret');
+ assert.equal((await request('/guides/mattpocock-skills/guide.js')).status,404);
+ await unlink(path.join(dir,'index.html'));
+ const missing=await request('/guides/mattpocock-skills/index.html');assert.equal(missing.status,404);assert.match(missing.headers['content-security-policy'],/frame-ancestors 'none'/);
+});
+
 test('complete CRLF/multiline frontmatter, stable IDs, full body, no author/path leakage and zero source writes', async t => {
   const f = await fixture(t);
   const file = path.join(f.root,'skills','sample','SKILL.md');

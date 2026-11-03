@@ -1,3 +1,4 @@
+import {GUIDES,GUIDE_MIME} from '../../web/guides-config.mjs';
 import http from 'node:http';
 import { realpath, readdir, open, stat } from 'node:fs/promises';
 import { constants } from 'node:fs';
@@ -186,11 +187,15 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
     return {body,references:refs};
   }
 
-  const guideRoot='guides/multi-agent-development';
-  const assets=new Map([['/',['index.html','text/html; charset=utf-8']],['/index.html',['index.html','text/html; charset=utf-8']],['/app.js',['app.js','text/javascript; charset=utf-8']],['/app.css',['app.css','text/css; charset=utf-8']],
-    [`/${guideRoot}/index.html`,[`${guideRoot}/index.html`,'text/html; charset=utf-8']],
-    [`/${guideRoot}/guide.css`,[`${guideRoot}/guide.css`,'text/css; charset=utf-8']],
-    [`/${guideRoot}/guide.js`,[`${guideRoot}/guide.js`,'text/javascript; charset=utf-8']]]);
+  const assets=new Map([['/',['index.html','text/html; charset=utf-8']],['/index.html',['index.html','text/html; charset=utf-8']],['/app.js',['app.js','text/javascript; charset=utf-8']],['/app.css',['app.css','text/css; charset=utf-8']]]);
+  const framePages=new Set();
+  for(const guide of GUIDES){
+    for(const name of guide.files){
+      const file=`guides/${guide.id}/${name}`;
+      assets.set(`/${file}`,[file,GUIDE_MIME[name]]);
+      if(name==='index.html')framePages.add(`/${file}`);
+    }
+  }
   let assetRoot; try { assetRoot=await realpath(webRoot); } catch { assetRoot=null; }
   const csp="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'";
   const server=http.createServer(async(req,res)=> {
@@ -203,6 +208,8 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
     try {
       if(!allowRequest(req,server.address())) return fail(403,'FORBIDDEN','请求来源未获允许。');
       if(req.method!=='GET' && req.method!=='HEAD') return send(405,{error:'此阅读器仅支持读取。',code:'METHOD_NOT_ALLOWED'},undefined,{Allow:'GET, HEAD'});
+      // Check guide paths before URL normalization can erase traversal segments.
+      if(req.url.startsWith('/guides/')&&!assets.has(req.url.split('?')[0]))return fail(404,'NOT_FOUND','未找到资源。');
       const url=new URL(req.url,'http://'+req.headers.host); const route=url.pathname;
       if(route==='/api/skills') {
         const refreshed=await buildCatalog(config,notesFiles,approvedRoots);
@@ -222,7 +229,7 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
       const asset=assets.get(route);
       if(asset && assetRoot) {
         try {
-          const headers=route===`/${guideRoot}/index.html`?{'Content-Security-Policy':csp.replace("frame-ancestors 'none'","frame-ancestors 'self'")} : {};
+          const headers=framePages.has(route)?{'Content-Security-Policy':csp.replace("frame-ancestors 'none'","frame-ancestors 'self'")} : {};
           return send(200,await checkedRead(assetRoot,path.join(assetRoot,asset[0])),asset[1],headers);
         } catch { return fail(404,'NOT_FOUND','页面资源不可用，请先构建前端。'); }
       }

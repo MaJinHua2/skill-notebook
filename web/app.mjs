@@ -1,3 +1,4 @@
+import {GUIDES,guideById} from './guides-config.mjs';
 import './style.css';
 import {clearState,normalizeState,selectProvider,toggleTag,filterSkills,inventory,parseRoute,routeFor,WORKFLOWS,workflowStage,toggleStage} from './state.mjs';
 import {renderMarkdown} from './markdown.mjs';
@@ -30,7 +31,8 @@ function shell(){
 function updateMobile(){document.querySelector('#navigation')?.classList.toggle('mobile-open',mobileOpen);document.querySelector('#mobile-menu')?.setAttribute('aria-expanded',String(mobileOpen));}
 function renderNavigation(){
  const nav=document.querySelector('#navigation');if(!nav)return;nav.replaceChildren(el('p','eyebrow','我的技能库'));
- const viewingGuide=parseRoute(location.hash).type==='guides';
+ const currentRoute=parseRoute(location.hash);
+ const viewingGuide=currentRoute.type==='guides';
  const all=button(`全部技能 · ${skills.length}`,()=>{changeFilters(selectProvider(filters,''));mobileOpen=false;updateMobile();goList();},'nav-item');
  all.dataset.focusKey='all';all.classList.toggle('active',!viewingGuide&&!filters.provider);if(!viewingGuide&&!filters.provider)all.setAttribute('aria-current','page');nav.append(all);
  for(const group of inventory(skills)){
@@ -42,8 +44,12 @@ function renderNavigation(){
   const categories=el('div','categories');categories.id=`categories-${group.provider}`;categories.hidden=!expanded[group.provider];
   for(const category of group.categories){const b=button(`${category.name} · ${category.count}`,()=>{changeFilters({...filters,provider:group.provider,category:category.name});mobileOpen=false;updateMobile();goList();},'nav-item subcategory');b.dataset.focusKey=`category-${group.provider}-${category.name}`;b.classList.toggle('active',!viewingGuide&&filters.provider===group.provider&&filters.category===category.name);categories.append(b);}section.append(categories);nav.append(section);
  }
- const guide=el('a','nav-item guide-nav','多智能体开发全流程');guide.href=routeFor('guides','multi-agent-development');guide.dataset.focusKey='development-guide';guide.classList.toggle('active',viewingGuide);if(viewingGuide)guide.setAttribute('aria-current','page');
- guide.addEventListener('click',()=>{mobileOpen=false;updateMobile();});nav.append(el('p','eyebrow guide-nav-heading','学习指南'),guide);
+ nav.append(el('p','eyebrow guide-nav-heading','学习指南'));
+ for(const entry of GUIDES){
+  const active=viewingGuide&&currentRoute.id===entry.id;
+  const guide=el('a','nav-item guide-nav',entry.name);guide.href=routeFor('guides',entry.id);guide.dataset.focusKey=entry.focusKey;guide.classList.toggle('active',active);if(active)guide.setAttribute('aria-current','page');
+  guide.addEventListener('click',()=>{mobileOpen=false;updateMobile();});nav.append(guide);
+ }
  nav.append(el('p','nav-foot','本地只读 · 原文与中文学习说明分开保存'));
 }
 function statusNote(skill){
@@ -137,19 +143,20 @@ function updateList(){
 }
 async function copyCall(callName,b){try{await navigator.clipboard.writeText(callName);b.textContent='已复制';announce('已复制技能调用名');setTimeout(()=>{if(b.isConnected)b.textContent='复制调用名';},1800);}catch{announce('复制失败，请手动选择调用名复制');b.textContent='请选中调用名手动复制';}}
 function errorView(message,retry){const main=document.querySelector('#main');const section=el('section','empty-state');section.setAttribute('role','alert');section.append(el('h1','','暂时无法显示'),el('p','',message),button('返回技能列表',goList));if(retry)section.append(button('重试',retry));main.replaceChildren(section);}
-function renderDevelopmentGuide(){
+function renderGuide(id){
+ const entry=guideById(id);
  const main=document.querySelector('#main');main.removeAttribute('aria-busy');main.replaceChildren();
- const heading=el('div','section-heading');heading.append(el('h1','','多智能体开发全流程'),el('p','muted','从需求到 Git，查看角色分工、文档交接与各环节的 ECC 技能。'));main.append(heading);
+ const heading=el('div','section-heading');heading.append(el('h1','',entry.name),el('p','muted',entry.description));main.append(heading);
  const actions=el('div','guide-actions');const back=el('a','button','返回技能列表');back.href='#/';
- const standalone=el('a','button','单独打开指南');standalone.href='/guides/multi-agent-development/index.html';standalone.target='_blank';standalone.rel='noopener noreferrer';actions.append(back,standalone);main.append(actions);
- const frame=el('iframe','development-guide-frame');frame.title='ECC 多智能体软件开发全流程';frame.src=standalone.href;frame.setAttribute('allow','clipboard-write');main.append(frame);
- document.title='多智能体开发全流程 · 技能阅读器';main.focus();window.scrollTo({top:0});
+ const standalone=el('a','button','单独打开指南');standalone.href=`/guides/${entry.id}/index.html`;standalone.target='_blank';standalone.rel='noopener noreferrer';actions.append(back,standalone);main.append(actions);
+ const frame=el('iframe','development-guide-frame');frame.title=entry.title;frame.dataset.guideId=entry.id;frame.src=standalone.href;frame.setAttribute('allow','clipboard-write');main.append(frame);
+ document.title=`${entry.name} · 技能阅读器`;main.focus();window.scrollTo({top:0});
 }
 async function showRoute(){
  const route=parseRoute(location.hash);const number=++requestNumber;
  renderNavigation();
  if(route.type==='list'){renderList();return;}
- if(route.type==='guides'){renderDevelopmentGuide();return;}
+ if(route.type==='guides'){renderGuide(route.id);return;}
  if(route.type==='invalid'){errorView('链接格式无效，请返回技能列表重新选择。');return;}
  const main=document.querySelector('#main');main.replaceChildren(el('p','notice','正在读取完整文档…'));main.setAttribute('aria-busy','true');
  try{

@@ -7,6 +7,7 @@ import { chromium } from 'playwright';
 import { createApp } from '../../src/server/app.mjs';
 import { checkEmbeddedGuide } from './embedded-guide.mjs';
 import { checkDevelopmentGuide } from './development-guide.mjs';
+import { checkMattpocockGuide } from './mattpocock-guide.mjs';
 import { checkNoteStatus } from './note-status.mjs';
 
 // Isolated test browser/profile and synthetic documents; never attaches to user tabs.
@@ -230,6 +231,7 @@ try {
   assert.equal(await page.locator('.card').count(),3);
  });
  await checkDevelopmentGuide(page,check,reportDir,base);
+ await checkMattpocockGuide(page,check,reportDir,base);
  await check('来源文件内容不变且页面无运行错误',async()=>{
   for(const [file,raw] of sourceFiles)assert.equal(await readFile(file,'utf8'),raw);
   assert.deepEqual(errors,[]);

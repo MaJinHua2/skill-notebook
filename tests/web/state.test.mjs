@@ -41,7 +41,8 @@ test('route IDs use one encoded segment and malformed routes rejected',()=>{
  const id='ecc/native/a 中文'; assert.deepEqual(parseRoute(routeFor('skills',id)),{type:'skills',id});
  assert.deepEqual(parseRoute('#/references/opaque%2Fid'),{type:'references',id:'opaque/id'});
  assert.deepEqual(parseRoute(routeFor('guides','multi-agent-development')),{type:'guides',id:'multi-agent-development'});
- assert.deepEqual(parseRoute('#/guides/unknown'),{type:'invalid'});
+ assert.deepEqual(parseRoute('#/guides/mattpocock-skills'),{type:'guides',id:'mattpocock-skills'});
+ for(const hash of ['#/guides/unknown','#/guides/mattpocock-skills/extra','#/guides/%2e%2e','#/guides/mattpocock-skills?x'])assert.deepEqual(parseRoute(hash),{type:'invalid'});
  assert.deepEqual(parseRoute('#/skills/%zz'),{type:'invalid'});
  assert.deepEqual(parseRoute('#/skills/ecc/native/a'),{type:'invalid'});
  assert.deepEqual(parseRoute(''),{type:'list'});
