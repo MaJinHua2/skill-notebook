@@ -1,147 +1,26 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
-// Confirmed guide reading contract; independent of the runtime skill catalog.
-const WORKFLOWS = [
- {
-  "id": "feature",
-  "label": "新需求开发",
-  "goal": "把新想法变成范围清楚、可以验证和交付的功能。",
-  "input": "任务目标、使用场景、已有约束与用户决定。",
-  "output": "确认后的方案、授权内变更及分层验证记录。",
-  "stages": [
-   {
-    "id": "feature-clarify",
-    "label": "需求澄清",
-    "goal": "说清要解决什么问题，以及什么结果算满足需求。",
-    "input": "目标、使用场景、预期行为和限制。",
-    "output": "需求范围、验收条件及待确认问题。"
-   },
-   {
-    "id": "feature-impact",
-    "label": "现状与影响分析",
-    "goal": "查清已有能力，以及改动会影响哪里。",
-    "input": "目标仓库、现有接口、数据及需求范围。",
-    "output": "当前行为依据、依赖、影响范围和未知项。"
-   },
-   {
-    "id": "feature-design",
-    "label": "方案论证",
-    "goal": "比较可行办法，说明各自代价和风险。",
-    "input": "需求、现状证据、技术约束和备选办法。",
-    "output": "方案比较、风险和需要用户决定的事项。"
-   },
-   {
-    "id": "feature-plan",
-    "label": "计划与确认",
-    "goal": "把选定方案拆成可执行步骤，并核对授权。",
-    "input": "已确认方案、范围、依赖及验证要求。",
-    "output": "实施步骤、退出条件和用户确认状态。"
-   },
-   {
-    "id": "feature-implement",
-    "label": "开发实现",
-    "goal": "在授权范围内实现功能，并保留必要测试。",
-    "input": "已确认计划、源码和实施授权。",
-    "output": "实际变更、必要测试及偏离计划的说明。"
-   },
-   {
-    "id": "feature-verify",
-    "label": "独立审查与测试验证",
-    "goal": "分别检查实现、测试及尚未验证的风险。",
-    "input": "最终变更、需求、测试环境与证据。",
-    "output": "独立审查结论、测试记录及未完成验证。"
-   },
-   {
-    "id": "feature-deliver",
-    "label": "验收与交付",
-    "goal": "核对验收条件，说明交付内容和使用限制。",
-    "input": "验收条件、验证记录与交付范围。",
-    "output": "验收证据、交付说明及遗留事项。"
-   }
-  ]
- },
- {
-  "id": "maintenance",
-  "label": "故障维护",
-  "goal": "用证据定位故障，在确认范围内修复并保护相关行为。",
-  "input": "环境、复现操作、预期与实际结果及已有日志。",
-  "output": "故障证据、授权内修复、回归结果和关闭条件。",
-  "stages": [
-   {
-    "id": "maintenance-collect",
-    "label": "现象收集",
-    "goal": "准确记录发生了什么，避免把猜测当原因。",
-    "input": "环境、版本、操作、预期与实际结果。",
-    "output": "问题记录、现有证据及待补信息。"
-   },
-   {
-    "id": "maintenance-diagnose",
-    "label": "复现与定位",
-    "goal": "用复现、日志和最小实验检验原因。",
-    "input": "问题记录、源码、日志及获准使用的环境。",
-    "output": "复现证据、已确认原因或仍待验证的假设。"
-   },
-   {
-    "id": "maintenance-solution",
-    "label": "修复方案",
-    "goal": "说明如何修复，以及会影响哪些既有行为。",
-    "input": "故障证据、影响范围、限制和修复选项。",
-    "output": "修复选项、兼容风险及待用户决定事项。"
-   },
-   {
-    "id": "maintenance-plan",
-    "label": "计划与确认",
-    "goal": "明确修复步骤、验证安排和实施授权。",
-    "input": "选定修复方案、回归范围及用户决定。",
-    "output": "修复计划、回退条件和确认状态。"
-   },
-   {
-    "id": "maintenance-implement",
-    "label": "修复实现",
-    "goal": "只修复获准内容，并保留故障回归保护。",
-    "input": "已确认计划、实施授权及故障用例。",
-    "output": "实际修复、必要测试和范围变化说明。"
-   },
-   {
-    "id": "maintenance-verify",
-    "label": "原故障验证、回归与独立审查",
-    "goal": "重验原失败场景，检查相关功能是否退化。",
-    "input": "修复差异、原失败步骤及回归要求。",
-    "output": "原故障和回归记录、独立审查及验证限制。"
-   },
-   {
-    "id": "maintenance-close",
-    "label": "修复验收与关闭",
-    "goal": "核对修复是否满足关闭条件并登记遗留项。",
-    "input": "关闭条件、修复和验证证据。",
-    "output": "验收结论、关闭建议及尚未完成事项。"
-   }
-  ]
- }
+import { createHash } from 'node:crypto';
+// Frozen S3b primary DOM ownership; independent of rendered membership and prose.
+const STAGES = [
+ ['intake','需求／反馈受理','triage ask-matt setup-matt-pocock-skills'],
+ ['clarify','需求讨论与问题澄清','grill-with-docs grill-me grilling domain-modeling to-questionnaire teach wait-what'],
+ ['investigate','调查与方案验证','research diagnosing-bugs prototype wayfinder codebase-design improve-codebase-architecture'],
+ ['specify','规格与实施计划','to-spec writing-for-agents handoff'],
+ ['split','任务拆分','to-tickets'],
+ ['implement','实现与测试','implement implement-spec tdd wizard'],
+ ['review','独立复核','code-review pr'],
+ ['accept','验收','retro'],
 ];
-const SUPPORT_GROUPS = [
- {
-  "id": "project-context",
-  "label": "项目理解",
-  "goal": "了解项目结构、业务术语和已有决定。",
-  "input": "项目入口、已有文档和需要理解的问题。",
-  "output": "有依据的项目说明、术语及未知项。"
- },
- {
-  "id": "environment-tools",
-  "label": "环境与工具",
-  "goal": "了解工具用途、环境依赖及操作边界。",
-  "input": "当前环境、工具配置和具体使用问题。",
-  "output": "环境说明、可行操作及需要授权的事项。"
- },
- {
-  "id": "docs-collaboration",
-  "label": "文档与协作",
-  "goal": "整理信息和交接材料，明确事实与责任。",
-  "input": "已有文档、任务范围和协作目标。",
-  "output": "清楚的说明、交接材料及待确认事项。"
- }
-];
+const skillIds = names => names.split(' ').map(name=>`skill-${name}`).sort();
+const MEMBERSHIP = Object.fromEntries(STAGES.flatMap(([stage,,names])=>skillIds(names).map(id=>[id,[stage]])));
+MEMBERSHIP['skill-domain-modeling'] = ['clarify','investigate'];
+MEMBERSHIP['skill-handoff'] = ['investigate','specify','implement'];
+MEMBERSHIP['skill-writing-for-agents'] = ['specify','implement'];
+// Digests captured from the S3b before snapshot, not from the page under test.
+const CALL_DIGEST = '1b82c2d213674b94929125eabfe72db58d96a842d04a9dd1c37c6f79f894b922';
+const EXTERNAL_DIGEST = '365b23967614f3b7a725a5725695df8a3ff8b54a2402a2e323c2cea775b6b02d';
+const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
 export async function checkMattpocockGuide(page,check,reportDir,base){
  const route='#/guides/mattpocock-skills';
@@ -149,21 +28,52 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
  const observe=request=>{if(new URL(request.url()).origin!==new URL(base).origin)external.push(request.url());};
  page.on('request',observe);
  const frame=()=>page.frameLocator('.development-guide-frame[data-guide-id="mattpocock-skills"]');
- const ready=()=>frame().locator('#work-type-filter [data-workflow="all"]').waitFor({state:'visible'});
+ const ready=()=>frame().locator('#stage-filter').waitFor({state:'visible'});
  const visible=()=>frame().locator('article.skill-card:not([hidden])');
- const workType=id=>frame().locator(`#work-type-filter [data-workflow="${id}"]`);
  const visibleIds=()=>visible().evaluateAll(nodes=>nodes.map(n=>n.id).sort());
+ const description=async name=>(await frame().locator(`#skill-${name} > p.skill-description`).allTextContents()).join('\n');
  const options=()=>frame().locator('#stage-filter option').evaluateAll(nodes=>nodes.map(n=>({id:n.value,label:n.textContent})));
- const assertContext=async expected=>{
-  const context=frame().locator('#guide-stage-context');
-  assert.equal(await context.count(),1);
-  assert.equal(await context.getAttribute('aria-label'),'当前阅读阶段说明');
-  assert.equal(await context.getAttribute('aria-live'),'polite');
-  assert.equal(await context.locator('h3').innerText(),expected.label);
-  assert.deepEqual(await context.locator('dt').allTextContents(),['目标','需要准备','应得到什么']);
-  const values=await context.locator('dd').allTextContents();
-  assert.equal(values.length,3);assert.equal(values.every(value=>value.trim().length>0),true);
-  if(expected.goal!==undefined)assert.deepEqual(values,[expected.goal,expected.input,expected.output]);
+ const assertStages=async()=>{
+  for(const [id] of STAGES){
+   const stage=frame().locator(`#stage-${id}`);
+   const matches=await stage.locator(':scope > article.skill-card:not([hidden])').count();
+   assert.equal(await stage.isVisible(),matches>0,`${id}: empty stages must hide`);
+  }
+ };
+ const assertSingleColumn=async()=>{
+  const layout=await frame().locator('#workflow').evaluate(workflow=>{
+   const stages=[...workflow.querySelectorAll('section.workflow-stage')];
+   const rect=node=>{const r=node.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};};
+   return stages.map(stage=>({id:stage.id,box:rect(stage),cards:[...stage.querySelectorAll(':scope > article.skill-card')].map(card=>({
+    id:card.id,box:rect(card),minHeight:getComputedStyle(card).minHeight,shadow:getComputedStyle(card).boxShadow,
+    paragraphs:[...card.querySelectorAll(':scope > p.skill-description')].map(p=>{
+     const style=getComputedStyle(p);return {text:p.textContent.trim(),fontSize:parseFloat(style.fontSize),
+      unclipped:p.clientHeight>=p.scrollHeight-1&&p.clientWidth>=p.scrollWidth-1,
+      clamp:style.webkitLineClamp,display:style.display,visibility:style.visibility};
+    }),
+   }))}));
+  });
+  let previousStage;
+  const paragraphs=[];
+  for(const stage of layout){
+   if(previousStage){assert.ok(stage.box.top>=previousStage.bottom-1);assert.ok(Math.abs(stage.box.left-previousStage.left)<2);assert.ok(Math.abs(stage.box.right-previousStage.right)<2);}
+   previousStage=stage.box;
+   let previousCard;
+   for(const card of stage.cards){
+    if(previousCard){assert.ok(card.box.top>=previousCard.bottom-1,`${card.id}: vertical flow`);assert.ok(Math.abs(card.box.left-previousCard.left)<2);assert.ok(Math.abs(card.box.right-previousCard.right)<2);}
+    previousCard=card.box;
+    assert.ok(['auto','0px'].includes(card.minHeight),`${card.id}: no equal-height placeholder`);
+    assert.equal(card.shadow,'none',`${card.id}: no large panel shadow`);
+    assert.ok(card.paragraphs.length>=2&&card.paragraphs.length<=3);
+    for(const p of card.paragraphs){
+     assert.ok(p.text.length>0);assert.ok(p.fontSize>=14);assert.ok(p.unclipped,`${card.id}: full description visible`);
+     assert.ok(['none','0'].includes(p.clamp));assert.notEqual(p.display,'none');assert.equal(p.visibility,'visible');
+     assert.doesNotMatch(p.text,/^(?:当前状态|下一步|如何选择|阶段目标|需要准备|应得到什么)[：:]/u);
+     paragraphs.push(p.text.replace(/\s+/gu,''));
+    }
+   }
+  }
+  assert.equal(new Set(paragraphs).size,paragraphs.length,'技能说明不得整段重复');
  };
  await page.setViewportSize({width:1440,height:1000});
  await page.goto(base);await page.locator('#search').waitFor();
@@ -188,84 +98,205 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   assert.equal(await page.getByRole('link',{name:'Mattpocock Skills 指南',exact:true}).getAttribute('aria-current'),null);
   await page.getByRole('link',{name:'Mattpocock Skills 指南',exact:true}).click();await ready();
  });
- await check('Matt 工作类型、阶段ID和名称符合已确认阅读分类',async()=>{
-  assert.deepEqual(await frame().locator('#work-type-filter [data-workflow]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.workflow,label:n.textContent}))),[{id:'all',label:'全部'},...WORKFLOWS.map(({id,label})=>({id,label})),{id:'support',label:'通用支持'}]);
-  const groups=[...WORKFLOWS,{id:'support',label:'通用支持',stages:SUPPORT_GROUPS}];
-  const expectedStages=stages=>[{id:'all',label:'全部阶段'},...stages.map(({id,label})=>({id,label}))];
-  assert.equal(await workType('all').getAttribute('aria-pressed'),'true');
-  await assertContext({label:'全部阅读资料'});
-  assert.deepEqual(await options(),expectedStages(groups.flatMap(g=>g.stages)));
-  assert.deepEqual(await frame().locator('#stage-filter optgroup').evaluateAll(nodes=>nodes.map(n=>n.label)),groups.map(g=>g.label));
-  for(const group of groups){
-   await workType(group.id).click();
-   assert.equal(await workType(group.id).getAttribute('aria-pressed'),'true');
-   assert.equal(await frame().locator('#work-type-filter [aria-pressed="true"]').count(),1);
-   assert.deepEqual(await options(),expectedStages(group.stages));
-   await assertContext(group);
-   for(const stage of group.stages){
-    await frame().locator('#stage-filter').selectOption(stage.id);
-    await assertContext(stage);
-   }
-   await frame().locator('#stage-filter').selectOption('all');await assertContext(group);
+ await check('Matt S3b 八阶段真实归组、正文默认可见且无旧提示或重复索引',async()=>{
+  assert.equal(await frame().locator('#work-type-filter').count(),0);
+  assert.deepEqual(await options(),[{id:'all',label:'全部阶段'},...STAGES.map(([id,label])=>({id,label}))]);
+  assert.equal(await frame().locator('#workflow').count(),1);
+  assert.equal(await frame().locator('#workflow > h1#workflow-title').count(),1);
+  assert.equal(await frame().locator('h1').count(),1);
+  assert.deepEqual(await frame().locator('#workflow section.workflow-stage').evaluateAll(nodes=>nodes.map(n=>n.id)),STAGES.map(([id])=>`stage-${id}`));
+  for(const [id,label,names] of STAGES){
+   const stage=frame().locator(`#stage-${id}`);
+   assert.equal(await stage.isVisible(),true);
+   assert.match(await stage.locator(':scope > h2').innerText(),new RegExp(label,'u'));
+   assert.deepEqual(await stage.locator(':scope > article.skill-card').evaluateAll(nodes=>nodes.map(n=>n.id)),names.split(' ').map(name=>`skill-${name}`));
   }
-  await workType('all').click();await assertContext({label:'全部阅读资料'});
+  assert.equal(await frame().locator('#workflow article.skill-card').count(),27);
+  const expectedCards=Object.keys(MEMBERSHIP).sort();
+  assert.deepEqual(await frame().locator('article.skill-card').evaluateAll(nodes=>nodes.map(n=>n.id).sort()),expectedCards);
+  assert.equal(await frame().locator('article.skill-card').evaluateAll(nodes=>nodes.every(n=>n.parentElement.matches('#workflow section.workflow-stage'))),true,'所有完整条目必须直接归属阶段，无阶段外第二套正文');
+  const index=frame().locator('#skill-index');
+  assert.ok(await index.count()<=1,'兼容容器 ID 不得重复');
+  if(await index.count()){
+   assert.equal(await frame().locator('#workflow #skill-index').count(),1);
+   assert.deepEqual(await index.locator('section.workflow-stage').evaluateAll(nodes=>nodes.map(n=>n.id)),STAGES.map(([id])=>`stage-${id}`));
+   assert.deepEqual(await index.locator('article.skill-card').evaluateAll(nodes=>nodes.map(n=>n.id).sort()),expectedCards);
+  }
+  assert.equal(await frame().locator('#guide-stage-context, [data-stage-target], .stage-choice, #workflow dl, #workflow table, #workflow .panel, #workflow details').count(),0);
+  assert.doesNotMatch(await frame().locator('#workflow').innerText(),/下一步与回流|选择此阶段技能|当前阅读阶段说明/u);
+  for(const id of ['skills','skill-toolbar','stage-filter','skill-search','result-count','empty-state','reset-filters']){
+   assert.equal(await frame().locator(`[id="${id}"]`).count(),1);
+   assert.equal(await frame().locator(`#workflow #${id}`).count(),1);
+   assert.equal(await frame().locator(`#${id}`).evaluate(n=>Boolean(n.closest('.workflow-stage'))),false);
+  }
+  for(const id of ['intro','examples','sources'])assert.equal(await frame().locator(`#${id}`).count(),1);
+  for(const name of Object.keys(MEMBERSHIP)){
+   const card=frame().locator(`#${name}`);
+   assert.equal(await card.locator(':scope > h3').count(),1);
+   const heading=await card.locator('h3').innerText();assert.ok(heading.includes(name.slice(6)));assert.match(heading,/[\p{Script=Han}]/u);
+   assert.equal(await card.locator('code[id^="call-"]').isVisible(),true);
+   assert.equal(await card.locator('button[data-copy-target]').isVisible(),true);
+   assert.equal(await card.locator('.source-link a').isVisible(),true);
+   const descriptions=card.locator(':scope > p.skill-description');
+   assert.ok(await descriptions.count()>=2&&await descriptions.count()<=3);
+   for(const description of await descriptions.all())assert.equal(await description.isVisible(),true);
+  }
+  const calls=await frame().locator('code[id^="call-"]').evaluateAll(nodes=>nodes.map(n=>[n.id,n.textContent]).sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:0));
+  assert.equal(calls.length,27);assert.equal(digest(calls),CALL_DIGEST);
+  const copies=await frame().locator('[data-copy-target]').evaluateAll(nodes=>nodes.map(n=>n.dataset.copyTarget).sort());
+  assert.deepEqual(copies,[...calls.map(([id])=>id),'install-codex','scenario-bug','scenario-feature','scenario-questionnaire','scenario-review'].sort());
+  assert.equal(new Set(copies).size,32);
+  const links=await frame().locator('a[href^="https://"], a[href^="http://"]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href')).sort());
+  assert.equal(digest(links),EXTERNAL_DIGEST);
+  await assertSingleColumn();
  });
- await check('Matt 两流程和支持分组按阶段并集展示，多阶段卡片不重复',async()=>{
-  const originalIds=await visibleIds();assert.equal(originalIds.length,27);
-  assert.equal(new Set(originalIds).size,27);
-  for(const group of [...WORKFLOWS,{id:'support',stages:SUPPORT_GROUPS}]){
-   await workType(group.id).click();const union=await visibleIds();
-   assert.ok(union.length>0);assert.equal(union.length,new Set(union).size);
-   const acrossStages=[];
-   for(const stage of group.stages){
-    await frame().locator('#stage-filter').selectOption(stage.id);
-    const actual=await visibleIds();acrossStages.push(...actual);
-    assert.equal(await visible().evaluateAll((nodes,id)=>nodes.every(n=>n.dataset.workflowStages.split(/\s+/u).includes(id)),stage.id),true);
-   }
-   assert.deepEqual([...new Set(acrossStages)].sort(),union);
-   if(group.id!=='support')assert.ok(acrossStages.length>union.length,'跨阶段重复归属应在流程并集中只计一次');
-   await frame().locator('#stage-filter').selectOption('all');assert.deepEqual(await visibleIds(),union);
-   assert.equal(await frame().locator('#result-count').innerText(),`显示 ${union.length} / 27 项技能`);
+ await check('Matt 27技能全部有阶段入口，跨阶段只保留一个完整条目',async()=>{
+  const expected=STAGES.flatMap(([, ,names])=>skillIds(names)).sort();
+  assert.equal(new Set(expected).size,27);
+  assert.deepEqual(await visibleIds(),expected);
+  assert.deepEqual(await frame().locator('article.skill-card').evaluateAll(nodes=>Object.fromEntries(nodes.map(n=>[n.id,n.dataset.workflowStages.split(/\s+/u)]))),MEMBERSHIP);
+  const reached=new Set();
+  for(const [id,,names] of STAGES){
+   await frame().locator('#stage-filter').selectOption(id);
+   const actual=await visibleIds();
+   assert.deepEqual(actual,Object.entries(MEMBERSHIP).filter(([,stages])=>stages.includes(id)).map(([name])=>name).sort());
+   await assertStages();
+   assert.equal(actual.length,new Set(actual).size);
+   actual.forEach(skill=>reached.add(skill));
+   assert.equal(await visible().evaluateAll((nodes,stage)=>nodes.every(n=>n.dataset.workflowStages.split(/\s+/u).includes(stage)),id),true);
    assert.equal(await frame().locator('article.skill-card').count(),27);
   }
-  await workType('all').click();assert.deepEqual(await visibleIds(),originalIds);
- });
- await check('Matt TDD跨流程计划和实现，故障诊断覆盖维护五阶段',async()=>{
-  const cases=[['feature',['feature-plan','feature-implement'],'skill-tdd'],['maintenance',['maintenance-plan','maintenance-implement'],'skill-tdd'],['maintenance',['maintenance-collect','maintenance-diagnose','maintenance-solution','maintenance-implement','maintenance-verify'],'skill-diagnosing-bugs']];
-  for(const [workflow,stages,id] of cases){
-   await workType(workflow).click();
+  assert.deepEqual([...reached].sort(),expected);
+  // Exercise cross-stage reuse rather than inferring it from a fixed DOM count.
+  let reused=false;
+  for(const name of ['handoff','writing-for-agents']){
+   const target=frame().locator(`#skill-${name}`);
+   const stages=[];
+   for(const [stage] of STAGES){
+    await frame().locator('#stage-filter').selectOption(stage);
+    if(await target.isVisible())stages.push(stage);
+   }
+   if(stages.length<2)continue;
    for(const stage of stages){
     await frame().locator('#stage-filter').selectOption(stage);
-    assert.equal(await frame().locator(`#${id}`).isVisible(),true);
-    assert.equal((await visibleIds()).filter(value=>value===id).length,1);
+    assert.equal(await target.isVisible(),true);
+    assert.equal(await target.count(),1);
+    assert.equal((await visibleIds()).filter(id=>id===`skill-${name}`).length,1);
    }
+   reused=true;
   }
-  await workType('feature').click();await frame().locator('#stage-filter').selectOption('feature-verify');
-  assert.equal(await frame().locator('#skill-tdd').isVisible(),false);
-  assert.equal(await frame().locator('#skill-code-review').isVisible(),true);
+  assert.equal(reused,true,'handoff 或 writing-for-agents 应从至少两个阶段到达同一条目');
+  await frame().locator('#reset-filters').click();
+  assert.deepEqual(await visibleIds(),expected);
+  assert.equal(await frame().locator('#result-count').innerText(),'显示 27 / 27 项技能');
+ });
+ await check('Matt 需求讨论展示多个入口及组合关系，规格明确测试接口和确认边界',async()=>{
+  await frame().locator('#stage-filter').selectOption('clarify');
+  const discussion=frame().locator('#stage-clarify');
+  for(const name of ['to-spec','to-tickets','implement','implement-spec','tdd','code-review','pr','retro']){
+   assert.equal(await frame().locator(`#skill-${name}`).isVisible(),false,`澄清阶段不应展示后续技能 ${name}`);
+  }
+  for(const name of ['grill-with-docs','grill-me','grilling','domain-modeling','to-questionnaire','teach','wait-what']){
+   assert.equal(await frame().locator(`#skill-${name}`).isVisible(),true);
+   assert.equal(await discussion.locator(`:scope > #skill-${name}`).count(),1);
+  }
+  const withDocs=await description('grill-with-docs');
+  assert.match(withDocs,/grilling/u);assert.match(withDocs,/domain-modeling/u);
+  assert.match(withDocs,/组合|包含|调用|复用/u);
+  assert.match(withDocs,/GLOSSARY\.md/u);
+  assert.match(withDocs,/不[^。！？\n]*(?:替|代)[^。！？\n]*决定/u);
+  const grillMe=await description('grill-me');
+  assert.match(grillMe,/grilling/u);
+  assert.match(grillMe,/(?:不含|不包含|不承担|不负责|没有)[^。！？\n]*domain-modeling/u);
+  assert.match(grillMe,/不[^。！？\n]*实施授权/u);
+  await frame().locator('#stage-filter').selectOption('specify');
+  const toSpec=await description('to-spec');
+  // Check the concepts in the skill's prose, not a legacy stage prompt or
+  // a particular adjacent phrase such as “测试接口”.
+  assert.match(toSpec,/测试[^。！？\n]*(?:接口|接缝|接入|位置|seam)/iu);
+  assert.match(toSpec,/(?:用户[^。！？\n]*(?:确认|核对)|(?:确认|核对)[^。！？\n]*用户)/u);
+  assert.match(toSpec,/不[^。！？\n]*(?:访谈|采访|提问)/u);
+  assert.match(toSpec,/不[^。！？\n]*冻结/u);
+  assert.match(toSpec,/不[^。！？\n]*授权[^。！？\n]*实施/u);
+  assert.match(toSpec,/不[^。！？\n]*(?:代替|替代)[^。！？\n]*调查/u);
+  assert.match(toSpec,/不[^。！？\n]*(?:完整[^。！？\n]*(?:蓝图|计划))/u);
   await frame().locator('#reset-filters').click();
  });
- await check('Matt 搜索与工作类型及阶段取交集，切类型保留查询，空态可键盘恢复',async()=>{
-  await frame().locator('#skill-search').fill('TDD');const allSearch=await visibleIds();
+ await check('Matt 实现时使用TDD，独立复核及PR正文不替代验收',async()=>{
+  await frame().locator('#stage-filter').selectOption('implement');
+  assert.equal(await frame().locator('#skill-tdd').isVisible(),true);
+  const tdd=await description('tdd');
+  assert.match(tdd,/测试[^。！？\n]*(?:接口|接缝|接入|seam)/iu);
+  assert.match(tdd,/(?:每次|一次|逐个|逐一)[^。！？\n]*(?:行为|循环)/u);
+  assert.match(tdd,/(?:失败[^。！？\n]*通过|红[^。！？\n]*绿)/u);
+  await frame().locator('#stage-filter').selectOption('review');
+  for(const name of ['tdd','retro'])assert.equal(await frame().locator(`#skill-${name}`).isVisible(),false);
+  for(const name of ['code-review','pr'])assert.equal(await frame().locator(`#skill-${name}`).isVisible(),true);
+  assert.match(await description('code-review'),/不[^。！？\n]*验收/u);
+  assert.match(await description('pr'),/不[^。！？\n]*验收/u);
+  await frame().locator('#reset-filters').click();
+ });
+ await check('Matt retro 保持验收后可选复盘，不替代验收',async()=>{
+  await frame().locator('#stage-filter').selectOption('accept');
+  assert.equal(await frame().locator('#skill-retro').isVisible(),true);
+  const retro=await description('retro');
+  assert.match(retro,/验收后/u);assert.match(retro,/可选/u);
+  assert.match(retro,/复盘/u);assert.match(retro,/不[^。！？\n]*(?:替代|代替|代表)[^。！？\n]*验收/u);
+  await frame().locator('#reset-filters').click();
+ });
+ await check('Matt 搜索和阶段取交集，空结果可键盘重置',async()=>{
+  // Independent matching oracle exercises positive multiword AND, NFKC/case/whitespace,
+  // and membership intersection, including cards owned by another primary stage.
+  const normalize=value=>value.normalize('NFKC').toLocaleLowerCase().replace(/\s+/gu,' ').trim();
+  const texts=await frame().locator('article.skill-card').evaluateAll(nodes=>nodes.map(n=>({id:n.id,text:n.textContent})));
+  const expected=(query,stage)=>{
+   const terms=normalize(query).split(' ').filter(Boolean);
+   return texts.filter(({id,text})=>(stage==='all'||MEMBERSHIP[id].includes(stage))&&terms.every(term=>normalize(text).includes(term))).map(({id})=>id).sort();
+  };
+  await frame().locator('#skill-search').fill('tdd');const allSearch=await visibleIds();
   assert.ok(allSearch.includes('skill-tdd'));
-  const stageMembers=await frame().locator('article.skill-card').evaluateAll(nodes=>nodes.filter(n=>n.dataset.workflowStages.split(/\s+/u).includes('feature-implement')).map(n=>n.id));
-  await workType('feature').click();await frame().locator('#stage-filter').selectOption('feature-implement');
-  assert.equal(await frame().locator('#skill-search').inputValue(),'TDD');
-  assert.deepEqual(await visibleIds(),allSearch.filter(id=>stageMembers.includes(id)));
-  await workType('maintenance').click();assert.equal(await frame().locator('#stage-filter').inputValue(),'all');
-  assert.equal(await frame().locator('#skill-search').inputValue(),'TDD');
-  assert.ok((await visibleIds()).includes('skill-tdd'));
-  await frame().locator('#stage-filter').selectOption('maintenance-plan');
+  await frame().locator('#skill-search').fill('  ＴＤＤ　 ');assert.deepEqual(await visibleIds(),allSearch);
+  for(const [query,stage] of [['tdd 测试','all'],['测试 tdd','implement'],['domain-modeling','investigate'],['handoff','implement'],['writing-for-agents','implement']]){
+   await frame().locator('#stage-filter').selectOption(stage);
+   await frame().locator('#skill-search').fill(query);
+   const matches=expected(query,stage);assert.ok(matches.length>0,`${query}: positive AND fixture`);
+   assert.deepEqual(await visibleIds(),matches);await assertStages();
+   assert.equal(await frame().locator('#result-count').innerText(),`显示 ${matches.length} / 27 项技能`);
+  }
   await frame().locator('#skill-search').fill('tdd no-such-skill-8e5f');
   assert.equal(await visible().count(),0);assert.equal(await frame().locator('#empty-state').isVisible(),true);
+  await assertStages();
+  assert.equal(await frame().locator('section.workflow-stage:not([hidden])').count(),0);
   assert.equal(await frame().locator('#result-count').innerText(),'显示 0 / 27 项技能');
   await frame().locator('#reset-filters').focus();await page.keyboard.press('Enter');
   assert.equal(await visible().count(),27);assert.equal(await frame().locator('#skill-search').inputValue(),'');
   assert.equal(await frame().locator('#stage-filter').inputValue(),'all');
-  assert.equal(await workType('all').getAttribute('aria-pressed'),'true');
   assert.equal(await frame().locator('#empty-state').isVisible(),false);
-  await assertContext({label:'全部阅读资料'});
+  await assertStages();
   assert.equal(await frame().locator('#skill-search').evaluate(n=>n===document.activeElement),true);
+ });
+ await check('Matt 现有场景链接恢复被筛选隐藏的技能及阶段，外层路由不变',async()=>{
+  for(const query of ['', 'no-such-skill-8e5f']){
+   await frame().locator('#stage-filter').selectOption('clarify');
+   await frame().locator('#skill-search').fill(query);
+   assert.equal(await frame().locator('#skill-to-spec').isVisible(),false);
+   assert.equal(await frame().locator('#stage-specify').isVisible(),false);
+   await frame().locator('#examples a[href="#skill-to-spec"]').first().click();
+   const target=frame().locator('#skill-to-spec');
+   await target.waitFor({state:'visible'});
+   assert.equal(await frame().locator('#stage-specify').isVisible(),true);
+   assert.equal(await frame().locator('#stage-filter').inputValue(),'all');
+   assert.equal(await frame().locator('#skill-search').inputValue(),'');
+   await assertStages();
+   assert.equal(new URL(page.url()).hash,route);
+   assert.equal(await target.evaluate(n=>location.hash), '#skill-to-spec');
+   const native=page.frames().find(f=>f.url().includes('/guides/mattpocock-skills/index.html'));
+   await native.waitForFunction(()=>{
+    const r=document.querySelector('#skill-to-spec').getBoundingClientRect();
+    return r.bottom>0&&r.top<innerHeight;
+   });
+  }
+  await frame().locator('#reset-filters').click();
  });
  await check('Matt 章节导航隔离路由，复制成功和失败均反馈',async()=>{
   await frame().locator('nav a[href="#skills"]').click();assert.equal(new URL(page.url()).hash,route);
@@ -273,7 +304,7 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   const target=(await copy.getAttribute('data-copy-target')).replace(/^#/, '');
   const expected=await frame().locator(`[id="${target}"]`).textContent();
   assert.equal(await copy.count(),1);assert.match(expected,/\/tdd/u);
-  await workType('feature').click();await frame().locator('#stage-filter').selectOption('feature-implement');
+  await frame().locator('#stage-filter').selectOption('implement');
   await copy.click();await frame().locator('#copy-status').filter({hasText:'已复制'}).waitFor();
   assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),expected);
   const native=page.frames().find(f=>f.url().includes('/guides/mattpocock-skills/index.html'));
@@ -299,8 +330,12 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   assert.equal(await page.locator('#mobile-menu').getAttribute('aria-expanded'),'false');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   assert.equal(await frame().locator('html').evaluate(n=>n.scrollWidth<=innerWidth),true);
-  await workType('feature').focus();await page.keyboard.press('Enter');
-  await frame().locator('#stage-filter').selectOption('feature-implement');
+  await frame().locator('#reset-filters').focus();await page.keyboard.press('Enter');
+  await assertSingleColumn();
+  await frame().locator('#stage-filter').focus();
+  await page.keyboard.press('Home');await page.keyboard.press('ArrowDown');await page.keyboard.press('Tab');
+  assert.equal(await frame().locator('#stage-filter').inputValue(),'intake');
+  await frame().locator('#stage-filter').selectOption('implement');
   await frame().locator('#skill-search').focus();await page.keyboard.type('tdd');
   assert.equal(await frame().locator('#skill-search').evaluate(n=>n===document.activeElement),true);
   assert.equal(await frame().locator('#skill-tdd').isVisible(),true);
