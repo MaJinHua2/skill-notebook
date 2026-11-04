@@ -26,6 +26,7 @@ export function selectProvider(state,provider){return {...clearState(),...state,
 export function toggleTag(state,tag){const tags=state.tags||[];return {...state,tags:tags.includes(tag)?tags.filter(t=>t!==tag):[...tags,tag]};}
 export function normalizeState(value,skills){
  const input=value&&typeof value==='object'?value:{};
+ if(input.provider==='mattpocock' && !skills.some(s=>s.provider==='mattpocock'))return clearState();
  const provider=typeof input.provider==='string'&&skills.some(s=>s.provider===input.provider)?input.provider:'';
  const category=provider&&skills.some(s=>s.provider===provider&&s.category===input.category)?input.category:'';
  const known=new Set(skills.flatMap(s=>s.tags||[]));

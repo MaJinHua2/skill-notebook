@@ -1,3 +1,5 @@
+> 历史蓝图：当前阅读器已恢复为 ECC 347 项。以下早期设计与历史计数仅供追溯，当前恢复结果见 docs/ecc-restoration-2026-10-29.md。
+
 # 独立技能阅读器实施蓝图
 
 状态：五步实施及本机验收完成；Windows Edge 实机证据按下文约定列为待验。实际结果、证据和边界见 `../docs/acceptance.md`。当前以 skill-reader 为维护项目，沿用 skill-notebook 远端，并以远端现有 main 历史为提交基线；回收站旧历史仅保留本地备份。

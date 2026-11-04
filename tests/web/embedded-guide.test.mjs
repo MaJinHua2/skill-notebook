@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {EMBEDDED_GUIDE} from '../../web/embedded-guide.mjs';
-import {routeFor,parseRoute,WORKFLOWS} from '../../web/state.mjs';
+import {routeFor,parseRoute,WORKFLOWS,normalizeState,clearState} from '../../web/state.mjs';
 
 test('embedded guide preserves the approved order and exact ECC native IDs independently of filters',()=>{
  const expected=[
@@ -20,4 +20,10 @@ test('embedded guide preserves the approved order and exact ECC native IDs indep
  }
  assert.equal(WORKFLOWS.length,2);
  assert.equal(WORKFLOWS.flatMap(w=>w.stages).length,14);
+});
+
+test('restoring ECC clears retired Matt preferences without hiding valid ECC skills',()=>{
+ const skills=[{provider:'ecc',category:'开发',tags:['测试']}];
+ assert.deepEqual(normalizeState({provider:'mattpocock',query:'旧 Matt 搜索',category:'工程开发',tags:['测试'],stage:'development-test'},skills),clearState());
+ assert.equal(normalizeState({provider:'ecc',query:'架构',tags:['测试']},skills).query,'架构');
 });

@@ -38,6 +38,15 @@ async function fixture(t) {
   return {base,root,webRoot,outside,source,config,serve};
 }
 
+async function installedFixture(t) {
+  const f=await fixture(t);
+  await rm(path.join(f.root,'.codex-plugin'),{recursive:true});
+  const root=path.join(f.root,'skills');
+  const source={id:'mattpocock',label:'Matt Pocock',type:'installed-skills',root,version:'installed',skills:['sample']};
+  const config={schema:1,sources:[source]};
+  return {...f,root,source,config,serve:options=>f.serve({config,...options})};
+}
+
 test('development guide serves only fixed local assets and allows only its HTML to be embedded',async t=>{
   const f=await fixture(t);const dir=path.join(f.webRoot,'guides','multi-agent-development');
   await mkdir(dir,{recursive:true});
@@ -93,6 +102,93 @@ test('Matt guide assets are exact allowlisted local files with isolated framing 
  assert.equal((await request('/guides/mattpocock-skills/guide.js')).status,404);
  await unlink(path.join(dir,'index.html'));
  const missing=await request('/guides/mattpocock-skills/index.html');assert.equal(missing.status,404);assert.match(missing.headers['content-security-policy'],/frame-ancestors 'none'/);
+});
+
+test('installed skills need no plugin manifest, read only approved names and preserve manual invocation',async t=>{
+  const f=await installedFixture(t);
+  const file=path.join(f.root,'sample','SKILL.md');
+  const raw='---\nname: sample\ndescription: Installed source\ndisable-model-invocation: true\n---\n# 全文\n\n保留末尾\n';
+  await writeFile(file,raw);
+  await mkdir(path.join(f.root,'unapproved'));
+  await writeFile(path.join(f.root,'unapproved','SKILL.md'),skillText('unapproved'));
+  const {request}=await f.serve();
+  const list=(await request('/api/skills')).json();
+  assert.deepEqual(list.diagnostics,[]);
+  assert.deepEqual(list.skills.map(s=>s.id),['mattpocock/native/sample']);
+  assert.equal(list.skills[0].callName,'$sample');
+  assert.equal(list.skills[0].manualOnly,true);
+  assert.equal(list.skills[0].version,'installed');
+  const detail=(await request('/api/skills/mattpocock%2Fnative%2Fsample')).json();
+  assert.equal(detail.body,'# 全文\n\n保留末尾\n');
+  assert.equal(detail.sourceHash,digest(raw));
+  assert.equal((await request('/api/skills/mattpocock%2Fnative%2Funapproved')).status,404);
+  assert.equal(JSON.stringify(list).includes(f.root),false);
+  assert.equal(await readFile(file,'utf8'),raw);
+});
+
+test('installed source rejects unsafe, duplicate or empty approval lists and unknown source types',async t=>{
+  const f=await installedFixture(t);
+  for(const skills of [[],['../sample'],['/sample'],['sample','sample'],null]) {
+    await assert.rejects(createApp({config:{schema:1,sources:[{...f.source,skills}]},webRoot:f.webRoot}),{code:'CONFIG_INVALID'});
+  }
+  await assert.rejects(createApp({config:{schema:1,sources:[{...f.source,type:'anything'}]},webRoot:f.webRoot}),{code:'CONFIG_INVALID'});
+  await assert.rejects(createApp({config:{schema:1,sources:[f.source,{...f.source,skills:['other']}]},webRoot:f.webRoot}),{code:'SOURCE_CONFLICT'});
+});
+
+test('installed notes are verified by hash, become stale after changes and refresh to reviewed notes',async t=>{
+  const f=await installedFixture(t);const file=path.join(f.root,'sample','SKILL.md');
+  const note={id:'mattpocock/native/sample',callName:'$sample',nameZh:'示例技能',summaryZh:'独立技能说明',scenariosZh:['阅读原文','选择技能'],tags:['测试'],category:'工程开发',version:'installed',sourceHash:digest(await readFile(file,'utf8'))};
+  const notesFile=path.join(f.base,'notes.json');await writeFile(notesFile,JSON.stringify([note]));
+  const {request}=await f.serve({notesFiles:[notesFile]});
+  assert.equal((await request('/api/skills')).json().skills[0].status,'verified');
+  const changed=skillText('sample','更新后的正文');await writeFile(file,changed);
+  assert.equal((await request('/api/skills/mattpocock%2Fnative%2Fsample')).status,404);
+  let list=(await request('/api/skills')).json();
+  assert.equal(list.skills[0].status,'stale');assert.equal(list.skills[0].manualOnly,false);
+  assert.ok(list.diagnostics.some(d=>d.code==='NOTE_STALE'));
+  await writeFile(notesFile,JSON.stringify([{...note,sourceHash:digest(changed)}]));
+  list=(await request('/api/skills')).json();assert.equal(list.skills[0].status,'verified');
+  assert.equal((await request('/api/skills/mattpocock%2Fnative%2Fsample')).json().body,'更新后的正文');
+});
+
+test('installed attachments stay within one skill, nested reading works and vanished origins invalidate references',async t=>{
+  const f=await installedFixture(t);const dir=path.join(f.root,'sample');
+  await mkdir(path.join(dir,'docs'));await mkdir(path.join(f.root,'other'));
+  await writeFile(path.join(f.root,'other','secret.md'),'不应泄漏');
+  await symlink(path.join(f.root,'other','secret.md'),path.join(dir,'linked.md'));
+  await writeFile(path.join(dir,'docs','guide.md'),'# 指南\n\n[下一篇](next.md)');
+  await writeFile(path.join(dir,'docs','next.md'),'# 下一篇\n\n完整附件');
+  const file=path.join(dir,'SKILL.md');
+  await writeFile(file,skillText('sample','[指南](docs/guide.md) [越界](../other/secret.md) [链接](linked.md) [缺失](missing.md)'));
+  const {request}=await f.serve();
+  const detail=(await request('/api/skills/mattpocock%2Fnative%2Fsample')).json();
+  assert.deepEqual(detail.references.map(r=>r.label),['指南']);
+  const url='/api/references/'+detail.references[0].id;
+  const guide=(await request(url)).json();assert.match(guide.body,/# 指南/);
+  assert.equal((await request('/api/references/'+guide.references[0].id)).json().body,'# 下一篇\n\n完整附件');
+  await unlink(file);assert.equal((await request(url)).status,404);
+});
+
+test('installed sources refuse symlink skills and report missing approved skills without discovery fallback',async t=>{
+  const f=await installedFixture(t);
+  await mkdir(path.join(f.root,'another'));await writeFile(path.join(f.root,'another','SKILL.md'),skillText('another'));
+  await rm(path.join(f.root,'sample'),{recursive:true});
+  await symlink(path.join(f.root,'another'),path.join(f.root,'sample'));
+  const {request}=await f.serve();
+  let list=(await request('/api/skills')).json();assert.equal(list.skills.length,0);assert.equal(list.diagnostics[0].code,'SKILL_INVALID');
+  await unlink(path.join(f.root,'sample'));
+  list=(await request('/api/skills')).json();assert.equal(list.skills.length,0);assert.equal(list.diagnostics.length,1);
+});
+
+test('installed frontmatter refuses a string manual flag and replaced final-file symlinks',async t=>{
+  const f=await installedFixture(t);const file=path.join(f.root,'sample','SKILL.md');
+  await writeFile(file,'---\nname: sample\ndescription: Valid\ndisable-model-invocation: "true"\n---\n正文');
+  const {request}=await f.serve();assert.equal((await request('/api/skills')).json().skills.length,0);
+  await writeFile(file,skillText());await request('/api/skills');
+  const other=path.join(f.outside,'SKILL.md');await writeFile(other,skillText());
+  await unlink(file);await symlink(other,file);
+  assert.equal((await request('/api/skills/mattpocock%2Fnative%2Fsample')).status,404);
+  assert.equal((await request('/api/skills')).json().skills.length,0);
 });
 
 test('complete CRLF/multiline frontmatter, stable IDs, full body, no author/path leakage and zero source writes', async t => {

@@ -65,12 +65,14 @@ function card(skill){
  const top=el('div','top');const title=el('a','skill-link');title.href=routeFor('skills',skill.id);title.append(el('span','skill-icon','◇'),el('h3','',skill.nameZh||'中文名待整理'),el('span','arrow','↗'));top.append(title);
  article.append(top,field('技能调用名',el('code','call-name',skill.callName)),field('技能概括',skill.summaryZh||'中文概括待整理'),field('技能使用场景',scenarios(skill)));
  const footer=el('div','card-footer');footer.append(el('span','source-badge',`${skill.providerLabel} · ${skill.kind==='migrated'?'迁移命令技能':'技能'}`),el('span','muted',skill.category||'未分类'));
+ if(skill.manualOnly)footer.append(el('span','manual-only','仅手动调用'));
  const details=el('a','button primary detail-entry','查看详情与原文');details.href=routeFor('skills',skill.id);
  article.append(tagsFor(skill),details,footer);const note=statusNote(skill);if(note)article.append(note);return article;
 }
 function renderList(){
  const main=document.querySelector('#main');main.removeAttribute('aria-busy');main.replaceChildren();document.title='技能阅读器 · 从用途理解技能';
  const heading=el('div','section-heading');heading.append(el('h1','','技能'),el('p','muted','查调用名，看中文释义，按场景找到合适的技能。'));main.append(heading);
+ if(!skills.length){const reading=el('p','notice','当前没有可用的主列表技能，仍可阅读已有指南。 ');const link=el('a','','阅读现有 Mattpocock 指南');link.href=routeFor('guides','mattpocock-skills');reading.append(link);main.append(reading);}
  const controls=el('div','controls');
  const searchLabel=el('label','search');searchLabel.append(el('span','sr-only','搜索技能'));const search=el('input');search.type='search';search.id='search';search.placeholder='搜索调用名、中文名、用途或使用场景…';search.value=filters.query;search.addEventListener('input',()=>changeFilters({...filters,query:search.value}));searchLabel.append(search);
  const selectLabel=el('label','provider-select');selectLabel.append(el('span','sr-only','技能来源'));const select=el('select');select.id='provider';select.add(new Option('全部来源',''));for(const source of sources)select.add(new Option(`${source.label} · ${source.count}`,source.id));select.value=filters.provider;select.addEventListener('change',()=>{if(select.value)expanded[select.value]=true;changeFilters(selectProvider(filters,select.value));});selectLabel.append(select);
@@ -168,7 +170,8 @@ async function showRoute(){
   main.append(back);
   if(route.type==='skills'){
    main.append(el('h1','detail-title',data.nameZh||'中文名待整理'));
-   const meta=el('div','detail-meta');meta.append(el('code','call-name',data.callName),button('复制调用名',e=>copyCall(data.callName,e.currentTarget),'button'));main.append(meta,el('p','muted',`${data.providerLabel} · 版本 ${data.version} · ${data.category||'未分类'}`));
+   const meta=el('div','detail-meta');meta.append(el('code','call-name',data.callName),button('复制调用名',e=>copyCall(data.callName,e.currentTarget),'button'));main.append(meta,el('p','muted',`${data.providerLabel} · ${data.version==='installed'?'本机安装快照':`版本 ${data.version}`} · ${data.category||'未分类'}`));
+   if(data.manualOnly)main.append(el('p','notice manual-only','仅手动调用：请显式使用上方调用名；不由模型自动选择。'));
    const note=statusNote(data);if(note)main.append(note);
    const learning=el('section','learning-panel');learning.append(el('h2','','中文学习说明'),field('技能概括',data.summaryZh||'待整理'),field('技能使用场景',scenarios(data)),tagsFor(data,false));main.append(learning,el('h2','original-heading','完整技能原文'));
   }else main.append(el('h1','detail-title',data.title||'关联文档'));

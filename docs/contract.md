@@ -67,4 +67,9 @@ UI 筛选状态 `{provider:"",category:"",query:"",tags:[]}`，标签 AND，与�
 
 实施分工：后端维护 src/server 与 tests/server，前端维护 web 与 tests/web；package/lock、scripts、docs、data 和 E2E 由集成人维护。
 
+补充：API 保留 manualOnly 布尔字段，来自原始 frontmatter；当前批准来源和活动中文笔记只包含 ECC，已卸载的 Matt 来源不再加载。
+
 真实资料检查产物 `.local/acceptance/smoke.json` 表示最近一次获准启动的运行。新增 `runId`、`startedAt`、`finishedAt`、`stage`，失败时有安全的 `error:{stage,message}`，详情失败可有 `currentSkillId`；保留既有库存、状态数和 `completeDetailsChecked` 等字段。尚未观测的数据为 null，已完成数量从本轮 0 开始。校验前先发布 running，正常成功发布 passed 并退出 0，可捕获失败发布 failed 并非零退出；写入使用同目录临时文件与替换。smoke.lock 阻止并发覆盖，硬中断的 running 不构成通过，写入失败须明确报告结果不可用。
+
+
+维护开发阅读分类（2026-11-04）：仅既有Matt指南27项在原入口中增加工作类型（新需求开发／故障维护／通用支持）和阶段筛选；切换类型清阶段、保留查询，多个关键词与阶段取交集，多阶段归属不复制卡片。每阶段有目标、准备与产出说明；原章节、技能名、原文链接和复制目标保留。主列表只在空库存时补现有指南入口；原筛选状态、存储键、API和笔记字段保持。没有新增来源、库存、路由、静态资源或技能执行入口，ECC不恢复。

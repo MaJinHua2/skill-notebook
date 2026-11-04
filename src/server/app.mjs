@@ -57,7 +57,8 @@ function parseSkill(raw, slug) {
   let meta;
   try { meta=doc.toJS({maxAliasCount:30}); } catch { throw safeError('FRONTMATTER_INVALID'); }
   if(!meta || meta.name!==slug || typeof meta.description!=='string' || !meta.description.trim()) throw safeError('FRONTMATTER_INVALID');
-  return {description:meta.description.trim(),body:raw.slice(match[0].length)};
+  if(meta['disable-model-invocation']!==undefined && typeof meta['disable-model-invocation']!=='boolean') throw safeError('FRONTMATTER_INVALID');
+  return {description:meta.description.trim(),body:raw.slice(match[0].length),manualOnly:meta['disable-model-invocation']===true};
 }
 
 async function readMetadata(root,id,version) {
@@ -72,7 +73,10 @@ async function buildCatalog(config,notesFiles,approvedRoots) {
   const diag=(source,code,message='来源文件未通过校验，请检查本地配置。')=>diagnostics.push({source,code,message});
   const seenRoots=new Map(), seenIds=new Set();
   for(const source of config.sources) {
-    if(!identifier(source.id) || typeof source.label!=='string' || !source.label.trim() || typeof source.version!=='string' || !source.version || typeof source.root!=='string' || !path.isAbsolute(source.root) || !Array.isArray(source.entries) || !source.entries.length) throw safeError('CONFIG_INVALID');
+    const installed=source.type==='installed-skills';
+    if(source.type!==undefined && !['plugin','installed-skills'].includes(source.type)) throw safeError('CONFIG_INVALID');
+    if(!identifier(source.id) || typeof source.label!=='string' || !source.label.trim() || typeof source.version!=='string' || !source.version || typeof source.root!=='string' || !path.isAbsolute(source.root)) throw safeError('CONFIG_INVALID');
+    if(installed ? !Array.isArray(source.skills) || !source.skills.length || source.skills.some(slug=>!identifier(slug)) || new Set(source.skills).size!==source.skills.length : !Array.isArray(source.entries) || !source.entries.length) throw safeError('CONFIG_INVALID');
     let root;
     try { root=await realpath(source.root); } catch { diag(source.id,'SOURCE_UNAVAILABLE','技能包不可用，请检查本地来源。'); continue; }
     const configuredRoot=path.resolve(source.root);
@@ -82,12 +86,27 @@ async function buildCatalog(config,notesFiles,approvedRoots) {
     approvedRoots.set(configuredRoot,root);
     if(seenRoots.has(root)) {
       const prior=seenRoots.get(root);
-      if(prior.version!==source.version || prior.id!==source.id || JSON.stringify(prior.entries)!==JSON.stringify(source.entries)) throw safeError('SOURCE_CONFLICT');
+      if(prior.version!==source.version || prior.id!==source.id || prior.type!==source.type || JSON.stringify(prior.entries)!==JSON.stringify(source.entries) || JSON.stringify(prior.skills)!==JSON.stringify(source.skills)) throw safeError('SOURCE_CONFLICT');
       continue;
     }
     if(seenIds.has(source.id)) throw safeError('SOURCE_CONFLICT');
     seenIds.add(source.id); seenRoots.set(root,source);
     const sourceInfo={id:source.id,label:source.label,version:source.version,count:0}; sources.push(sourceInfo);
+    if(installed) {
+      for(const slug of source.skills) {
+        try {
+          const skillRoot=path.join(root,slug);
+          if(await realpath(skillRoot)!==skillRoot) throw safeError();
+          const file=path.join(skillRoot,'SKILL.md'); const actual=await realpath(file);
+          const raw=await checkedRead(root,file,[skillRoot],actual);
+          const parsed=parseSkill(raw,slug);
+          const id=`${source.id}/native/${slug}`;
+          const item={id,provider:source.id,providerLabel:source.label,kind:'native',slug,version:source.version,callName:`$${slug}`,manualOnly:parsed.manualOnly,description:parsed.description,searchText:parsed.body,sourceHash:hash(raw),nameZh:'',summaryZh:'',scenariosZh:[],tags:[],category:'',status:'missing'};
+          records.set(id,{item,root,entryRoot:root,skillRoot,file,actual,installed:true,originFile:file,originActual:actual}); sourceInfo.count++;
+        } catch(error) { diag(source.id,error.code==='FILE_TOO_LARGE'?error.code:'SKILL_INVALID','一项批准技能不存在，或其正文、名称、路径未通过校验。'); }
+      }
+      continue;
+    }
     let metadata;
     try {
       metadata=await readMetadata(root,source.id,source.version);
@@ -119,7 +138,7 @@ async function buildCatalog(config,notesFiles,approvedRoots) {
             const parsed=parseSkill(raw,slug);
             const id=`${source.id}/${entry.kind}/${slug}`;
             if(records.has(id)) throw safeError('SKILL_CONFLICT');
-            const item={id,provider:source.id,providerLabel:source.label,kind:entry.kind,slug,version:source.version,callName:`${source.id}:${slug}`,description:parsed.description,searchText:parsed.body,sourceHash:hash(raw),nameZh:'',summaryZh:'',scenariosZh:[],tags:[],category:'',status:'missing'};
+            const item={id,provider:source.id,providerLabel:source.label,kind:entry.kind,slug,version:source.version,callName:`${source.id}:${slug}`,manualOnly:parsed.manualOnly,description:parsed.description,searchText:parsed.body,sourceHash:hash(raw),nameZh:'',summaryZh:'',scenariosZh:[],tags:[],category:'',status:'missing'};
             records.set(id,{item,root,entryRoot,skillRoot,file,actual,metadataSkills:JSON.stringify(metadata.skills)}); sourceInfo.count++;
           } catch(error) { diag(source.id,error.code==='FILE_TOO_LARGE'?error.code:'SKILL_INVALID','一项技能的正文、名称或路径未通过校验。'); }
         }
@@ -161,8 +180,13 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
   const references=new Map();
 
   async function document(record, isSkill) {
-    const metadata=await readMetadata(record.root,record.item.provider,record.item.version);
-    if(JSON.stringify(metadata.skills)!==record.metadataSkills) throw safeError('METADATA_MISMATCH');
+    if(record.installed) {
+      const origin=await checkedRead(record.root,record.originFile,[record.entryRoot,record.skillRoot],record.originActual);
+      if(hash(origin)!==record.item.sourceHash) throw safeError('SOURCE_CHANGED');
+    } else {
+      const metadata=await readMetadata(record.root,record.item.provider,record.item.version);
+      if(JSON.stringify(metadata.skills)!==record.metadataSkills) throw safeError('METADATA_MISMATCH');
+    }
     const raw=await checkedRead(record.root,record.file,[record.entryRoot,record.skillRoot],record.actual);
     if(isSkill && hash(raw)!==record.item.sourceHash) throw safeError('SOURCE_CHANGED');
     const body=isSkill?parseSkill(raw,record.item.slug).body:raw;
@@ -176,11 +200,13 @@ export async function createApp({config,notesFiles=[],webRoot,allowedCidrs=[]}={
         if(target.includes('%') || !/\.md$/i.test(target)) continue;
         target=relative(target);
         const file=path.resolve(path.dirname(record.file),target); const actual=await realpath(file);
-        // References may be elsewhere in the approved package, but never outside it.
-        await checkedRead(record.root,file,[],actual);
+        // Installed skills authorize only their own attachments, never sibling skills.
+        const referenceRoot=record.installed?record.skillRoot:record.root;
+        if(!inside(referenceRoot,actual)) throw safeError();
+        await checkedRead(record.root,file,record.installed?[record.skillRoot]:[],actual);
         const id=hash(record.item.provider+'\0'+path.relative(record.root,actual));
         if(seen.has(id)) continue; seen.add(id);
-        references.set(id,{root:record.root,file,actual,entryRoot:record.root,skillRoot:record.root,item:record.item,metadataSkills:record.metadataSkills});
+        references.set(id,{...record,file,actual,entryRoot:record.installed?record.entryRoot:record.root,skillRoot:referenceRoot});
         refs.push({id,label});
       } catch { /* Unsupported or unsafe references are deliberately not registered. */ }
     }
