@@ -368,3 +368,13 @@
 - implement：工单访问只在用户提供引用时必需；采用tdd时先确认测试接入位置，均非所有规格实施的固定输入。依据 `skills/engineering/implement/SKILL.md:7–11`。
 
 此修正只补语义与条件，不执行上述操作，不修改原文、示例、链接或来源配置。修订后再次按同版指纹复核。
+
+## S4 技能关系与白话说明修订（2026-11-05）
+
+本节更新当前页面的内容状态；上方S3b及更早的逐句样例、行号和测试结论保留为历史记录。当前范围与冻结依据见既有计划第11节S4 v0.2。
+
+- 本轮固定来源27份SKILL.md逐项审读，27/27哈希匹配原清单；未更新技能源或运行时库存。
+- 22项正文发生变化，另有writing-for-agents仅改写示例，共23项内容调整；teach、wait-what、wizard、pr保持。改写条目：setup-matt-pocock-skills、ask-matt、triage、grill-with-docs、grill-me、grilling、domain-modeling、to-questionnaire、wayfinder、research、prototype、diagnosing-bugs、improve-codebase-architecture、codebase-design、to-spec、writing-for-agents、handoff、to-tickets、implement、implement-spec、tdd、code-review、retro。
+- 文案明确组合技能已包含的方法、入口选择、按需研究、已有结论复用，以及实施中采用的测试与审查；示例仅改中文任务，不改命令。
+- 原有27技能、阶段归属、唯一锚点、全部链接与复制目标保持；受理及调查阶段按规格重排。来源哈希、前后内容核对和浏览器证据见.local/matt-s4/。
+- 中文是否容易理解仍待用户查看最终页面确认，自动检查不能替代。

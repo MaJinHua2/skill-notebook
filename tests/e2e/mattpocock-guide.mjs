@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-// Frozen S3b primary DOM ownership; independent of rendered membership and prose.
+// S4 冻结阅读顺序来自规格，独立于被测页面及正文。
 const STAGES = [
- ['intake','需求／反馈受理','triage ask-matt setup-matt-pocock-skills'],
+ ['intake','需求／反馈受理','setup-matt-pocock-skills ask-matt triage'],
  ['clarify','需求讨论与问题澄清','grill-with-docs grill-me grilling domain-modeling to-questionnaire teach wait-what'],
- ['investigate','调查与方案验证','research diagnosing-bugs prototype wayfinder codebase-design improve-codebase-architecture'],
+ ['investigate','调查与方案验证','wayfinder research prototype diagnosing-bugs improve-codebase-architecture codebase-design'],
  ['specify','规格与实施计划','to-spec writing-for-agents handoff'],
  ['split','任务拆分','to-tickets'],
  ['implement','实现与测试','implement implement-spec tdd wizard'],
@@ -17,8 +17,7 @@ const MEMBERSHIP = Object.fromEntries(STAGES.flatMap(([stage,,names])=>skillIds(
 MEMBERSHIP['skill-domain-modeling'] = ['clarify','investigate'];
 MEMBERSHIP['skill-handoff'] = ['investigate','specify','implement'];
 MEMBERSHIP['skill-writing-for-agents'] = ['specify','implement'];
-// Digests captured from the S3b before snapshot, not from the page under test.
-const CALL_DIGEST = '1b82c2d213674b94929125eabfe72db58d96a842d04a9dd1c37c6f79f894b922';
+// 外链沿用S3b基线；S4允许改写示例参数，调用命令仍须与真实技能名一致。
 const EXTERNAL_DIGEST = '365b23967614f3b7a725a5725695df8a3ff8b54a2402a2e323c2cea775b6b02d';
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
@@ -98,7 +97,7 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   assert.equal(await page.getByRole('link',{name:'Mattpocock Skills 指南',exact:true}).getAttribute('aria-current'),null);
   await page.getByRole('link',{name:'Mattpocock Skills 指南',exact:true}).click();await ready();
  });
- await check('Matt S3b 八阶段真实归组、正文默认可见且无旧提示或重复索引',async()=>{
+ await check('Matt S4 八阶段真实归组、正文默认可见且无旧提示或重复索引',async()=>{
   assert.equal(await frame().locator('#work-type-filter').count(),0);
   assert.deepEqual(await options(),[{id:'all',label:'全部阶段'},...STAGES.map(([id,label])=>({id,label}))]);
   assert.equal(await frame().locator('#workflow').count(),1);
@@ -142,7 +141,8 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
    for(const description of await descriptions.all())assert.equal(await description.isVisible(),true);
   }
   const calls=await frame().locator('code[id^="call-"]').evaluateAll(nodes=>nodes.map(n=>[n.id,n.textContent]).sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:0));
-  assert.equal(calls.length,27);assert.equal(digest(calls),CALL_DIGEST);
+  assert.equal(calls.length,27);
+  for(const [id,text] of calls)assert.equal(text.trim().split(/\s/u)[0],`/${id.slice(5)}`,'改写示例不能改变调用命令');
   const copies=await frame().locator('[data-copy-target]').evaluateAll(nodes=>nodes.map(n=>n.dataset.copyTarget).sort());
   assert.deepEqual(copies,[...calls.map(([id])=>id),'install-codex','scenario-bug','scenario-feature','scenario-questionnaire','scenario-review'].sort());
   assert.equal(new Set(copies).size,32);
@@ -159,6 +159,8 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   for(const [id,,names] of STAGES){
    await frame().locator('#stage-filter').selectOption(id);
    const actual=await visibleIds();
+   const readingOrder=STAGES.flatMap(([, ,skills])=>skills.split(' ').map(name=>`skill-${name}`));
+   assert.deepEqual(await visible().evaluateAll(nodes=>nodes.map(n=>n.id)),readingOrder.filter(name=>MEMBERSHIP[name].includes(id)),'筛选后仍遵守S4阅读顺序');
    assert.deepEqual(actual,Object.entries(MEMBERSHIP).filter(([,stages])=>stages.includes(id)).map(([name])=>name).sort());
    await assertStages();
    assert.equal(actual.length,new Set(actual).size);
@@ -204,7 +206,7 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   assert.match(withDocs,/grilling/u);assert.match(withDocs,/domain-modeling/u);
   assert.match(withDocs,/组合|包含|调用|复用/u);
   assert.match(withDocs,/GLOSSARY\.md/u);
-  assert.match(withDocs,/不[^。！？\n]*(?:替|代)[^。！？\n]*决定/u);
+  assert.match(withDocs,/(?:业务[^。！？\n]*由用户决定|不[^。！？\n]*(?:替|代)[^。！？\n]*决定)/u);
   const grillMe=await description('grill-me');
   assert.match(grillMe,/grilling/u);
   assert.match(grillMe,/(?:不含|不包含|不承担|不负责|没有)[^。！？\n]*domain-modeling/u);
@@ -213,7 +215,7 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   const toSpec=await description('to-spec');
   // Check the concepts in the skill's prose, not a legacy stage prompt or
   // a particular adjacent phrase such as “测试接口”.
-  assert.match(toSpec,/测试[^。！？\n]*(?:接口|接缝|接入|位置|seam)/iu);
+  assert.match(toSpec,/(?:测试[^。！？\n]*(?:接口|接缝|接入|位置|seam)|(?:公共接口|测试接口)[^。！？\n]*测试)/iu);
   assert.match(toSpec,/(?:用户[^。！？\n]*(?:确认|核对)|(?:确认|核对)[^。！？\n]*用户)/u);
   assert.match(toSpec,/不[^。！？\n]*(?:访谈|采访|提问)/u);
   assert.match(toSpec,/不[^。！？\n]*冻结/u);
@@ -227,7 +229,7 @@ export async function checkMattpocockGuide(page,check,reportDir,base){
   assert.equal(await frame().locator('#skill-tdd').isVisible(),true);
   const tdd=await description('tdd');
   assert.match(tdd,/测试[^。！？\n]*(?:接口|接缝|接入|seam)/iu);
-  assert.match(tdd,/(?:每次|一次|逐个|逐一)[^。！？\n]*(?:行为|循环)/u);
+  assert.match(tdd,/(?:每次|每轮|一次|逐个|逐一)[^。！？\n]*(?:行为|循环)/u);
   assert.match(tdd,/(?:失败[^。！？\n]*通过|红[^。！？\n]*绿)/u);
   await frame().locator('#stage-filter').selectOption('review');
   for(const name of ['tdd','retro'])assert.equal(await frame().locator(`#skill-${name}`).isVisible(),false);

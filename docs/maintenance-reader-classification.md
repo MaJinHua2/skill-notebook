@@ -1,6 +1,6 @@
 # Matt 指南27项阅读分类台账
 
-当前需求：reader-matt-stage-content-20261104；版本：S3b；继承R1八阶段归属。冻结、授权与源码基线见 `plans/maintenance-development-reader-plan.md` 第10节。
+当前需求：reader-matt-relations-language-20261105；版本：S4 v0.2；保留S3b八阶段归属，修订阶段内技能排列和说明。冻结、授权、源码基线与完整顺序对照见 `plans/maintenance-development-reader-plan.md` 第11节。
 用户确认单一八阶段流程、需求讨论提供多个可选入口、删除通用分组但保留全部27技能。以下分类取代旧双流程及支持组；只是阅读指南，不是上游强制执行顺序或宿主能力清单。
 固定来源：`mattpocock/skills` 1.3.2，提交 `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d`。不更新来源、不导入运行时库存、不恢复ECC。原文哈希另核对，不把历史验证当本轮结果。
 
@@ -62,3 +62,9 @@
 - 本轮正文、27条目/归属/32调用及复制目标/全部外链保护：已验证方法：通过，见content-invariants.json；42项浏览器回归、无JS可读、桌面/390px单列无溢出通过，见e2e.json/layout.json。
 - 四角色最终复核：实际执行证据与结果见.local/matt-s3b/review-results.json；无记录不得推断通过。
 - 用户最终内容/视觉验收、Windows/Edge及原生缩放：未验证。
+
+## S4 阅读顺序修订
+
+阶段及主要归属不变；受理阶段按 setup-matt-pocock-skills、ask-matt、triage 排列，调查阶段按 wayfinder、research、prototype、diagnosing-bugs、improve-codebase-architecture、codebase-design 排列，其余阶段内顺序保持。首次配置、选择入口、外部反馈各有条件，不要求连续执行；调查各工具按问题选择，不强造依赖。组合入口已包含的方法不机械重跑。
+
+本表上方行号、R1/S3b测试结果属于历史版本，不代表S4已经验收。S4本轮结果及限制统一记录于计划第11节。
